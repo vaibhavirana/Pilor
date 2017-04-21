@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- LANDING SCREEN -->
+
+    <dimen name="landing_iv_logo_size_width">189dp</dimen>
+    <dimen name="landing_iv_logo_size_height">70dp</dimen>
+    <dimen name="landing_iv_logo_margin_bottom">24dp</dimen>
+
+    <!-- LOGIN SCREEN -->
+
+    <dimen name="login_iv_logo_size_height">51dp</dimen>
+    <dimen name="login_iv_logo_size_width">118dp</dimen>
+    <dimen name="login_iv_logo_margin_bottom">56dp</dimen>
+    <dimen name="login_et_login_padding">11dp</dimen>
+    <dimen name="login_et_login_font">15sp</dimen>
+    <dimen name="login_tv_forgot_font">13sp</dimen>
+
+    <dimen name="tv_header_title_font">18sp</dimen>
+
+    <dimen name="landing_tv_msg_font">16sp</dimen>
+
+    <dimen name="login_ll_password_margin_bottom">28dp</dimen>
+
+    <!-- SETTING SCREEN -->
+
+    <dimen name="setting_layout_view_padding_bottom">10dp</dimen>
+    <dimen name="setting_layout_view_padding_top">8dp</dimen>
+    <dimen name="setting_ic_arrow_size_width">15dp</dimen>
+    <dimen name="setting_ic_arrow_size_height">12dp</dimen>
+    <dimen name="setting_btn_toggle_size_width">50dp</dimen>
+    <dimen name="setting_btn_toggle_size_height">22dp</dimen>
+    <dimen name="setting_tv_about_margin_top">15dp</dimen>
+    <dimen name="setting_iv_fb_width">20dp</dimen>
+    <dimen name="setting_ll_separator_fb_margin_left">33dp</dimen>
+
+    <dimen name="sloting_img_icon_height">39dp</dimen>
+
+    <dimen name="win_detail_price_img_height">310dp</dimen>
+
+    <dimen name="admin_tv_user_font">34sp</dimen>
+
+</resources>

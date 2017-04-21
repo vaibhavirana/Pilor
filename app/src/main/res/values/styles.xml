@@ -1,0 +1,165 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="iv_bg_image">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="tv_forgot_pass">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textSize">@dimen/login_tv_forgot_font</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/setting_layout_view_padding_top</item>
+    </style>
+
+    <style name="iv_close">
+        <item name="android:layout_height">@dimen/setting_ll_separator_fb_margin_left</item>
+        <item name="android:layout_width">@dimen/setting_ll_separator_fb_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/login_et_login_padding</item>
+        <item name="android:layout_marginBottom">@dimen/sloting_img_icon_height</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:src">@drawable/icon_cross</item>
+    </style>
+
+    <style name="et_login_details">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/landing_iv_logo_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/landing_iv_logo_margin_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/login_et_login_padding</item>
+        <item name="android:background">@drawable/bg_dark_gray_rounded_corners_5</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColorHint">#CCffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">textCapSentences</item>
+        <item name="android:padding">@dimen/login_et_login_padding</item>
+    </style>
+
+    <style name="btn_login">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bg_selector_green</item>
+        <item name="android:layout_marginTop">@dimen/login_et_login_padding</item>
+        <item name="android:layout_marginRight">@dimen/landing_iv_logo_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/landing_iv_logo_margin_bottom</item>
+    </style>
+
+    <style name="tv_header_title">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/tv_header_title_font</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="separator_horizontal_gray">
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:background">@color/color_gray</item>
+    </style>
+
+    <style name="rl_setting_view">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/bg_list_selector</item>
+        <item name="android:paddingTop">@dimen/setting_layout_view_padding_bottom</item>
+        <item name="android:paddingBottom">@dimen/setting_layout_view_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/setting_layout_view_padding_bottom</item>
+    </style>
+
+    <style name="tv_setting">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+        <item name="android:textColor">@color/color_light_black_options</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="iv_arrow_nect">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">@dimen/setting_ic_arrow_size_width</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+
+    <style name="et_add_business">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+        <item name="android:textColorHint">#a5a5a5</item>
+        <item name="android:textColor">@color/color_light_black_options</item>
+        <item name="android:padding">@dimen/login_et_login_padding</item>
+        <item name="android:inputType">textCapSentences</item>
+    </style>
+
+    <style name="tv_crop_image">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+        <item name="android:textColor">@color/color_light_black_options</item>
+    </style>
+
+    <style name="tv_item_post">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/landing_tv_msg_font</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/setting_layout_view_padding_top</item>
+    </style>
+
+    <style name="tv_item_business_task">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/color_light_black_options</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+        <item name="android:padding">@dimen/setting_layout_view_padding_top</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="tv_no_data_found">
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">@dimen/landing_tv_msg_font</item>
+    </style>
+
+</resources>

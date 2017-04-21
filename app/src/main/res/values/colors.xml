@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#4CAF50</color>
+    <color name="colorAccent">#4CAF50</color>
+
+    <color name="color_gray">#c3c3c3</color>
+
+    <color name="color_vlight_gray">#f6f6f6</color>
+
+    <color name="color_light_black_options">#050e1c</color>
+
+    <color name="default_circle_indicator_fill_color">@android:color/white</color>
+    <color name="default_circle_indicator_page_color">#c3c3c3</color>
+    <color name="default_circle_indicator_stroke_color">#c3c3c3</color>
+
+    <color name="color_google_red">#da2627</color>
+
+</resources>

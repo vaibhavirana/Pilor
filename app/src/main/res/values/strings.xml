@@ -1,0 +1,211 @@
+<resources>
+    <string name="app_name">Pilor</string>
+
+    <!--<string name="fb_id">1239345152846915</string>-->
+    <string name="fb_id">849682151838366</string>
+    <!-- 172350663252974-->
+
+    <string name="txt_loading">Loading...</string>
+    <string name="txt_ok">Ok</string>
+
+    <string name="txt_no">No</string>
+    <string name="txt_failed">Failed</string>
+    <string name="txt_yes_logout">Yes - Log out</string>
+    <string name="txt_continue">Continue</string>
+    <string name="txt_yes">Yes</string>
+
+    <string name="txt_landing_msg">You have a task or idea that you\nneed to get fixed. Get it SnapFixed.</string>
+
+    <string name="txt_signup_email">SIGNUP WITH EMAIL</string>
+    <string name="txt_signup_fb">SIGNUP WITH FACEBOOK</string>
+    <string name="txt_already_acct">Already have an account? Login with email</string>
+    <string name="txt_business_login">LOGIN AS BUSINESS</string>
+
+    <string name="txt_fullname">Full name</string>
+    <string name="txt_bio">Bio (Max 120 characters)</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_phone">Phone number</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_repassword">Retype password</string>
+    <string name="txt_forgot_pass">Forgot your password?</string>
+    <string name="txt_dont_have_acct">Don\'t have account?</string>
+
+    <string name="txt_current_pass">Current password</string>
+    <string name="txt_new_pass">New password</string>
+    <string name="txt_retype_new_pass">Retype new password</string>
+
+    <string name="txt_login">LOGIN</string>
+    <string name="txt_sign_up">SIGNUP</string>
+    <string name="txt_submit">SUBMIT</string>
+
+    <string name="txt_err_name">Please enter full name</string>
+    <string name="txt_err_email">Please enter email</string>
+    <string name="txt_err_valid_email">Please enter valid email</string>
+    <string name="txt_err_phone">Please enter phone number</string>
+    <string name="txt_err_bio">Please enter some text about your profile</string>
+    <string name="txt_err_password">Please enter password</string>
+    <string name="txt_err_repassword">Please retype password</string>
+    <string name="txt_err_password_match">Please check your both password</string>
+
+    <string name="txt_err_curr_pass">Please enter current password</string>
+    <string name="txt_err_new_pass">Please enter new password</string>
+    <string name="txt_err_renew_pass">Please retype new password</string>
+    <string name="txt_err_match_curr_pass">Current password does not match with your password</string>
+    <string name="txt_err_match_new_pass">New password and Retype new password should be same</string>
+
+    <string name="txt_save">Save</string>
+    <string name="txt_setting">Settings</string>
+
+    <string name="txt_your_profile">Your profile</string>
+    <string name="txt_change_password">Change password</string>
+    <string name="txt_my_job_post">My job posts</string>
+    <string name="txt_contact_us">Contact us</string>
+    <string name="txt_facebook">Facebook</string>
+    <string name="txt_website">Website</string>
+    <string name="txt_wants_job">Do you want jobs as well?</string>
+    <string name="txt_sign_out">Sign out</string>
+
+    <string name="txt_are_you_sure">Are you sure?</string>
+
+    <string name="txt_my_tasks">My tasks</string>
+
+    <string name="txt_open">OPEN</string>
+    <string name="txt_closed">CLOSED</string>
+
+    <string name="txt_new">NEW</string>
+    <string name="txt_bids">BIDS</string>
+
+    <string name="txt_add_references">Add Reference</string>
+
+    <string name="txt_references">References</string>
+    <string name="txt_support">Support</string>
+    <string name="txt_payment_card">Payment card</string>
+    <string name="txt_payment_history">Payment history</string>
+    <string name="txt_redeem_promocide">Redeem promocode</string>
+    <string name="txt_change_passcode">Change passcode</string>
+
+    <string name="txt_add_photo">Add or change your profile picture</string>
+
+    <string name="txt_company_name">Company name</string>
+    <string name="txt_address">Address</string>
+    <string name="txt_company_desc">Company description (120 characters)</string>
+
+    <string name="txt_invalid_email">Invalid email/password</string>
+
+    <string name="txt_create_job">Create a job</string>
+
+    <string name="txt_add_photo_video">Add photos or videos to your job.</string>
+
+    <string name="txt_headline">Headline (Max 50 characters)</string>
+
+    <string name="txt_desc_200">Description (200 characters)</string>
+
+    <string name="txt_not_allowed_contact">Its not allowed to add your contact information.</string>
+
+    <string name="txt_special_requirement">Any special requirements? (200 characters)</string>
+
+    <string name="txt_distance_msg">How long away could your freelancer be from you?</string>
+
+    <string name="txt_budget">Budget</string>
+    <string name="txt_expiry_date">Expiry date</string>
+
+    <string name="txt_create_job_capital">CREATE JOB</string>
+    <string name="txt_create_job_msg">You will be notified when you have some bids.</string>
+
+    <string name="permission_gps_rationale">Location permission is needed to proceed further.</string>
+    <string name="permission_gps_denied">Location permission was denied. Please consider granting it in order to access the Location!</string>
+    <string name="permission_gps_never_askagain">Location permission was denied with never ask again.</string>
+
+    <string name="txt_allow">Allow</string>
+    <string name="txt_deny">Deny</string>
+
+    <string name="txt_select_image">Select image:</string>
+
+    <string name="txt_done">Done</string>
+    <string name="txt_cancel">Cancel</string>
+
+    <string name="txt_err_headline">Please enter headline</string>
+    <string name="txt_err_description">Please enter work description</string>
+    <string name="txt_err_budget">Please enter budget</string>
+    <string name="txt_Err_budget_amt">Budget should be greater than 0</string>
+    <string name="txt_err_expiry_date">Please select expiry date</string>
+    
+    <string name="txt_task_successfully">Task created successfully.</string>
+    <string name="txt_task_failed">There is some problem in creating task. Please check task details and try again.</string>
+
+    <string name="txt_days_left">DAYS LEFT:</string>
+
+    <string name="txt_success_update_profile">Profile updated successfully</string>
+    <string name="txt_failed_update_profile">Failed to update profile. Please try again.</string>
+
+    <string name="txt_success_change_pass">Password changes successfully</string>
+    <string name="txt_failed_change_pass">Failed to change password. Please try again.</string>
+
+    <string name="txt_bid_on_job">BID ON JOB</string>
+
+    <string name="txt_description">Description</string>
+    <string name="txt_additional_requirement">Additional Requirement</string>
+
+    <string name="txt_date">Date:</string>
+    <string name="txt_timenline">Timeline</string>
+
+    <string name="txt_create_bid">Create Bid</string>
+
+    <string name="txt_bid_dkk">Bid in DKK</string>
+    <string name="txt_any_comment_200">Any comments? (200 characters)</string>
+    <string name="txt_deadline">Deadline</string>
+
+    <string name="txt_err_bid">Please enter bid amount</string>
+    <string name="txt_err_bid_amt">Bid amount should be greater than 0</string>
+    <string name="txt_err_deadline">Please select deadline</string>
+
+    <string name="txt_delete">Delete</string>
+
+    <string name="txt_headline_txt">Headline</string>
+
+    <string name="txt_create_reference">CREATE REFERENCE</string>
+
+    <string name="txt_company_detail">Company details</string>
+
+    <string name="txt_select_winner">SELECT AS WINNER</string>
+
+    <string name="txt_bid_added_success">Bid added successfully</string>
+    <string name="txt_bid_added_failed">Failed to add bid. Please try again.</string>
+
+    <string name="txt_bid">Bid</string>
+
+    <string name="txt_references_add_success">Reference added successfully</string>
+    <string name="txt_references_add_failed">Failed to add reference. Please try again.</string>
+
+    <string name="txt_references_delete_failed">Failed to delete reference. Please try again.</string>
+
+    <string name="txt_delete_reference">Delete Reference</string>
+
+    <string name="txt_forgot_pass_sent">We have sent you an email to recover your password</string>
+
+    <string name="txt_add_payment_card">Add Payment Card</string>
+    <string name="txt_add_credit_card">Add credit card</string>
+    <string name="txt_delete_credit_card">Delete card</string>
+    <string name="txt_card_msg">This card will be saved and used for future purchases</string>
+    <string name="txt_stored_card_num">Stored credit card number</string>
+
+    <string name="txt_accept">Accept</string>
+    <string name="txt_accept_msg">You have to pay 39 DKK. Do you want to continue?</string>
+
+    <string name="txt_new_passcode">New passcode</string>
+    <string name="txt_confirm_passcode">Confirm passcode</string>
+
+    <string name="txt_any">ANY</string>
+
+    <string name="txt_bid_added_by_you">You have already added bid on this task</string>
+
+    <string name="txt_something_went_wrong">Something went wrong. Please tray again later.</string>
+
+    <string name="txt_no_task_found">No task found</string>
+    <string name="txt_no_bid_found">No bids found</string>
+
+    <string name="txt_selected">SELECTED</string>
+
+    <string name="txt_create_passcode">Create passcode</string>
+
+</resources>
