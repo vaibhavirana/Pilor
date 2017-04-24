@@ -15,6 +15,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class LandingActivity extends ActivityBase
 {
-    private Button btnSignup, btnSignupFb, btnLoginBusiness,btnLogin;
+    private Button  btnSignupFb, btnLoginBusiness,btnLogin;
 
     private TextView tvLoginEmail;
 
@@ -49,7 +50,9 @@ public class LandingActivity extends ActivityBase
         super.onCreate(savedInstanceState);
 
         FacebookSdk.sdkInitialize(this.getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
+       // logger.logPurchase(BigDecimal.valueOf(4.32), Currency.getInstance("USD"));
         setContentView(R.layout.activity_landing);
 
         initData();
@@ -161,15 +164,7 @@ public class LandingActivity extends ActivityBase
                 .crossFade()
                 .into((ImageView)findViewById(R.id.imgBg));
 
-        btnSignup = (Button) findViewById(R.id.btnLogin);
-        btnSignup.setTypeface(appData.getFontRegular());
 
-        btnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //goToSignupScreen();
-            }
-        });
 
         btnSignupFb = (Button) findViewById(R.id.btnSignupFb);
         btnSignupFb.setTypeface(appData.getFontRegular());
@@ -177,7 +172,7 @@ public class LandingActivity extends ActivityBase
         btnSignupFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //loginButton.performClick();
+                loginButton.performClick();
             }
         });
 

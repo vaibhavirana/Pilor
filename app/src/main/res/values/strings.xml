@@ -2,7 +2,8 @@
     <string name="app_name">Pilor</string>
 
     <!--<string name="fb_id">1239345152846915</string>-->
-    <string name="fb_id">849682151838366</string>
+    <string name="facebook_app_id">1435222096552444</string>
+    <string name="fb_login_protocol_scheme">fb1435222096552444</string>
     <!-- 172350663252974-->
 
     <string name="txt_loading">Loading...</string>
