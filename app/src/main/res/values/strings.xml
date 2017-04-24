@@ -16,12 +16,12 @@
 
     <string name="txt_landing_msg">You have a task or idea that you\nneed to get fixed. Get it SnapFixed.</string>
 
-    <string name="txt_signup_email">SIGNUP WITH EMAIL</string>
+    <string name="txt_signup_email">Signup with email instead?</string>
     <string name="txt_signup_fb">SIGNUP WITH FACEBOOK</string>
     <string name="txt_already_acct">Already have an account? Login with email</string>
-    <string name="txt_business_login">LOGIN AS BUSINESS</string>
+    <string name="txt_cutter_login">LOGIN AS CUTTER</string>
 
-    <string name="txt_fullname">Full name</string>
+    <string name="txt_fullname">Your name</string>
     <string name="txt_bio">Bio (Max 120 characters)</string>
     <string name="txt_email">Email</string>
     <string name="txt_phone">Phone number</string>
@@ -129,7 +129,7 @@
     <string name="txt_err_budget">Please enter budget</string>
     <string name="txt_Err_budget_amt">Budget should be greater than 0</string>
     <string name="txt_err_expiry_date">Please select expiry date</string>
-    
+
     <string name="txt_task_successfully">Task created successfully.</string>
     <string name="txt_task_failed">There is some problem in creating task. Please check task details and try again.</string>
 

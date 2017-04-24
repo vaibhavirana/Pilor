@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgBg"
+        style="@style/iv_bg_image"
+         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/login_et_login_padding">
+
+        <ImageView
+            android:id="@+id/ivClose"
+            style="@style/iv_close" />
+
+        <ImageView
+            android:id="@+id/ivAdminLogin"
+            android:layout_width="@dimen/landing_iv_logo_size_height"
+            android:layout_height="@dimen/landing_iv_logo_size_height"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/login_et_login_padding"
+            android:src="@drawable/login_logo" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            style="@style/et_login_details"
+            android:hint="@string/txt_email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/et_login_details"
+            android:layout_marginBottom="0dp"
+            android:hint="@string/txt_password"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/tvForgotPass"
+            style="@style/tv_forgot_pass"
+            android:layout_marginBottom="@dimen/login_et_login_padding"
+            android:text="@string/txt_forgot_pass" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/btn_login"
+            android:text="@string/txt_login" />
+
+        <TextView
+            android:id="@+id/tvDontHaveAcct"
+            style="@style/tv_forgot_pass"
+            android:layout_marginBottom="@dimen/login_et_login_padding"
+            android:text="@string/txt_dont_have_acct"
+            android:textSize="@dimen/login_et_login_font" />
+
+    </LinearLayout>
+
+</RelativeLayout>

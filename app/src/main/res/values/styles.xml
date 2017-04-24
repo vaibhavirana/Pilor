@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -35,7 +35,7 @@
         <item name="android:layout_height">@dimen/setting_ll_separator_fb_margin_left</item>
         <item name="android:layout_width">@dimen/setting_ll_separator_fb_margin_left</item>
         <item name="android:layout_marginTop">@dimen/login_et_login_padding</item>
-        <item name="android:layout_marginBottom">@dimen/sloting_img_icon_height</item>
+        /<!--<item name="android:layout_marginBottom">@dimen/sloting_img_icon_height</item>-->
         <item name="android:padding">4dp</item>
         <item name="android:src">@drawable/icon_cross</item>
     </style>
@@ -43,8 +43,8 @@
     <style name="et_login_details">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_marginRight">@dimen/landing_iv_logo_margin_bottom</item>
-        <item name="android:layout_marginLeft">@dimen/landing_iv_logo_margin_bottom</item>
+        <item name="android:layout_marginRight">@dimen/login_iv_logo_size_height</item>
+        <item name="android:layout_marginLeft">@dimen/login_iv_logo_size_height</item>
         <item name="android:layout_marginBottom">@dimen/login_et_login_padding</item>
         <item name="android:background">@drawable/bg_dark_gray_rounded_corners_5</item>
         <item name="android:textSize">@dimen/login_et_login_font</item>
@@ -63,8 +63,8 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/bg_selector_green</item>
         <item name="android:layout_marginTop">@dimen/login_et_login_padding</item>
-        <item name="android:layout_marginRight">@dimen/landing_iv_logo_margin_bottom</item>
-        <item name="android:layout_marginLeft">@dimen/landing_iv_logo_margin_bottom</item>
+        <item name="android:layout_marginRight">@dimen/login_iv_logo_size_height</item>
+        <item name="android:layout_marginLeft">@dimen/login_iv_logo_size_height</item>
     </style>
 
     <style name="tv_header_title">
