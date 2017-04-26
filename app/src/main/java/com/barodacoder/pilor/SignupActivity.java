@@ -7,15 +7,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.barodacoder.pilor.api.SignupApi;
-import com.barodacoder.pilor.apimodel.LoginResponse;
-import com.barodacoder.pilor.apimodel.SignupRequest;
+import com.barodacoder.pilor.utils.ParseJson;
+import com.barodacoder.pilor.utils.UserData;
 import com.barodacoder.pilor.utils.Validator;
 import com.bumptech.glide.Glide;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Date;
+
+import cz.msebera.android.httpclient.Header;
 
 
 public class SignupActivity extends ActivityBase {
@@ -140,85 +142,10 @@ public class SignupActivity extends ActivityBase {
     }
 
     private void signUpUser() {
-        SignupApi ApiService = MyApplication.retrofit.create(SignupApi.class);
-        SignupRequest signupRequest=new SignupRequest();
-        signupRequest.display_name=etFullName.getText().toString();
-        signupRequest.email=etEmail.getText().toString();
-        signupRequest.password=etPassword.getText().toString();
-       // signupRequest.localtime=dateFormat.format(new Date());
-        signupRequest.latitude=libFile.getLatitude();
-        signupRequest.longitude=libFile.getLongitude();
-        signupRequest.device_token=libFile.getDeviceToken();
-        signupRequest.device_id=libFile.getDeviceId();
-        signupRequest.device_type=AppConstants.DEVICE_TYPE;
-        showProgressDialog();
-        Log.e("login req",signupRequest.toString());
-        Call<LoginResponse> call = ApiService.signup(signupRequest);
 
-        call.enqueue(new Callback<LoginResponse>() {
-
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                Log.e("resp", response.body().toString());
-                cancelProgressDialog();
-
-                try
-                {
-                     //String response1 = new String(responseBody, "UTF-8");
-
-                    if (AppConstants.DEBUG) Log.v(AppConstants.DEBUG_TAG, "LOGIN RESPONSE : " + response);
-
-                    if(response.body().status_code== 1)
-                    {
-                        // appData.setUserData(userData);
-
-                        libFile.setUserId(appData.getUserData().getUserId());
-
-                        libFile.setUserToken(appData.getUserData().getUserToken());
-
-                        libFile.setEmailId(etEmail.getText().toString());
-
-                        libFile.setPassword(etPassword.getText().toString());
-
-                       /* if(appData.getUserData().getRole().equals("1"))
-                            goToHomeScreen();//goToMainAdminScreen();
-                        else if(appData.getUserData().getRole().equals("2"))
-                            goToBusinessMainScreen();
-                        else
-                            goToHomeScreen();*/
-                    }
-                    else
-                    {
-                        showMsgDialog(getString(R.string.txt_invalid_email));
-                    }
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-
-                    goToLandingScreen();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                t.printStackTrace();
-                cancelProgressDialog();
-                try
-                {
-                    if (AppConstants.DEBUG) Log.v(AppConstants.DEBUG_TAG, "LOGIN RESPONSE : FAILED : " + t.toString());
-                    showMsgDialog(getString(R.string.txt_invalid_email));
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        });
-       /* AsyncHttpClient client = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
-
         params.put("email", etEmail.getText().toString());
         params.put("password", etPassword.getText().toString());
         params.put("display_name", etFullName.getText().toString());
@@ -262,12 +189,12 @@ public class SignupActivity extends ActivityBase {
 
                         if (appData.getUserData().getRole().equals("1"))
                             goToHomeScreen();//goToMainAdminScreen();
-                        else if (appData.getUserData().getRole().equals("2"))
-                            goToBusinessMainScreen();
+                       /* else if (appData.getUserData().getRole().equals("2"))
+                            goToBusinessMainScreen();*/
                         else
                             goToHomeScreen();
                     } else {
-                        showSnackBar(findViewById(R.id.rlMain), getString(R.string.txt_invalid_email));
+                        showMsgDialog(getString(R.string.txt_invalid_email));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -286,13 +213,12 @@ public class SignupActivity extends ActivityBase {
                     if (AppConstants.DEBUG)
                         Log.v(AppConstants.DEBUG_TAG, "SIGNUP RESPONSE : FAILED : " + response);
 
-                    showSnackBar(findViewById(R.id.rlMain), getString(R.string.txt_invalid_email));
+                    showMsgDialog( getString(R.string.txt_invalid_email));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-*/
         //goToHomeScreen();
     }
 }

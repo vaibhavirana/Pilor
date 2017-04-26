@@ -9,12 +9,20 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.barodacoder.pilor.utils.ParseJson;
+import com.barodacoder.pilor.utils.UserData;
 import com.bumptech.glide.Glide;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import cz.msebera.android.httpclient.Header;
 
 public class SplashActivity extends ActivityBase {
 
@@ -76,7 +84,7 @@ public class SplashActivity extends ActivityBase {
 
     private void facebookLogin()
     {
-       /* AsyncHttpClient client = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
 
@@ -124,8 +132,8 @@ public class SplashActivity extends ActivityBase {
 
                         if(appData.getUserData().getRole().equals("1"))
                             goToHomeScreen();//goToMainAdminScreen();
-                        else if(appData.getUserData().getRole().equals("2"))
-                            goToBusinessMainScreen();
+                        /*else if(appData.getUserData().getRole().equals("2"))
+                            goToBusinessMainScreen();*/
                         else
                             goToHomeScreen();
                     }
@@ -158,12 +166,12 @@ public class SplashActivity extends ActivityBase {
                     e.printStackTrace();
                 }
             }
-        });*/
+        });
     }
 
     private void userLogin()
     {
-       /* AsyncHttpClient client = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
 
@@ -209,8 +217,8 @@ public class SplashActivity extends ActivityBase {
 
                         if(appData.getUserData().getRole().equals("1"))
                             goToHomeScreen();//goToMainAdminScreen();
-                        else if(appData.getUserData().getRole().equals("2"))
-                            goToBusinessMainScreen();
+                       /* else if(appData.getUserData().getRole().equals("2"))
+                            goToBusinessMainScreen();*/
                         else
                             goToHomeScreen();
                     }
@@ -245,7 +253,7 @@ public class SplashActivity extends ActivityBase {
                     e.printStackTrace();
                 }
             }
-        });*/
+        });
     }
 
     public  void printHashKey() {

@@ -81,10 +81,10 @@ public class ActivityBase extends AppCompatActivity
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    /*
+
     protected void goToHomeScreen()
     {
-        Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -96,7 +96,7 @@ public class ActivityBase extends AppCompatActivity
 
         finish();
     }
-
+/*
     protected void goToSubCategoryScreen(Category category)
     {
         Intent intent = new Intent(getApplicationContext(), ActivitySubCategory.class);

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.barodacoder.pilor.utils.ParseJson;
+import com.barodacoder.pilor.utils.UserData;
 import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -19,12 +21,18 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class LandingActivity extends ActivityBase
 {
@@ -209,7 +217,7 @@ public class LandingActivity extends ActivityBase
 
     private void facebookLogin()
     {
-       /* AsyncHttpClient client = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
 
@@ -262,14 +270,14 @@ public class LandingActivity extends ActivityBase
 
                         if(appData.getUserData().getRole().equals("1"))
                             goToHomeScreen();//goToMainAdminScreen();
-                        else if(appData.getUserData().getRole().equals("2"))
-                            goToBusinessMainScreen();
+                        /*else if(appData.getUserData().getRole().equals("2"))
+                            goToBusinessMainScreen();*/
                         else
                             goToHomeScreen();
                     }
                     else
                     {
-                        showSnackBar(findViewById(R.id.rlMain), getString(R.string.txt_invalid_email));
+                        showMsgDialog(getString(R.string.txt_invalid_email));
                     }
                 }
                 catch (Exception e)
@@ -294,7 +302,7 @@ public class LandingActivity extends ActivityBase
                     e.printStackTrace();
                 }
             }
-        });*/
+        });
     }
 
     public void logout()
