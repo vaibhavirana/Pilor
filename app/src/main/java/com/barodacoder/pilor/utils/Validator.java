@@ -3,71 +3,65 @@ package com.barodacoder.pilor.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator
-{
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	public static boolean validateEmailNotNull(String email)
-	{
+public class Validator {
+    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-		if(email.trim().length()==0) 
-			return false;
+    public static boolean validateEmailNotNull(String email) {
 
-		return true;
-	}
+        if (email.trim().length() == 0)
+            return false;
 
-	public static boolean validateEmail(String email)
-	{
-		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
-		//return true;
-	}
+        return true;
+    }
 
-	public static boolean validatePasswordNotNull(String password)
-	{
+    public static boolean validateEmail(String email) {
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+        //return true;
+    }
 
-		if(password.trim().length()==0) 
-			return false;
-		
-		return true;
-	}
+    public static boolean validatePasswordNotNull(String password) {
 
-	public static boolean validateBirthdateNotNull(String birthdate)
-	{
+        if (password.trim().length() == 0)
+            return false;
 
-		if(birthdate.trim().length()==0) 
-			return false;
+        return true;
+    }
 
-		return true;
-	}
+    public static boolean validateBirthdateNotNull(String birthdate) {
 
-	public static boolean validateGenderNotNull(String gender)
-	{
+        if (birthdate.trim().length() == 0)
+            return false;
 
-		if(gender.trim().length()==0) 
-			return false;
+        return true;
+    }
 
-		return true;
-	}
+    public static boolean validateGenderNotNull(String gender) {
 
-	public static boolean validateNameNotNull(String name)
-	{
+        if (gender.trim().length() == 0)
+            return false;
+
+        return true;
+    }
+
+    public static boolean validateNameNotNull(String name) {
 
 
-		if(name.trim().length()==0) 
-			return false;
-		return true;
-	}
-	public static boolean validateAddressNotNull(String address)
-	{
+        if (name.trim().length() == 0)
+            return false;
+        return true;
+    }
 
-		if(address.trim().length()==0) 
-			return false;
+    public static boolean validateAddressNotNull(String address) {
 
-		return true;
-	}
-	
+        if (address.trim().length() == 0)
+            return false;
+
+        return true;
+    }
+
 	/*public static LatLng addressToLocation(Context context, String address)
 	{
         try
@@ -81,10 +75,35 @@ public class Validator
         	return new LatLng(0, 0);
         }
 	}*/
-	
-	public static boolean validateAddress(String address)
-	{
 
-		return false;
-	}
+    public static boolean validateValueIsNotZero(String editText){
+
+        if(editText == null) return false;
+        if(editText.toString().trim().length() == 0) return false;
+        if(!Validator.isNumeric(editText.toString().trim())) return false;
+        int val = Integer.parseInt(editText);
+        if(val <= 0) return false;
+
+        return true;
+    }
+
+    public static boolean isNumeric(String str) {
+
+        if(str == null) return false;
+        if(str.trim().isEmpty()) return false;
+
+        try{
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+
+    public static boolean validateAddress(String address) {
+
+        return false;
+    }
 }

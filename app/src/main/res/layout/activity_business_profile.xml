@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/action_bar_bg"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:id="@+id/tvTitle1"
+                style="@style/tv_header_title"
+                android:text="" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/tv_header_title"
+                android:gravity="center"
+                android:text="@string/txt_your_profile" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+           <android.support.v7.widget.RecyclerView
+               android:id="@+id/rvGallery"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/landing_iv_logo_size_width"/>
+
+            <EditText
+                android:id="@+id/etFullName"
+                style="@style/edit_text_white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txt_fullname" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_e6e6e8" />
+
+            <EditText
+                android:id="@+id/etBio"
+                style="@style/edit_text_white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:hint="@string/txt_bio"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:maxLines="5" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_e6e6e8" />
+
+            <EditText
+                android:id="@+id/etAddress"
+                style="@style/edit_text_white"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txt_address" />
+
+
+            <EditText
+                android:id="@+id/etPhone"
+                style="@style/edit_text_white"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="10"
+                android:hint="@string/txt_phone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

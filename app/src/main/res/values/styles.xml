@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -13,7 +14,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="iv_bg_image">
@@ -46,7 +49,7 @@
         <item name="android:layout_marginRight">@dimen/login_iv_logo_size_height</item>
         <item name="android:layout_marginLeft">@dimen/login_iv_logo_size_height</item>
         <item name="android:layout_marginBottom">@dimen/login_et_login_padding</item>
-        <item name="android:background">@drawable/bg_dark_gray_rounded_corners_5</item>
+        <item name="android:background">@drawable/bg_white_rounded_corners</item>
         <item name="android:textSize">@dimen/login_et_login_font</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textColorHint">#CCffffff</item>
@@ -99,9 +102,35 @@
         <item name="android:textColor">@color/color_light_black_options</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:singleLine">true</item>
+        <item name="android:padding">2dp</item>
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="edit_text_white">
+        <item name="android:paddingBottom">@dimen/login_et_login_padding</item>
+        <item name="android:paddingLeft">@dimen/dimen_16dp</item>
+        <item name="android:paddingTop">@dimen/login_et_login_padding</item>
+        <item name="android:paddingRight">@dimen/login_et_login_padding</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+        <item name="android:textColor">@color/color_light_black_options</item>
+    </style>
+
+    <style name="txt_reg_16_near_black">
+        <item name="android:textColor">@color/c_2c2c2c</item>
+        <item name="android:textSize">@dimen/tv_header_title_font</item>
+    </style>
+
+    <style name="txt_reg_14_grey">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/login_et_login_font</item>
+    </style>
+
+    <style name="txt_reg_12_grey">
+        <item name="android:textColor">@color/grey</item>
+
+        <item name="android:textSize">@dimen/login_tv_forgot_font</item>
+    </style>
     <style name="iv_arrow_nect">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">@dimen/setting_ic_arrow_size_width</item>
@@ -113,13 +142,17 @@
         <item name="android:paddingBottom">3dp</item>
     </style>
 
+
     <style name="et_add_business">
+        <item name="android:layout_gravity">center</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:background">@android:color/white</item>
+        <item name="android:background">@drawable/bg_white_gray_bordered_rounded_5</item>
         <item name="android:singleLine">true</item>
         <item name="android:textSize">@dimen/login_et_login_font</item>
         <item name="android:textColorHint">#a5a5a5</item>
+        <item name="android:layout_marginRight">@dimen/login_iv_logo_size_height</item>
+        <item name="android:layout_marginLeft">@dimen/login_iv_logo_size_height</item>
         <item name="android:textColor">@color/color_light_black_options</item>
         <item name="android:padding">@dimen/login_et_login_padding</item>
         <item name="android:inputType">textCapSentences</item>
@@ -160,6 +193,40 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@android:color/darker_gray</item>
         <item name="android:textSize">@dimen/landing_tv_msg_font</item>
+    </style>
+
+    <style name="customRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/star_for_ratings</item>
+        <item name="android:indeterminateDrawable">@drawable/star_for_ratings</item>
+        <item name="android:ratingBarStyleSmall">?ratingBarStyle</item>
+    </style>
+
+    <style name="ToggleStyle">
+        <item name="android:padding">@dimen/button_text_padding</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColorSecondary">?attr/colorControlNormal</item>
+        <item name="android:minHeight">@dimen/button_min_height</item>
+    </style>
+
+    <style name="WhiteBoldText" parent="@android:style/Widget">
+        <item name="android:textColor">?attr/colorControlNormal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PrimaryNormalText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="RadioButton">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/login_tv_forgot_font</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/custom_btn_radio</item>
+        <item name="android:padding">@dimen/dimen_2dp</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
 </resources>

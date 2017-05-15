@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorbg">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/action_bar_bg"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:id="@+id/tvTitle1"
+            style="@style/tv_header_title"
+            android:text="" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/tv_header_title"
+            android:gravity="center"
+            android:text="@string/txt_opening_hours" />
+    </RelativeLayout>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/colorbg">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rlToolbar"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/c_efefef"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/txt_reg_14_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:text="Monday" />
+
+                <LinearLayout
+                    android:id="@+id/rlMonday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvOpenMonday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/str_opening" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dimen_16dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvCloseMonday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/closing"
+                        android:maxLines="5" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/txt_reg_14_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:text="Tuesday" />
+
+                <LinearLayout
+                    android:id="@+id/rlTuesday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvOpenTuesday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/str_opening" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dimen_16dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvCloseTuesday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/closing" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/txt_reg_14_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:text="Wednesday" />
+
+                <LinearLayout
+                    android:id="@+id/rlWednesday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvOpenWednesday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/str_opening" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dimen_16dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvCloseWednesday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/closing" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/txt_reg_14_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:text="Thursday" />
+
+                <LinearLayout
+                    android:id="@+id/rlThursday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvOpenThursday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/str_opening" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dimen_8dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvCloseThursday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/closing" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/txt_reg_14_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:text="Friday" />
+
+                <LinearLayout
+                    android:id="@+id/rlFriday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvOpenFriday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/str_opening" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dimen_16dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvCloseFriday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/closing" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/txt_reg_14_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:text="Saturday" />
+
+                <LinearLayout
+                    android:id="@+id/rlSaturday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvOpenSaturday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/str_opening" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dimen_16dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvCloseSaturday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/closing" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/txt_reg_14_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:text="Sunday" />
+
+                <LinearLayout
+                    android:id="@+id/rlSunday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvOpenSunday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/str_opening" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dimen_16dp"
+                        android:background="@color/c_e6e6e8" />
+
+                    <TextView
+                        android:id="@+id/tvCloseSunday"
+                        style="@style/edit_text_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/closing" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/c_e6e6e8" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/txt_reg_12_grey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/dimen_8dp"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dimen_36dp"
+                    android:paddingRight="@dimen/dimen_36dp"
+                    android:text="@string/str_opening_hours_hint" />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

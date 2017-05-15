@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/checkmark_selected"
+        android:state_checked="true"
+        android:state_window_focused="false" />
+    <item android:drawable="@drawable/checkmark_unselected"
+        android:state_checked="false"
+        android:state_window_focused="false" />
+
+    <item android:drawable="@drawable/checkmark_selected"
+        android:state_checked="true"
+        android:state_pressed="true" />
+    <item android:drawable="@drawable/checkmark_unselected"
+        android:state_checked="false"
+        android:state_pressed="true" />
+
+    <!--  <item android:state_checked="true" android:state_focused="true"
+          android:drawable="@drawable/segmented_control_slider" />
+      <item android:state_checked="false" android:state_focused="true"
+          android:drawable="@drawable/btn_radio_off_selected" />-->
+
+    <item android:drawable="@drawable/checkmark_unselected"
+        android:state_checked="false" />
+    <item android:drawable="@drawable/checkmark_selected"
+        android:state_checked="true" />
+</selector>

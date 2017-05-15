@@ -1,10 +1,9 @@
-package com.barodacoder.pilor.utils;
+package com.barodacoder.pilor.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Category implements Serializable
-{
+public class Category implements Serializable {
     private String categoryId = "";
     private String categoryName = "";
     private String categoryImage = "";
@@ -12,8 +11,7 @@ public class Category implements Serializable
 
     private ArrayList<Category> alSubCategory;
 
-    public Category()
-    {
+    public Category() {
         alSubCategory = new ArrayList<>();
     }
 

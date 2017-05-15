@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.barodacoder.pilor.utils.ParseJson;
-import com.barodacoder.pilor.utils.UserData;
+import com.barodacoder.pilor.model.UserData;
 import com.barodacoder.pilor.utils.Validator;
 import com.bumptech.glide.Glide;
 import com.loopj.android.http.AsyncHttpClient;
@@ -34,6 +34,8 @@ public class LoginActivity extends ActivityBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       // setStatusBarGradiant(this);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
@@ -186,10 +188,10 @@ public class LoginActivity extends ActivityBase {
 
                         libFile.setPassword(etPassword.getText().toString());
 
-                        if(appData.getUserData().getRole().equals("1"))
+                        if (appData.getUserData().getRole().equals("1"))
                             goToHomeScreen();//goToMainAdminScreen();
-                        /*else if(appData.getUserData().getRole().equals("2"))
-                            goToBusinessMainScreen();*/
+                        else if(appData.getUserData().getRole().equals("2"))
+                            goToBusinessMainScreen();
                         else
                             goToHomeScreen();
                     } else {

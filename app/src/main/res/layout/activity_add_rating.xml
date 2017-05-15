@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/action_bar_bg"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/tv_header_title"
+            android:text="@string/txt_your_profile" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.github.siyamed.shapeimageview.CircularImageView
+                android:id="@+id/ivImage"
+                android:layout_width="@dimen/login_iv_logo_size_width"
+                android:layout_height="@dimen/login_iv_logo_size_width"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_36dp"
+                android:src="@drawable/icon_no_image"
+                app:siBorderColor="@color/colorPrimary"
+                app:siBorderWidth="1dp" />
+
+            <TextView
+                android:id="@+id/tvAddPhoto"
+                style="@style/tv_forgot_pass"
+                android:padding="0dp"
+                android:layout_marginTop="@dimen/setting_layout_view_padding_top"
+                android:textColor="@android:color/darker_gray"
+                android:text="@string/txt_add_rating" />
+
+
+            <com.barodacoder.pilor.rating.ProperRatingBar
+                android:id="@+id/rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivImage"
+                android:layout_marginBottom="@dimen/setting_layout_view_padding_top"
+                android:layout_marginLeft="@dimen/setting_layout_view_padding_bottom"
+                android:layout_marginRight="@dimen/setting_layout_view_padding_bottom"
+                android:layout_marginTop="@dimen/setting_layout_view_padding_top"
+                android:gravity="center"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:prb_clickable="true"
+                app:prb_defaultRating="2"
+                app:prb_tickNormalDrawable="@drawable/star_for_ratings"
+                app:prb_tickSelectedDrawable="@drawable/star_for_ratings"
+                app:prb_tickSpacing="@dimen/dimen_2dp"
+                app:prb_totalTicks="5" />
+
+
+            <EditText
+                android:id="@+id/etDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_gray_bordered_rounded_5"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:lines="4"
+                android:padding="@dimen/dimen_8dp"
+                android:gravity="start"
+                android:hint="@string/txt_add_rating_hint" />
+
+            <Button
+                android:id="@+id/btnSend"
+                style="@style/btn_login"
+                android:layout_marginTop="@dimen/dimen_36dp"
+                android:textAllCaps="false"
+                android:text="@string/txt_send_reviews" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

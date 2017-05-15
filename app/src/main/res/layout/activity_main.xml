@@ -1,61 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg_frontpage"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorbg"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        android:background="@drawable/action_bar_bg"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_booking" />
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/tv_header_title"
+            android:text="" />
 
-            <TextView
-                android:id="@+id/tvTitle"
-                style="@style/tv_header_title"
-                android:text="" />
-        </LinearLayout>
     </android.support.v7.widget.Toolbar>
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
-        android:visibility="visible">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvCategory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none" />
-
-    </android.support.v4.widget.SwipeRefreshLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="@dimen/dimen_64dp">
 
         <ImageView
-            android:layout_width="@dimen/sloting_img_icon_height"
-            android:layout_height="@dimen/sloting_img_icon_height"
-            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_width="@dimen/setting_ll_separator_fb_margin_left"
+            android:layout_height="@dimen/setting_ll_separator_fb_margin_left"
+            android:layout_centerHorizontal="true"
+            android:padding="0dp"
             android:src="@drawable/ic_app_logo_white" />
+    </RelativeLayout>
+
+    //explore view
+    <RelativeLayout
+        android:id="@+id/rlExplore"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rlBottom"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/llSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_ll_separator_fb_margin_left"
+            android:background="@drawable/action_bar_bg">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:layout_marginRight="@dimen/dimen_8dp"
+                android:background="@drawable/bg_white_rounded_corners_5_solid"
+                >
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/place_autocomplete_search_hint"
+                    android:background="@null"
+                    android:padding="@dimen/dimen_4dp"
+                    android:gravity="center"
+                    android:textSize="@dimen/login_et_login_font"
+                    android:drawablePadding="@dimen/dimen_4dp"
+                    android:drawableLeft="@drawable/ic_action_search"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/llSearch"
+            android:paddingRight="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.barodacoder.pilor.custom.EmptyLayout
+            android:id="@+id/emptyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
+    //map view
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
+        android:visibility="gone"
+        android:layout_above="@+id/rlBottom"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/rlBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:padding="@dimen/dimen_8dp"
+        android:gravity="center">
+
+        <RadioGroup
+            android:id="@+id/radioGroupExplore"
+            android:layout_width="@dimen/landing_iv_logo_size_width"
+            android:layout_height="@dimen/login_ll_password_margin_bottom"
+            android:layout_centerInParent="true"
+            android:background="@drawable/custom_track"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_2dp">
+
+            <RadioButton
+                android:id="@+id/radioExplore"
+                style="@style/RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/customswitchselector"
+                android:checked="true"
+                android:text="@string/txt_list" />
+
+            <RadioButton
+                android:id="@+id/radioMap"
+                style="@style/RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/customswitchselector"
+                android:text="@string/txt_map" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
 </RelativeLayout>

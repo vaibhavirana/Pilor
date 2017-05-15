@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llRate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_list_selector"
+    android:padding="@dimen/dimen_4dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/tv_setting"
+        android:layout_marginLeft="@dimen/login_et_login_padding"
+        android:text="@string/txt_rate"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/login_et_login_padding"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/login_et_login_padding"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tvDetail"
+            style="@style/tv_setting"
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            android:singleLine="false"
+            android:text="@string/txt_rate_detail"
+            android:textSize="@dimen/login_tv_forgot_font" />
+
+        <TextView
+            android:id="@+id/tvAction"
+            style="@style/tv_setting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/bg_blue_bordered_rounded_5"
+            android:gravity="center"
+            android:text="@string/txt_review"
+            android:textColor="@color/colorAccent" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/separator_horizontal_gray"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="@dimen/dimen_4dp" />
+
+</LinearLayout>

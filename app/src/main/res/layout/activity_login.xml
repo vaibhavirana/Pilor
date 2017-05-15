@@ -6,8 +6,7 @@
 
     <ImageView
         android:id="@+id/imgBg"
-        style="@style/iv_bg_image"
-         />
+        style="@style/iv_bg_image" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +40,7 @@
             android:inputType="textPassword" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tvForgotPass"
             style="@style/tv_forgot_pass"
             android:layout_marginBottom="@dimen/login_et_login_padding"

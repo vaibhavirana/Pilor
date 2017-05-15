@@ -1,10 +1,27 @@
 package com.barodacoder.pilor.utils;
 
+import com.barodacoder.pilor.model.BookService;
+import com.barodacoder.pilor.model.BookingResp;
+import com.barodacoder.pilor.model.Category;
+import com.barodacoder.pilor.model.Hours;
+import com.barodacoder.pilor.model.ListBooking;
+import com.barodacoder.pilor.model.ListBookingResp;
+import com.barodacoder.pilor.model.ListCutter;
+import com.barodacoder.pilor.model.ListRating;
+import com.barodacoder.pilor.model.OpeningHoursResp;
+import com.barodacoder.pilor.model.PaymentHistory;
+import com.barodacoder.pilor.model.Rating;
+import com.barodacoder.pilor.model.Service;
+import com.barodacoder.pilor.model.ServiceResp;
+import com.barodacoder.pilor.model.UserCutter;
+import com.barodacoder.pilor.model.UserData;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ParseJson {
     public static UserData parseSignUp(String response) throws JSONException {
@@ -19,6 +36,7 @@ public class ParseJson {
 
     private static UserData parseUserData(JSONObject jsonRoot) throws JSONException {
         UserData user = new UserData();
+        List<Hours> opening_hours = new ArrayList<>();
 
         if (jsonRoot.has("user_id"))
             user.setUserId(jsonRoot.getString("user_id"));
@@ -158,8 +176,14 @@ public class ParseJson {
         if (jsonRoot.has("date"))
             user.setDate(jsonRoot.getString("date"));
 
-        if (jsonRoot.has("opening_hours"))
-            user.setOpeningHours(jsonRoot.getString("opening_hours"));
+        if (jsonRoot.has("opening_hours")) {
+            JSONArray jsnArr = jsonRoot.getJSONArray("opening_hours");
+
+            for (int i = 0; i < jsnArr.length(); i++) {
+                opening_hours.add(parseHoursList(jsnArr.getJSONObject(i)));
+            }
+            user.setOpeningHours(opening_hours);
+        }
 
         if (jsonRoot.has("user_token"))
             user.setUserToken(jsonRoot.getString("user_token"));
@@ -173,153 +197,459 @@ public class ParseJson {
         return user;
     }
 
-   /* public static Business parseBusinessDetail(String response) throws JSONException
-    {
-        Business business = new Business();
 
-        JSONObject jsonROot = new JSONObject(response);
+    private static UserCutter parseUserCutter(JSONObject jsonRoot) throws JSONException {
+        UserCutter user = new UserCutter();
+        ArrayList<Service> services = new ArrayList<>();
 
-        if(jsonROot.has("info"))
-        {
-            JSONObject jsonInfo = jsonROot.getJSONObject("info");
+        if (jsonRoot.has("user_id"))
+            user.setUserId(jsonRoot.getString("user_id"));
 
-            business = parseBusiness(jsonInfo);
+        if (jsonRoot.has("image_count"))
+            user.setImageCount(jsonRoot.getString("image_count"));
+
+        if (jsonRoot.has("cover_image1"))
+            user.setCoverImage1(jsonRoot.getString("cover_image1"));
+
+        if (jsonRoot.has("cover_image2"))
+            user.setCoverImage2(jsonRoot.getString("cover_image2"));
+
+        if (jsonRoot.has("cover_image3"))
+            user.setCoverImage3(jsonRoot.getString("cover_image3"));
+
+        if (jsonRoot.has("cover_image4"))
+            user.setCoverImage4(jsonRoot.getString("cover_image4"));
+
+        if (jsonRoot.has("cover_image5"))
+            user.setCoverImage5(jsonRoot.getString("cover_image5"));
+
+        if (jsonRoot.has("thumb_image1"))
+            user.setThumbImage1(jsonRoot.getString("thumb_image1"));
+
+        if (jsonRoot.has("thumb_image2"))
+            user.setThumbImage2(jsonRoot.getString("thumb_image2"));
+
+        if (jsonRoot.has("thumb_image3"))
+            user.setThumbImage3(jsonRoot.getString("thumb_image3"));
+
+        if (jsonRoot.has("thumb_image4"))
+            user.setThumbImage4(jsonRoot.getString("thumb_image4"));
+
+        if (jsonRoot.has("thumb_image5"))
+            user.setThumbImage5(jsonRoot.getString("thumb_image5"));
+
+        if (jsonRoot.has("last_subscription_date"))
+            user.setLastSubscriptionDate(jsonRoot.getString("last_subscription_date"));
+
+        if (jsonRoot.has("role"))
+            user.setRole(jsonRoot.getString("role"));
+
+        if (jsonRoot.has("thirdparty_id"))
+            user.setThirdPartyId(jsonRoot.getString("thirdparty_id"));
+
+        if (jsonRoot.has("email"))
+            user.setEmail(jsonRoot.getString("email"));
+
+        if (jsonRoot.has("subscriptionid"))
+            user.setSubscriptionId(jsonRoot.getString("subscriptionid"));
+
+        if (jsonRoot.has("credit_card"))
+            user.setCreditCard(jsonRoot.getString("credit_card"));
+
+        if (jsonRoot.has("user_balance"))
+            user.setUserBalance(jsonRoot.getString("user_balance"));
+
+        if (jsonRoot.has("password"))
+            user.setPassword(jsonRoot.getString("password"));
+
+        if (jsonRoot.has("temp_pass"))
+            user.setTempPassword(jsonRoot.getString("temp_pass"));
+
+        if (jsonRoot.has("display_name"))
+            user.setDisplayName(jsonRoot.getString("display_name"));
+
+        if (jsonRoot.has("first_name"))
+            user.setFirstName(jsonRoot.getString("first_name"));
+
+        if (jsonRoot.has("last_name"))
+            user.setLastName(jsonRoot.getString("last_name"));
+
+        if (jsonRoot.has("profile_pic"))
+            user.setProfile(jsonRoot.getString("profile_pic"));
+
+        if (jsonRoot.has("latitude"))
+            user.setLatitude(jsonRoot.getDouble("latitude"));
+
+        if (jsonRoot.has("longitude"))
+            user.setLongitude(jsonRoot.getDouble("longitude"));
+
+        if (jsonRoot.has("gender"))
+            user.setGender(jsonRoot.getString("gender"));
+
+        if (jsonRoot.has("mobile"))
+            user.setMobile(jsonRoot.getString("mobile"));
+
+        if (jsonRoot.has("dob"))
+            user.setDob(jsonRoot.getString("dob"));
+
+        if (jsonRoot.has("address"))
+            user.setAddress(jsonRoot.getString("address"));
+
+        if (jsonRoot.has("civil_status"))
+            user.setCivilStatus(jsonRoot.getString("civil_status"));
+
+        if (jsonRoot.has("bio"))
+            user.setBio(jsonRoot.getString("bio"));
+
+        if (jsonRoot.has("job"))
+            user.setJob(jsonRoot.getString("job"));
+
+        if (jsonRoot.has("radius"))
+            user.setRadius(jsonRoot.getString("radius"));
+
+        if (jsonRoot.has("login_through"))
+            user.setLoginThrough(jsonRoot.getString("login_through"));
+
+        if (jsonRoot.has("is_push"))
+            user.setIsPush(jsonRoot.getString("is_push"));
+
+        if (jsonRoot.has("badge"))
+            user.setBadge(jsonRoot.getString("badge"));
+
+        if (jsonRoot.has("secret_token"))
+            user.setSecretToken(jsonRoot.getString("secret_token"));
+
+        if (jsonRoot.has("verification_code"))
+            user.setVerificationCode(jsonRoot.getString("verification_code"));
+
+        if (jsonRoot.has("is_booking_on"))
+            user.setIsBookingOn(jsonRoot.getString("is_booking_on"));
+
+        if (jsonRoot.has("is_verify"))
+            user.setIsVerify(jsonRoot.getString("is_verify"));
+
+        if (jsonRoot.has("is_blocked"))
+            user.setIsBlocked(jsonRoot.getString("is_blocked"));
+
+        if (jsonRoot.has("is_active"))
+            user.setIsActive(jsonRoot.getString("is_active"));
+
+        if (jsonRoot.has("is_cleaner"))
+            user.setIsCleaner(jsonRoot.getString("is_cleaner"));
+
+        if (jsonRoot.has("date"))
+            user.setDate(jsonRoot.getString("date"));
+
+        if (jsonRoot.has("distance"))
+            user.setDistance(jsonRoot.getString("distance"));
+
+        if (jsonRoot.has("min_rate"))
+            user.setMin_rate(jsonRoot.getString("min_rate"));
+
+        if (jsonRoot.has("avarage_rating"))
+            user.setAvarage_rating(jsonRoot.getInt("avarage_rating"));
+
+        if (jsonRoot.has("service_info")) {
+            JSONArray jsnArr = jsonRoot.getJSONArray("service_info");
+
+            for (int i = 0; i < jsnArr.length(); i++) {
+                services.add(parseServiceList(jsnArr.getJSONObject(i)));
+            }
+            user.setService_info(services);
         }
 
-        return business;
+        return user;
     }
 
-    private static Business parseBusiness(JSONObject jsonBusiness) throws JSONException
-    {
-        Business business = new Business();
+    public static ListCutter parseCutterList(String response) throws JSONException {
+        ListCutter listCutter = new ListCutter();
 
-        if(jsonBusiness.has("id"))
-            business.setId(jsonBusiness.getString("id"));
+        //Log.e("resp",response);
+        ArrayList<UserCutter> userCutters = new ArrayList<>();
 
-        if(jsonBusiness.has("business_id"))
-            business.setBusinessId(jsonBusiness.getString("business_id"));
+        JSONObject jsonRoot = new JSONObject(response);
 
-        if(jsonBusiness.has("is_vip_business"))
-            business.setIsVipBusiness(jsonBusiness.getString("is_vip_business"));
+        if (jsonRoot.has("msg"))
+            listCutter.setMsg(jsonRoot.getString("msg"));
 
-        if(jsonBusiness.has("business_name"))
-            business.setBusinessName(jsonBusiness.getString("business_name"));
+        if (jsonRoot.has("status_code"))
+            listCutter.setStatusCode(jsonRoot.getInt("status_code"));
 
-        if(jsonBusiness.has("business_email"))
-            business.setBusinessEmail(jsonBusiness.getString("business_email"));
+        if (jsonRoot.has("info")) {
+            JSONArray jsnArr = jsonRoot.getJSONArray("info");
 
-        if(jsonBusiness.has("email_link"))
-            business.setEmailLink(jsonBusiness.getString("email_link"));
+            for (int i = 0; i < jsnArr.length(); i++) {
 
-        if(jsonBusiness.has("business_address"))
-            business.setAddress(jsonBusiness.getString("business_address"));
-
-        if(jsonBusiness.has("business_website"))
-            business.setWebsite(jsonBusiness.getString("business_website"));
-
-        if(jsonBusiness.has("business_description"))
-            business.setDescription(jsonBusiness.getString("business_description"));
-
-        if(jsonBusiness.has("website_link"))
-            business.setWebsiteLink(jsonBusiness.getString("website_link"));
-
-        if(jsonBusiness.has("twitter_link"))
-            business.setTwitterLink(jsonBusiness.getString("twitter_link"));
-
-        if(jsonBusiness.has("phone"))
-            business.setPhone(jsonBusiness.getString("phone"));
-
-        if(jsonBusiness.has("fb_link"))
-            business.setFbLink(jsonBusiness.getString("fb_link"));
-
-        if(jsonBusiness.has("instagram_link"))
-            business.setInstagramLink(jsonBusiness.getString("instagram_link"));
-
-        if(jsonBusiness.has("yelp_link"))
-            business.setYelpLink(jsonBusiness.getString("yelp_link"));
-
-        if(jsonBusiness.has("foursquare_link"))
-            business.setFourSquareLink(jsonBusiness.getString("foursquare_link"));
-
-        if(jsonBusiness.has("latitude"))
-            business.setLatitude(jsonBusiness.getString("latitude"));
-
-        if(jsonBusiness.has("longitude"))
-            business.setLongitude(jsonBusiness.getString("longitude"));
-
-        if(jsonBusiness.has("img_path"))
-            business.setImagePath(jsonBusiness.getString("img_path"));
-
-        if(jsonBusiness.has("cover_image"))
-            business.setCoverImage(jsonBusiness.getString("cover_image"));
-
-        if(jsonBusiness.has("thumb_path"))
-            business.setThumbPath(jsonBusiness.getString("thumb_path"));
-
-        if(jsonBusiness.has("distance"))
-            business.setDistance(jsonBusiness.getString("distance"));
-
-        if(jsonBusiness.has("is_blocked"))
-            business.setIsBlocked(jsonBusiness.getString("is_blocked"));
-
-        if(jsonBusiness.has("cat_ids"))
-            business.setCatIds(jsonBusiness.getString("cat_ids"));
-
-        if(jsonBusiness.has("category_names"))
-            business.setCategoryNames(jsonBusiness.getString("category_names"));
-
-        if(jsonBusiness.has("business_plan"))
-            business.setBusinessPlan(jsonBusiness.getString("business_plan"));
-
-        if(jsonBusiness.has("is_business_fevorite"))
-            business.setIsBusinessFavorite(jsonBusiness.getString("is_business_fevorite"));
-
-        if(jsonBusiness.has("opening_hours"))
-        {
-            JSONArray jsnArr = jsonBusiness.getJSONArray("opening_hours");
-
-            for(int i = 0; i < jsnArr.length(); i++)
-            {
-                JSONObject jsonHours = jsnArr.getJSONObject(i);
-
-                if(jsonHours.has("start_time"))
-                    business.getAlStartTime().add(jsonHours.getString("start_time"));
-
-                if(jsonHours.has("end_time"))
-                    business.getAlEndTime().add(jsonHours.getString("end_time"));
+                userCutters.add(parseUserCutter(jsnArr.getJSONObject(i)));
             }
+            listCutter.setInfo(userCutters);
+            //  Log.e("info",userCutters.toString());
+
         }
 
-        if(jsonBusiness.has("reference"))
-        {
-            JSONArray jsnArr = jsonBusiness.getJSONArray("reference");
 
-            for(int i = 0; i < jsnArr.length(); i++)
-            {
-                JSONObject jsonReference = jsnArr.getJSONObject(i);
+        return listCutter;
+    }
 
-                business.getAlReference().add(parseReferenceObject(jsonReference));
+    public static ServiceResp parseListService(String response) throws JSONException {
+        ServiceResp serviceResp = new ServiceResp();
+
+        //Log.e("resp",response);
+        ArrayList<Service> listBookings = new ArrayList<>();
+        JSONObject jsonRoot = new JSONObject(response);
+
+        if (jsonRoot.has("msg"))
+            serviceResp.msg=(jsonRoot.getString("msg"));
+
+        if (jsonRoot.has("status_code"))
+            serviceResp.statusCode=(jsonRoot.getInt("status_code"));
+
+        if (jsonRoot.has("info")) {
+            JSONArray jsnArr = jsonRoot.getJSONArray("info");
+            for (int i = 0; i < jsnArr.length(); i++) {
+                listBookings.add(parseServiceList(jsnArr.getJSONObject(i)));
             }
+
+            serviceResp.info=listBookings;
         }
 
-        if(jsonBusiness.has("task_timeline"))
-            business.setTaskTimeline(jsonBusiness.getString("task_timeline"));
+        return serviceResp;
+    }
 
-        return business;
-    }*/
+    public static Service parseServiceList(JSONObject jsonRoot) throws JSONException {
+        Service service = new Service();
 
-    public static ArrayList<Category> parseCategoryList(String response) throws JSONException
-    {
+        if (jsonRoot.has("service_name"))
+            service.setService_name(jsonRoot.getString("service_name"));
+
+        if (jsonRoot.has("service_id"))
+            service.setService_id(jsonRoot.getString("service_id"));
+
+        if (jsonRoot.has("is_service_active"))
+            service.setIs_service_active(jsonRoot.getString("is_service_active"));
+
+        if (jsonRoot.has("rate"))
+            service.setRate(jsonRoot.getString("rate"));
+
+        if (jsonRoot.has("user_id"))
+            service.setUser_id(jsonRoot.getString("user_id"));
+
+        return service;
+    }
+
+    public static OpeningHoursResp parseOpeningHoursService(String response) throws JSONException {
+        OpeningHoursResp openingHoursResp = new OpeningHoursResp();
+
+        //Log.e("resp",response);
+        ArrayList<Hours> listHoues = new ArrayList<>();
+        JSONObject jsonRoot = new JSONObject(response);
+
+        if (jsonRoot.has("msg"))
+            openingHoursResp.msg=(jsonRoot.getString("msg"));
+
+        if (jsonRoot.has("status_code"))
+            openingHoursResp.statusCode=(jsonRoot.getInt("status_code"));
+
+        if (jsonRoot.has("info")) {
+            JSONArray jsnArr = jsonRoot.getJSONArray("info");
+            for (int i = 0; i < jsnArr.length(); i++) {
+                listHoues.add(parseHoursList(jsnArr.getJSONObject(i)));
+            }
+
+            openingHoursResp.info=listHoues;
+        }
+
+        return openingHoursResp;
+    }
+
+    public static Hours parseHoursList(JSONObject jsonRoot) throws JSONException {
+        Hours hours = new Hours();
+
+        if (jsonRoot.has("start_time"))
+            hours.setStartTime(jsonRoot.getString("start_time"));
+
+        if (jsonRoot.has("end_time"))
+            hours.setEndTime(jsonRoot.getString("end_time"));
+
+        return hours;
+    }
+
+    private static UserCutter parseImageArray(JSONObject jsonRoot) throws JSONException {
+        UserCutter userCutter = new UserCutter();
+
+        if (jsonRoot.has("user_id"))
+            userCutter.setUserId(jsonRoot.getString("user_id"));
+
+        if (jsonRoot.has("image_count"))
+            userCutter.setImageCount(jsonRoot.getString("image_count"));
+
+        if (jsonRoot.has("cover_image1"))
+            userCutter.setCoverImage1(jsonRoot.getString("cover_image1"));
+
+        if (jsonRoot.has("cover_image2"))
+            userCutter.setCoverImage2(jsonRoot.getString("cover_image2"));
+
+        if (jsonRoot.has("cover_image3"))
+            userCutter.setCoverImage3(jsonRoot.getString("cover_image3"));
+
+        if (jsonRoot.has("cover_image4"))
+            userCutter.setCoverImage4(jsonRoot.getString("cover_image4"));
+
+        if (jsonRoot.has("cover_image5"))
+            userCutter.setCoverImage5(jsonRoot.getString("cover_image5"));
+
+        if (jsonRoot.has("thumb_image1"))
+            userCutter.setThumbImage1(jsonRoot.getString("thumb_image1"));
+
+        if (jsonRoot.has("thumb_image2"))
+            userCutter.setThumbImage2(jsonRoot.getString("thumb_image2"));
+
+        if (jsonRoot.has("thumb_image3"))
+            userCutter.setThumbImage3(jsonRoot.getString("thumb_image3"));
+
+        if (jsonRoot.has("thumb_image4"))
+            userCutter.setThumbImage4(jsonRoot.getString("thumb_image4"));
+
+        if (jsonRoot.has("thumb_image5"))
+            userCutter.setThumbImage5(jsonRoot.getString("thumb_image5"));
+
+        if (jsonRoot.has("distance"))
+            userCutter.setDistance(jsonRoot.getString("distance"));
+
+        return userCutter;
+    }
+
+    public static ListRating parseCutterRatingList(String response) throws JSONException {
+        ListRating listCutterRating = new ListRating();
+
+        //Log.e("resp",response);
+        ArrayList<Rating> ratings = new ArrayList<>();
+
+        JSONObject jsonRoot = new JSONObject(response);
+
+        if (jsonRoot.has("msg"))
+            listCutterRating.setMsg(jsonRoot.getString("msg"));
+
+        if (jsonRoot.has("status_code"))
+            listCutterRating.setStatusCode(jsonRoot.getInt("status_code"));
+
+        if (jsonRoot.has("info")) {
+            JSONArray jsnArr = jsonRoot.getJSONArray("info");
+
+            for (int i = 0; i < jsnArr.length(); i++) {
+
+                ratings.add(parseCutterRatingList(jsnArr.getJSONObject(i)));
+            }
+            listCutterRating.setInfo(ratings);
+            //  Log.e("info",userCutters.toString());
+
+        }
+
+
+        return listCutterRating;
+    }
+
+
+    public static Rating parseCutterRatingList(JSONObject jsonRoot) throws JSONException {
+        Rating rating = new Rating();
+
+        if (jsonRoot.has("rate_id"))
+            rating.setRate_id(jsonRoot.getString("rate_id"));
+
+        if (jsonRoot.has("cutter_id"))
+            rating.setCutter_id(jsonRoot.getString("cutter_id"));
+
+        if (jsonRoot.has("review_text"))
+            rating.setReview_text(jsonRoot.getString("review_text"));
+
+        if (jsonRoot.has("review_star"))
+            rating.setReview_star(jsonRoot.getInt("review_star"));
+
+        if (jsonRoot.has("created_date"))
+            rating.setCreated_date(jsonRoot.getString("created_date"));
+
+        if (jsonRoot.has("display_name"))
+            rating.setDisplay_name(jsonRoot.getString("display_name"));
+
+        if (jsonRoot.has("profile_pic"))
+            rating.setProfile_pic(jsonRoot.getString("profile_pic"));
+
+        if (jsonRoot.has("user_id"))
+            rating.setUser_id(jsonRoot.getString("user_id"));
+
+        return rating;
+    }
+
+    public static BookingResp parseServiceBooking(String response) throws JSONException {
+        BookingResp bookingResp = new BookingResp();
+
+        //Log.e("resp",response);
+        ArrayList<BookService> bookServices = new ArrayList<>();
+        BookService bookService=new BookService();
+        JSONObject jsonRoot = new JSONObject(response);
+
+        if (jsonRoot.has("msg"))
+            bookingResp.msg=(jsonRoot.getString("msg"));
+
+        if (jsonRoot.has("status_code"))
+            bookingResp.statusCode=(jsonRoot.getInt("status_code"));
+
+        if (jsonRoot.has("info")) {
+          //  JSONArray jsnArr = jsonRoot.getJSONArray("info");
+            bookService=parseBookingService(jsonRoot.getJSONObject("info"));
+
+            bookingResp.info=(bookService);
+            //  Log.e("info",userCutters.toString());
+
+        }
+
+        return bookingResp;
+    }
+
+    public static BookService parseBookingService(JSONObject jsonRoot) throws JSONException {
+        BookService bookService = new BookService();
+
+        if (jsonRoot.has("user_id"))
+            bookService.user_id=(jsonRoot.getString("user_id"));
+
+        if (jsonRoot.has("service_provide_by"))
+            bookService.service_provide_by=(jsonRoot.getString("service_provide_by"));
+
+        if (jsonRoot.has("date_of_booking"))
+            bookService.date_of_booking=(jsonRoot.getString("date_of_booking"));
+
+        if (jsonRoot.has("price"))
+            bookService.price=(jsonRoot.getString("price"));
+
+        if (jsonRoot.has("service_id"))
+            bookService.service_id=(jsonRoot.getString("service_id"));
+
+        if (jsonRoot.has("localtime"))
+            bookService.localtime=(jsonRoot.getString("localtime"));
+
+        if (jsonRoot.has("localtime_UTC"))
+            bookService.localtime_UTC=(jsonRoot.getString("localtime_UTC"));
+
+        if (jsonRoot.has("book_id"))
+            bookService.book_id=(jsonRoot.getString("book_id"));
+
+        if (jsonRoot.has("payment_status"))
+            bookService.payment_status=(jsonRoot.getString("payment_status"));
+
+        if (jsonRoot.has("payment_status_msg"))
+            bookService.payment_status_msg=(jsonRoot.getString("payment_status_msg"));
+        return bookService;
+    }
+
+    public static ArrayList<Category> parseCategoryList(String response) throws JSONException {
         ArrayList<Category> alCategory = new ArrayList<>();
 
         JSONObject jsonRoot = new JSONObject(response);
 
-        if(jsonRoot.has("info"))
-        {
+        if (jsonRoot.has("info")) {
             JSONArray jsnArr = jsonRoot.getJSONArray("info");
 
-            for(int i = 0; i < jsnArr.length(); i++)
-            {
+            for (int i = 0; i < jsnArr.length(); i++) {
                 alCategory.add(parseCategory(jsnArr.getJSONObject(i)));
             }
         }
@@ -327,28 +657,25 @@ public class ParseJson {
         return alCategory;
     }
 
-    private static Category parseCategory(JSONObject jsonCategory) throws JSONException
-    {
+    private static Category parseCategory(JSONObject jsonCategory) throws JSONException {
         Category category = new Category();
 
-        if(jsonCategory.has("cat_id"))
+        if (jsonCategory.has("cat_id"))
             category.setCategoryId(jsonCategory.getString("cat_id"));
 
-        if(jsonCategory.has("category_name"))
+        if (jsonCategory.has("category_name"))
             category.setCategoryName(jsonCategory.getString("category_name"));
 
-        if(jsonCategory.has("category_image"))
+        if (jsonCategory.has("category_image"))
             category.setCategoryImage(jsonCategory.getString("category_image"));
 
-        if(jsonCategory.has("parent_id"))
+        if (jsonCategory.has("parent_id"))
             category.setParentId(jsonCategory.getString("parent_id"));
 
-        if(jsonCategory.has("sub_category"))
-        {
+        if (jsonCategory.has("sub_category")) {
             JSONArray jsnArr = jsonCategory.getJSONArray("sub_category");
 
-            for(int i = 0; i < jsnArr.length(); i++)
-            {
+            for (int i = 0; i < jsnArr.length(); i++) {
                 category.getAlSubCategory().add(parseCategory(jsnArr.getJSONObject(i)));
             }
         }
@@ -356,296 +683,98 @@ public class ParseJson {
         return category;
     }
 
-   /* public static ArrayList<Tasks> parseTasksList(String response) throws JSONException
-    {
-        ArrayList<Tasks> alTasks = new ArrayList<>();
+    public static ListBookingResp parseListBooking(String response) throws JSONException {
+        ListBookingResp bookingResp = new ListBookingResp();
 
-        JSONObject jsonRoot = new JSONObject(response);
+        //Log.e("resp",response);
+        ArrayList<ListBooking> listBookings = new ArrayList<>();
+         JSONObject jsonRoot = new JSONObject(response);
 
-        if(jsonRoot.has("info"))
-        {
-            JSONObject jsonInfo = jsonRoot.getJSONObject("info");
+        if (jsonRoot.has("msg"))
+            bookingResp.msg=(jsonRoot.getString("msg"));
 
-            if(jsonInfo.has("open"))
-            {
-                JSONArray jsnArr = jsonInfo.getJSONArray("open");
+        if (jsonRoot.has("status_code"))
+            bookingResp.statusCode=(jsonRoot.getInt("status_code"));
 
-                for(int i = 0; i < jsnArr.length(); i++)
-                {
-                    alTasks.add(parseTask(jsnArr.getJSONObject(i)));
-                }
-            }
-            if(jsonInfo.has("close"))
-            {
-                JSONArray jsnArr = jsonInfo.getJSONArray("close");
-
-                for(int i = 0; i < jsnArr.length(); i++)
-                {
-                    alTasks.add(parseTask(jsnArr.getJSONObject(i)));
-                }
-            }
-        }
-
-        return alTasks;
-    }
-
-    public static BusinessTasks parseBusinessTasksList(String response) throws JSONException
-    {
-        BusinessTasks businessTask = new BusinessTasks();
-
-        //ArrayList<Tasks> alTasks = new ArrayList<>();
-
-        JSONObject jsonRoot = new JSONObject(response);
-
-        if(jsonRoot.has("info"))
-        {
-            JSONObject jsonInfo = jsonRoot.getJSONObject("info");
-
-            if(jsonInfo.has("new"))
-            {
-                JSONArray jsnArr = jsonInfo.getJSONArray("new");
-
-                for(int i = 0; i < jsnArr.length(); i++)
-                {
-                    businessTask.getAlNewTask().add(parseTask(jsnArr.getJSONObject(i)));
-                }
-            }
-
-            if(jsonInfo.has("old"))
-            {
-                JSONArray jsnArr = jsonInfo.getJSONArray("old");
-
-                for(int i = 0; i < jsnArr.length(); i++)
-                {
-                    businessTask.getAlOldTask().add(parseTask(jsnArr.getJSONObject(i)));
-                }
-            }
-        }
-
-        return businessTask;
-    }
-
-    private static Tasks parseTask(JSONObject jsonTask) throws JSONException
-    {
-        Tasks task = new Tasks();
-
-        if(jsonTask.has("task_id"))
-            task.setTaskId(jsonTask.getString("task_id"));
-
-        if(jsonTask.has("task_latitude"))
-            task.setLatitude(jsonTask.getString("task_latitude"));
-
-        if(jsonTask.has("task_longitude"))
-            task.setLongitude(jsonTask.getString("task_longitude"));
-
-        if(jsonTask.has("created_by"))
-            task.setCreatedBy(jsonTask.getString("created_by"));
-
-        if(jsonTask.has("task_description"))
-            task.setTaskDescription(jsonTask.getString("task_description"));
-
-        if(jsonTask.has("task_headline"))
-            task.setTaskHeadline(jsonTask.getString("task_headline"));
-
-        if(jsonTask.has("task_requirement"))
-            task.setRequirement(jsonTask.getString("task_requirement"));
-
-        if(jsonTask.has("task_distance"))
-            task.setDistance(jsonTask.getString("task_distance"));
-
-        if(jsonTask.has("task_budget"))
-            task.setBudget(jsonTask.getString("task_budget"));
-
-        if(jsonTask.has("task_expire_date"))
-            task.setExpiryDate(jsonTask.getString("task_expire_date"));
-
-        if(jsonTask.has("task_cat_id"))
-            task.setCategoryId(jsonTask.getString("task_cat_id"));
-
-        if(jsonTask.has("image_path1"))
-            task.setImagePath1(jsonTask.getString("image_path1"));
-
-        if(jsonTask.has("image_path2"))
-            task.setImagePath2(jsonTask.getString("image_path2"));
-
-        if(jsonTask.has("image_path3"))
-            task.setImagePath3(jsonTask.getString("image_path3"));
-
-        if(jsonTask.has("image_path4"))
-            task.setImagePath4(jsonTask.getString("image_path4"));
-
-        if(jsonTask.has("image_path5"))
-            task.setImagePath5(jsonTask.getString("image_path5"));
-
-        if(jsonTask.has("thumb_image1"))
-            task.setThumbImage1(jsonTask.getString("thumb_image1"));
-
-        if(jsonTask.has("thumb_image2"))
-            task.setThumbImage2(jsonTask.getString("thumb_image2"));
-
-        if(jsonTask.has("thumb_image3"))
-            task.setThumbImage3(jsonTask.getString("thumb_image3"));
-
-        if(jsonTask.has("thumb_image4"))
-            task.setThumbImage4(jsonTask.getString("thumb_image4"));
-
-        if(jsonTask.has("thumb_image5"))
-            task.setThumbImage5(jsonTask.getString("thumb_image5"));
-
-        if(jsonTask.has("total_images_count"))
-            task.setTotalImagesCount(jsonTask.getString("total_images_count"));
-
-        if(jsonTask.has("is_task_active"))
-            task.setIsTaskActive(jsonTask.getString("is_task_active"));
-
-        if(jsonTask.has("created_date"))
-            task.setCreatedDate(jsonTask.getString("created_date"));
-
-        if(jsonTask.has("day_left"))
-            task.setDaysLeft(jsonTask.getString("day_left"));
-
-        if(jsonTask.has("profile_pic"))
-            task.setProfilePic(jsonTask.getString("profile_pic"));
-
-        if(jsonTask.has("display_name"))
-            task.setDisplayName(jsonTask.getString("display_name"));
-
-        if(jsonTask.has("mobile"))
-            task.setMobile(jsonTask.getString("mobile"));
-
-        if(jsonTask.has("total_bid_count"))
-            task.setTotalBidCOunt(jsonTask.getString("total_bid_count"));
-
-        if(jsonTask.has("is_bid_by_me"))
-            task.setIsBidByMe(jsonTask.getString("is_bid_by_me"));
-
-        if(jsonTask.has("task_timeline"))
-            task.setTaskTimeline(jsonTask.getString("task_timeline"));
-
-        if(jsonTask.has("is_winner_declared"))
-            task.setIsWinnerDeclared(jsonTask.getString("is_winner_declared"));
-
-        if(jsonTask.has("winner_info") && jsonTask.get("winner_info") instanceof JSONObject)
-        {
-            JSONObject jsonWinner = jsonTask.getJSONObject("winner_info");
-
-            if(jsonWinner.has("profile_pic"))
-                task.setWinnerProfilePic(jsonWinner.getString("profile_pic"));
-
-            if(jsonWinner.has("display_name"))
-                task.setWinnerName(jsonWinner.getString("display_name"));
-        }
-
-        return task;
-    }
-
-    public static String parseCreateTask(String response) throws JSONException
-    {
-        JSONObject jsonRoot = new JSONObject(response);
-
-        if(jsonRoot.has("status_code") && jsonRoot.get("status_code").toString().equals("1"))
-            return "OK";
-
-        return "FAILED";
-    }
-
-    public static ArrayList<Bids> parseBids(String response) throws JSONException
-    {
-        ArrayList<Bids> alBids = new ArrayList<>();
-
-        JSONObject jsonRoot = new JSONObject(response);
-
-        if(jsonRoot.has("info"))
-        {
+        if (jsonRoot.has("info")) {
             JSONArray jsnArr = jsonRoot.getJSONArray("info");
-
-            for(int i = 0; i < jsnArr.length(); i++)
-            {
-                alBids.add(parseBidObject(jsnArr.getJSONObject(i)));
+            for (int i = 0; i < jsnArr.length(); i++) {
+                listBookings.add(parseBoooking(jsnArr.getJSONObject(i)));
             }
+
+            bookingResp.info=listBookings;
         }
 
-        return alBids;
+        return bookingResp;
     }
 
-    private static Bids parseBidObject(JSONObject jsonBid) throws JSONException
-    {
-        Bids bid = new Bids();
+    private static ListBooking parseBoooking(JSONObject jsonBooking) throws JSONException {
+        ListBooking listBooking = new ListBooking();
 
-        if(jsonBid.has("bid_id"))
-            bid.setBidId(jsonBid.getString("bid_id"));
+        if (jsonBooking.has("user_id"))
+            listBooking.user_id=(jsonBooking.getString("user_id"));
 
-        if(jsonBid.has("bid_by"))
-            bid.setBidBy(jsonBid.getString("bid_by"));
+        if (jsonBooking.has("service_id"))
+            listBooking.service_id=(jsonBooking.getString("service_id"));
 
-        if(jsonBid.has("bid_value"))
-            bid.setBidValue(jsonBid.getString("bid_value"));
+        if (jsonBooking.has("book_id"))
+            listBooking.book_id=(jsonBooking.getString("book_id"));
 
-        if(jsonBid.has("task_id"))
-            bid.setTaskId(jsonBid.getString("task_id"));
+        if (jsonBooking.has("service_provide_by"))
+            listBooking.service_provide_by=(jsonBooking.getString("service_provide_by"));
 
-        if(jsonBid.has("comments"))
-            bid.setComments(jsonBid.getString("comments"));
+        if (jsonBooking.has("date_of_booking"))
+            listBooking.date_of_booking=(jsonBooking.getString("date_of_booking"));
 
-        if(jsonBid.has("deadline_date"))
-            bid.setDeadlineDate(jsonBid.getString("deadline_date"));
+        if (jsonBooking.has("accepted_date"))
+            listBooking.accepted_date=(jsonBooking.getString("accepted_date"));
 
-        if(jsonBid.has("display_name"))
-            bid.setDisplayName(jsonBid.getString("display_name"));
+        if (jsonBooking.has("created_date"))
+            listBooking.created_date=(jsonBooking.getString("created_date"));
 
-        if(jsonBid.has("profile_pic"))
-            bid.setProfilePic(jsonBid.getString("profile_pic"));
+        if (jsonBooking.has("localtime"))
+            listBooking.localtime=(jsonBooking.getString("localtime"));
 
-        if(jsonBid.has("img_path"))
-            bid.setImagePath(jsonBid.getString("img_path"));
+        if (jsonBooking.has("localtime_UTC"))
+            listBooking.localtime_UTC=(jsonBooking.getString("localtime_UTC"));
 
-        if(jsonBid.has("thumb_path"))
-            bid.setThumbPath(jsonBid.getString("thumb_path"));
+        if (jsonBooking.has("price"))
+            listBooking.price=(jsonBooking.getString("price"));
 
-        return bid;
-    }
+        if (jsonBooking.has("is_service_accepted"))
+            listBooking.is_service_accepted=(jsonBooking.getInt("is_service_accepted"));
 
-    public static ArrayList<Reference> parseReference(String response) throws JSONException
-    {
-        ArrayList<Reference> alReference = new ArrayList<>();
+        if (jsonBooking.has("is_reschedule"))
+            listBooking.is_reschedule=(jsonBooking.getString("is_reschedule"));
 
-        JSONObject jsonRoot = new JSONObject(response);
+        if (jsonBooking.has("is_done"))
+            listBooking.is_done=(jsonBooking.getString("is_done"));
 
-        if(jsonRoot.has("info"))
-        {
-            JSONArray jsnArr = jsonRoot.getJSONArray("info");
+        if (jsonBooking.has("is_review_added"))
+            listBooking.is_review_added=(jsonBooking.getString("is_review_added"));
 
-            for(int i = 0; i < jsnArr.length(); i++)
-            {
-                JSONObject jsonReference = jsnArr.getJSONObject(i);
+        if (jsonBooking.has("hide_by_business"))
+            listBooking.hide_by_business=(jsonBooking.getString("hide_by_business"));
 
-                alReference.add(parseReferenceObject(jsonReference));
-            }
-        }
+        if (jsonBooking.has("display_name"))
+            listBooking.display_name=(jsonBooking.getString("display_name"));
 
-        return alReference;
-    }
+        if (jsonBooking.has("mobile"))
+            listBooking.mobile=(jsonBooking.getString("mobile"));
 
-    private static Reference parseReferenceObject(JSONObject jsonReference) throws JSONException
-    {
-        Reference reference = new Reference();
+        if (jsonBooking.has("email"))
+            listBooking.email=(jsonBooking.getString("email"));
 
-        if(jsonReference.has("reference_id"))
-            reference.setId(jsonReference.getString("reference_id"));
+        if (jsonBooking.has("latitude"))
+            listBooking.latitude=(jsonBooking.getString("latitude"));
 
-        if(jsonReference.has("reference_headline"))
-            reference.setHeadline(jsonReference.getString("reference_headline"));
+        if (jsonBooking.has("longitude"))
+            listBooking.longitude=(jsonBooking.getString("longitude"));
 
-        if(jsonReference.has("reference_photo"))
-            reference.setPhoto(jsonReference.getString("reference_photo"));
+        if (jsonBooking.has("category_name"))
+            listBooking.category_name = (jsonBooking.getString("category_name"));
 
-        if(jsonReference.has("reference_business_id"))
-            reference.setBusinessId(jsonReference.getString("reference_business_id"));
-
-        if(jsonReference.has("is_reference_active"))
-            reference.setIsActive(jsonReference.getString("is_reference_active"));
-
-        return reference;
+        return listBooking;
     }
 
     public static ArrayList<PaymentHistory> parsePaymentHistory(String response) throws JSONException
@@ -685,8 +814,8 @@ public class ParseJson {
                 if(jsonInfo.has("amount"))
                     payment.setAmount(jsonInfo.getString("amount"));
 
-                if(jsonInfo.has("item_id"))
-                    payment.setItemId(jsonInfo.getString("item_id"));
+                if(jsonInfo.has("book_id"))
+                    payment.setBook_id(jsonInfo.getString("book_id"));
 
                 if(jsonInfo.has("payment_release_flag"))
                     payment.setReleaseDate(jsonInfo.getString("payment_release_flag"));
@@ -700,23 +829,11 @@ public class ParseJson {
                 if(jsonInfo.has("display_name"))
                     payment.setDisplayName(jsonInfo.getString("display_name"));
 
-                if(jsonInfo.has("img_path"))
-                    payment.setImagePath(jsonInfo.getString("img_path"));
-
-                if(jsonInfo.has("thumb_path"))
-                    payment.setThumbImage(jsonInfo.getString("thumb_path"));
-
-                if(jsonInfo.has("task_image"))
-                    payment.setTaskPath(jsonInfo.getString("task_image"));
-
-                if(jsonInfo.has("task_created_by"))
-                    payment.setTaskCreatedBy(jsonInfo.getString("task_created_by"));
-
                 alPayment.add(payment);
             }
         }
 
         return alPayment;
-    }*/
+    }
 
 }

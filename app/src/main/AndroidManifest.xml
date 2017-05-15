@@ -6,43 +6,65 @@
 
     <!-- Web integration -->
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- File caching -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_app_id" />
 
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LandingActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LandingActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".user.MainActivity" />
+        <activity android:name=".user.ActivitySetting" />
+        <activity android:name=".user.ActivityYourProfile" />
+        <activity android:name=".user.ActivityBooking">
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        </activity>
+        <activity android:name=".user.ActivityEnterPin" />
+        <activity android:name=".user.ActivityCutterProfile"></activity>
+        <activity android:name=".user.ActivityCreatePayment" />
+        <activity android:name=".user.ActivityAddCard" />
+        <activity android:name=".user.ActivitySendReview" />
+        <activity android:name=".user.ActivityChangePasscode" />
+
+       <!-- //business activity//-->
+        <activity android:name=".business.ActivityBusinessMain" />
+        <activity android:name=".business.ActivityBusinessSetting" />
+        <activity android:name=".business.ActivityBusinessPaymentHistory" />
+        <activity android:name=".business.ActivityBusinessOpeningHours" />
+        <activity android:name=".business.ActivityBusinessService" />
+        <activity android:name=".business.ActivityBusinessProfile" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
-
+        <activity
+            android:name="com.linchaolong.android.imagepicker.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
     </application>
 

@@ -6,8 +6,7 @@
 
     <ImageView
         android:id="@+id/imgBg"
-        style="@style/iv_bg_image"
-        />
+        style="@style/iv_bg_image" />
 
     <ImageView
         android:layout_marginTop="@dimen/landing_iv_logo_size_height"
@@ -16,7 +15,7 @@
         android:layout_width="@dimen/login_iv_logo_size_width"
         android:layout_height="@dimen/login_iv_logo_size_width"
         android:src="@drawable/login_logo"
-        android:layout_marginBottom="@dimen/login_et_login_padding"/>
+        android:layout_marginBottom="@dimen/login_et_login_padding" />
 
     <LinearLayout
         android:layout_centerInParent="true"
@@ -37,7 +36,7 @@
             android:background="@drawable/bg_white_rounded_corners_5"
             android:textSize="@dimen/login_et_login_font"
             android:layout_marginBottom="@dimen/setting_ic_arrow_size_width"
-            android:text="@string/txt_login"/>
+            android:text="@string/txt_login" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button"
@@ -50,15 +49,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:background="@drawable/bg_selector_blue"
+            android:background="@drawable/bg_selector_primary"
             android:textSize="@dimen/login_et_login_font"
-            android:text="@string/txt_signup_fb"/>
+            android:text="@string/txt_signup_fb" />
 
         <TextView
             android:id="@+id/tvLoginEmail"
             style="@style/tv_forgot_pass"
             android:layout_marginBottom="@dimen/setting_ic_arrow_size_width"
-            android:text="@string/txt_signup_email"/>
+            android:text="@string/txt_signup_email" />
 
     </LinearLayout>
 
@@ -70,6 +69,6 @@
         android:background="@drawable/bg_selector_transparent_black"
         android:textSize="@dimen/login_et_login_font"
         android:layout_alignParentBottom="true"
-        android:text="@string/txt_cutter_login"/>
+        android:text="@string/txt_cutter_login" />
 
 </RelativeLayout>

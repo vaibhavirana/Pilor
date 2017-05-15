@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/action_bar_bg"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+        <TextView
+            android:id="@+id/tvBack"
+            style="@style/tv_header_title"
+            android:text="" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/tv_header_title"
+            android:gravity="center"
+            android:text="@string/txt_business" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/login_et_login_padding">
+
+            <View style="@style/separator_horizontal_gray" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/login_et_login_padding">
+
+                <RelativeLayout
+                    android:id="@+id/rlMyProfile"
+                    style="@style/rl_setting_view">
+
+                    <TextView
+                        android:id="@+id/tvMyProfile"
+                        style="@style/tv_setting"
+                        android:text="@string/txt_your_profile" />
+
+                    <ImageView
+                        style="@style/iv_arrow_nect"
+                        android:src="@drawable/icon_next_grey" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/viewChangePass"
+                    style="@style/separator_horizontal_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/rlService"
+                    style="@style/rl_setting_view">
+
+                    <TextView
+                        android:id="@+id/tvService"
+                        style="@style/tv_setting"
+                        android:text="@string/txt_service_and_pricing" />
+
+                    <ImageView
+                        style="@style/iv_arrow_nect"
+                        android:src="@drawable/icon_next_grey" />
+                </RelativeLayout>
+
+                <View style="@style/separator_horizontal_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/rlOpeningHours"
+                    style="@style/rl_setting_view">
+
+                    <TextView
+                        android:id="@+id/tvOpeningHours"
+                        style="@style/tv_setting"
+                        android:text="@string/txt_opening_hours" />
+
+                    <ImageView
+                        style="@style/iv_arrow_nect"
+                        android:src="@drawable/icon_next_grey" />
+                </RelativeLayout>
+
+                <View style="@style/separator_horizontal_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/rlPaymentHistory"
+                    style="@style/rl_setting_view">
+
+                    <TextView
+                        android:id="@+id/tvPaymentHistory"
+                        style="@style/tv_setting"
+                        android:text="@string/txt_payment_history" />
+
+                    <ImageView
+                        style="@style/iv_arrow_nect"
+                        android:src="@drawable/icon_next_grey" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/separator_horizontal_gray"
+                android:layout_marginBottom="@dimen/setting_ic_arrow_size_width" />
+
+            <View style="@style/separator_horizontal_gray" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/login_et_login_padding">
+
+
+                <RelativeLayout
+                    android:id="@+id/rlSignout"
+                    style="@style/rl_setting_view">
+
+                    <TextView
+                        android:id="@+id/tvSignout"
+                        style="@style/tv_setting"
+                        android:text="@string/txt_sign_out" />
+
+                    <ImageView
+                        style="@style/iv_arrow_nect"
+                        android:src="@drawable/icon_next_grey" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View style="@style/separator_horizontal_gray" />
+
+            <ImageView
+                style="@style/iv_arrow_nect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/setting_layout_view_padding_bottom"
+                android:src="@drawable/dark_logo" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

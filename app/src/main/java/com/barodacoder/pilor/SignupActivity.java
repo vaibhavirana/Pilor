@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.barodacoder.pilor.utils.ParseJson;
-import com.barodacoder.pilor.utils.UserData;
+import com.barodacoder.pilor.model.UserData;
 import com.barodacoder.pilor.utils.Validator;
 import com.bumptech.glide.Glide;
 import com.loopj.android.http.AsyncHttpClient;
@@ -27,6 +27,8 @@ public class SignupActivity extends ActivityBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //setStatusBarGradiant(this);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_signup);
@@ -62,7 +64,7 @@ public class SignupActivity extends ActivityBase {
                 .centerCrop()
                 .placeholder(R.color.colorPrimary)
                 .crossFade()
-                .into((ImageView)findViewById(R.id.imgBG));
+                .into((ImageView) findViewById(R.id.imgBG));
 
         etFullName = (EditText) findViewById(R.id.etFullName);
         etFullName.setTypeface(appData.getFontRegular());
@@ -213,7 +215,7 @@ public class SignupActivity extends ActivityBase {
                     if (AppConstants.DEBUG)
                         Log.v(AppConstants.DEBUG_TAG, "SIGNUP RESPONSE : FAILED : " + response);
 
-                    showMsgDialog( getString(R.string.txt_invalid_email));
+                    showMsgDialog(getString(R.string.txt_invalid_email));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

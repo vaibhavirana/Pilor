@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:segmentedgroup="http://schemas.android.com/tools"
+    android:id="@+id/rlMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorbg"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/action_bar_bg"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:id="@+id/tvBack"
+            style="@style/tv_header_title"
+            android:gravity="center"
+            android:text="" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/tv_header_title"
+            android:gravity="center"
+            android:text="@string/txt_your_profile" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnOrderCut"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sloting_img_icon_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/setting_layout_view_padding_top"
+        android:layout_marginLeft="@dimen/setting_btn_toggle_size_height"
+        android:layout_marginRight="@dimen/setting_btn_toggle_size_height"
+        android:layout_marginTop="@dimen/setting_layout_view_padding_top"
+        android:background="@drawable/order_btn_background"
+        android:text="@string/txt_order_cut"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:visibility="visible" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnOrderCut"
+        android:layout_below="@+id/toolbar"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/llTop"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/landing_iv_logo_size_width"
+                android:background="@color/black_translucent">
+
+
+                <ImageView
+                    android:id="@+id/opacityFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user" />
+
+
+                <com.github.siyamed.shapeimageview.CircularImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="@dimen/login_iv_logo_size_width"
+                    android:layout_height="@dimen/login_iv_logo_size_width"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/setting_layout_view_padding_top"
+                    android:src="@drawable/user"
+                    app:siBorderColor="@color/colorPrimary"
+                    app:siBorderWidth="0dp" />
+
+                <com.barodacoder.pilor.rating.ProperRatingBar
+                    android:id="@+id/rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivImage"
+                    android:layout_marginBottom="@dimen/setting_layout_view_padding_top"
+                    android:layout_marginLeft="@dimen/setting_layout_view_padding_bottom"
+                    android:layout_marginRight="@dimen/setting_layout_view_padding_bottom"
+                    android:layout_marginTop="@dimen/setting_layout_view_padding_top"
+                    android:gravity="center"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    app:prb_defaultRating="4"
+                    app:prb_tickNormalDrawable="@drawable/star_for_ratings"
+                    app:prb_tickSelectedDrawable="@drawable/star_for_ratings"
+                    app:prb_tickSpacing="@dimen/dimen_2dp"
+                    app:prb_totalTicks="5"
+                    app:prb_clickable="true" />
+
+
+            </RelativeLayout>
+
+            <RadioGroup
+                android:id="@+id/segmented3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_ll_password_margin_bottom"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/login_iv_logo_size_height"
+                android:layout_marginRight="@dimen/login_iv_logo_size_height"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_track"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_2dp">
+
+                <RadioButton
+                    android:id="@+id/radioPrice"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:checked="true"
+                    android:text="@string/txt_price" />
+
+                <RadioButton
+                    android:id="@+id/radioPhoto"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/txt_Photo" />
+
+                <RadioButton
+                    android:id="@+id/radioRate"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/txt_rate" />
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/llPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/sloting_img_icon_height"
+                android:layout_marginRight="@dimen/sloting_img_icon_height"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/txtService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_4dp"
+                    android:gravity="center"
+                    android:padding="@dimen/dimen_4dp"
+                    android:text="Services"
+                    android:textSize="@dimen/landing_tv_msg_font"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/setting_layout_view_padding_bottom"
+                android:layout_marginRight="@dimen/setting_layout_view_padding_bottom"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvRate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen_36dp"
+                android:layout_marginRight="@dimen/dimen_36dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

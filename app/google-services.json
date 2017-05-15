@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "676034474859",
+    "firebase_url": "https://pilor-1494054956968.firebaseio.com",
+    "project_id": "pilor-1494054956968",
+    "storage_bucket": "pilor-1494054956968.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676034474859:android:40208fb8476552e4",
+        "android_client_info": {
+          "package_name": "com.barodacoder.pilor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676034474859-hnea95emcl61qtfdug5t5q34pdd2qs0b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.barodacoder.pilor",
+            "certificate_hash": "ca807fe7f8a140978c2f946c98a299385e13391b"
+          }
+        },
+        {
+          "client_id": "676034474859-1nbhvsi9m379fsec87i7m9fq8fs1g0om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbP5AI6dW6WzMTYzsCG7noDlhdEWmU-wY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676034474859-1nbhvsi9m379fsec87i7m9fq8fs1g0om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

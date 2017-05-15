@@ -1,7 +1,11 @@
 package com.barodacoder.pilor;
 
-public class AppConstants
-{
+public class AppConstants {
+
+    // EMPTYVIEW
+    public static final int NO_BARBER = 111;
+
+
     public static final boolean DEBUG = true;
 
     public static final String DEBUG_TAG = "PILOR";
@@ -22,10 +26,12 @@ public class AppConstants
 
     public static final String URL_WANT_JOB = "http://www.snapfixed.dk/getstarted";
 
-    public static final String URL_BASE = "http://inmomenthosting.info/pilors_test/api_pilors/";
-   // public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
+    public static final String URL_BECOME_CUTTER = "http://pilors.dk/frisør.html";
 
-    public static final String URL_LOGIN =  URL_BASE + "login";
+    public static final String URL_BASE = "http://inmomenthosting.info/pilors_test/api_pilors/";
+    // public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
+
+    public static final String URL_LOGIN = URL_BASE + "login";
     /*
     email(*)
     password(*)
@@ -75,6 +81,55 @@ public class AppConstants
     user_id(*)
     user_token(*)
      */
+    public static final String URL_LIST_USER_SERVICES = URL_BASE + "get_user_services";
+    /*
+    user_id(*)
+
+     */
+    public static final String URL_UPDATE_USER_SERVICES = URL_BASE + "update_service";
+    /*
+    user_id(*)
+
+     */
+
+    public static final String URL_LIST_CUTTER = URL_BASE + "list_cutter";
+    /*
+    user_id(*)
+    user_token(*)
+     latitude
+    longitude
+    redius
+     */
+
+    public static final String URL_SEARCH_CUTTER = URL_BASE + "search_cutter";
+    /*
+    user_id(*)
+    user_token(*)
+    search_string(*)
+     */
+
+    public static final String URL_LIST_RATING = URL_BASE + "list_rating";
+    /*
+   user_id(*)
+   user_token(*)
+   cutter_id(*)"
+     */
+
+    public static final String URL_BOOK_SERVICE = URL_BASE + "book_sericev2";
+    /*"user_id(*)
+    user_token(*)
+    service_provide_by(*)
+    date_of_booking(*)
+    service_id(*)
+    price(*)
+    booking_date(*)
+
+    instantcapture(*) [pass 0]
+    merchantnumber(*)
+    subscriptionid(*)
+    credit_card(*)
+    localtime(*) [yyyy-MM-dd HH:mm:ss]
+    localtime_UTC(*) [yyyy-MM-dd HH:mm:ss] [send UTC time of current device time]"*/
 
     public static final String URL_UPDATE_PROFILE = URL_BASE + "update_my_profile";
     /*
@@ -87,142 +142,77 @@ public class AppConstants
     bio
     profile_pic
      */
-
-    public static final String URL_CHANGE_PASSWORD = URL_BASE + "change_password";
+    public static final String URL_UPDATE_CUTTER_PROFILE = URL_BASE + "update_cutter_profile";
     /*
-    user_id(*)
+    "user_id(*)
+user_token(*)
+other_user_id(*)
+display_name
+first_name
+last_name
+profile_pic
+email
+address
+cover_image1
+cover_image2
+cover_image3
+cover_image4
+cover_image5
+profile_pic
+bio
+thumb_image1
+thumb_image2
+thumb_image3
+thumb_image4
+thumb_image5"
+     */
+
+    public static final String URL_ADD_RATING = URL_BASE + "add_rating";
+    /*
+
+user_id(*)
+user_token(*)
+cutter_id(*)
+review_text(*)
+review_start(*)
+book_id(*)
+     */
+
+    public static final String URL_LIST_BOOKING = URL_BASE + "list_booking";
+    /*user_id(*)
     user_token(*)
-    current_password(*)
-    new_password(*)
-     */
+    */
 
-    public static final String URL_LIST_MY_TASK = URL_BASE + "list_my_tasks";
-    /*
-    user_id(*)
+    public static final String URL_CANCEL_SERVICE = URL_BASE + "cancel_service";
+    /*user_id(*)
     user_token(*)
-     */
+    book_id(*)
+    is_service_accepted(*) [pass 4 = cancel]
+    localtime(*) [yyyy-MM-dd HH:mm:ss]
+    localtime_UTC(*) [yyyy-MM-dd HH:mm:ss] [send UTC time of current device time]
+    */
 
-    public static final String URL_ADD_TASK = URL_BASE + "add_task";
-    /*
-    task_description
-    task_headline
-    task_requirement
-    task_distance
-    task_budget
-    task_expire_date
-    task_cat_id
-    image_path1
-    image_path2
-    image_path3
-    image_path4
-    image_path5
-    thumb_image1
-    thumb_image2
-    thumb_image3
-    thumb_image4
-    thumb_image5
-    total_images_count
-    task_latitude
-    task_longitude
-     */
-
-    public static final String URL_LIST_BIDS = URL_BASE + "list_bids";
-    /*
-    user_id(*)
-    user_token(*)
-    task_id(*)
-     */
-
-    public static final String URL_GET_BUSINESS_DETAIL = URL_BASE + "get_business_details";
-    /*
-    user_id(*)
-    user_token(*)
-    business_id(*)
-    day
-    task_id
-     */
-
-    public static final String URL_SELECT_WINNER = URL_BASE + "select_winner";
-    /*
-    user_id(*)
-    user_token(*)
-    winner_id(*)
-    task_id(*)
-     */
-
-
-    //****************** BUSINESS SIDE ***********************
-
-    public static final String URL_LIST_TASKS = URL_BASE + "list_tasks";
-    /*
-    user_id(*)
-    user_token(*)
-     */
-
-    public static final String URL_LIST_TASKS_BUSINESS = URL_BASE + "list_tasks_business";
-    /*
-    user_id(*)
-    user_token(*)
-    business_id(*)
-    latitude
-    longitude
-    radius
-     */
-
-    public static final String URL_UPDATE_BUSINESS = URL_BASE + "update_business";
-    /*
-    user_id(*)
-    user_token(*)
-    business_id(*)
-    business_name
-    business_email
-    business_address
-    business_description
-    latitude
-    longitude
-    thumb_path (Return business thumb_image url)
-    img_path (Return business image path)
-    cover_image (Return business image path)
-    website_link
-    phone
-     */
-
-    public static final String URL_ADD_BID = URL_BASE + "add_bid";
-    /*
-    user_id(*)
-    user_token(*)
-    deadline_date(*)
-    task_id(*)
-    bid_value(*)
-    comments
-     */
-
-    public static final String URL_ADD_REFERENCE = URL_BASE + "add_reference";
-    /*
-    user_id(*)
-    user_token(*)
-    reference_headline
-    reference_photo
-     */
-
-    public static final String URL_LIST_REFERENCE = URL_BASE + "list_reference";
-    /*
-    user_id(*)
-    user_token(*)
-    business_id(*)
-     */
-
-    public static final String URL_DELETE_REFERENCE = URL_BASE + "delete_reference";
-    /*
-    user_id(*)
-    user_token(*)
-    reference_id(*)
-     */
 
     public static final String URL_LIST_MY_TRANSACTION = URL_BASE + "list_my_transaction";
+
     /*
     user_id(*)
     user_token(*)
+     */
+ public static final String URL_UPDATE_TIME = URL_BASE + "update_time";
+
+    /*
+    "user_id(*)
+    user_token(*)
+    opening_hours(*)"
+     */
+
+    public static final String URL_LIST_BOOKING_FOR_CUTTER= URL_BASE + "list_booking_for_cleaner";
+
+    /*
+    "user_id(*)
+    user_token(*)
+    opening_hours(*)"
      */
 
 }

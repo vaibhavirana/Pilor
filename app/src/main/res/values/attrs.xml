@@ -3,12 +3,15 @@
 <resources>
 
     <!-- Circle Pager Indicator -->
-    
+
+
+
+
     <declare-styleable name="ViewPagerIndicator">
         <!-- Style of the circle indicator. -->
-        <attr name="vpiCirclePageIndicatorStyle" format="reference"/>
+        <attr name="vpiCirclePageIndicatorStyle" format="reference" />
     </declare-styleable>
-    
+
     <attr name="centered" format="boolean" />
     <attr name="selectedColor" format="color" />
     <attr name="strokeWidth" format="dimension" />
@@ -22,7 +25,7 @@
         <!-- Color of the filled circles that represents pages. -->
         <attr name="pageColor" format="color" />
         <!-- Orientation of the indicator. -->
-        <attr name="android:orientation"/>
+        <attr name="android:orientation" />
         <!-- Radius of the circles. This is also the spacing between circles. -->
         <attr name="radius" format="dimension" />
         <!-- Whether or not the selected indicator snaps to the circles. -->
@@ -32,38 +35,81 @@
         <!-- Width of the stroke used to draw the circles. -->
         <attr name="strokeWidth" />
         <!-- View background -->
-        <attr name="android:background"/>
+        <attr name="android:background" />
     </declare-styleable>
-    
-     <!-- Animation Library -->
-    <declare-styleable name="FlipViewController">
-		<attr name="orientation" format="enum">
-			<enum name="vertical" value="0"/>
-			<enum name="horizontal" value="1"/>
-		</attr>
 
-		<attr name="animationBitmapFormat" format="enum">
-			<enum name="ARGB_8888" value="0"/>
-			<enum name="ARGB_4444" value="1"/>
-			<enum name="RGB_565" value="2"/>
-		</attr>
-	</declare-styleable>
+    <!-- Animation Library -->
+    <declare-styleable name="FlipViewController">
+        <attr name="orientation" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
+
+        <attr name="animationBitmapFormat" format="enum">
+            <enum name="ARGB_8888" value="0" />
+            <enum name="ARGB_4444" value="1" />
+            <enum name="RGB_565" value="2" />
+        </attr>
+    </declare-styleable>
 
     <declare-styleable name="ExpandableTextView">
-        <attr name="maxCollapsedLines" format="integer"/>
-        <attr name="animDuration" format="integer"/>
-        <attr name="animAlphaStart" format="float"/>
-        <attr name="expandDrawable" format="reference"/>
-        <attr name="collapseDrawable" format="reference"/>
+        <attr name="maxCollapsedLines" format="integer" />
+        <attr name="animDuration" format="integer" />
+        <attr name="animAlphaStart" format="float" />
+        <attr name="expandDrawable" format="reference" />
+        <attr name="collapseDrawable" format="reference" />
     </declare-styleable>
 
     <!--  RANGE BAR -->
     <declare-styleable name="RangeSeekBar">
-        <attr name="absoluteMinValue" format="integer|float"/>
-        <attr name="absoluteMaxValue" format="integer|float"/>
-        <attr name="singleThumb" format="boolean"/>
+        <attr name="absoluteMinValue" format="integer|float" />
+        <attr name="absoluteMaxValue" format="integer|float" />
+        <attr name="singleThumb" format="boolean" />
     </declare-styleable>
-    
-    
 
+
+    <declare-styleable name="ProperRatingBar">
+
+        <!-- Total number of ticks to show. Default is '5' -->
+        <attr name="prb_totalTicks" format="integer" />
+
+        <!-- Use this to set rating from xml. Default is '3' -->
+        <attr name="prb_defaultRating" format="integer" />
+
+        <!-- If set to 'true' - use will be able to change rating by clicking. Default is 'false' -->
+        <attr name="prb_clickable" format="boolean" />
+
+
+        <!-- Symbol to be used as a tick. Default is '$' -->
+        <attr name="prb_symbolicTick" format="string" />
+
+        <!-- Text size of symbolic tick. Default is '15sp' -->
+        <attr name="android:textSize" />
+
+        <!-- Text style of symbolic tick. Possible: 'bold', 'italic', 'normal'. Default is 'normal'. -->
+        <attr name="android:textStyle" />
+
+        <!-- Color of symbolic tick that is not selected (not rated). Default is '#FF000000' (black). -->
+        <attr name="prb_symbolicTickNormalColor" format="reference|color" />
+
+        <!-- Color of symbolic tick that is selected (rated). Default is '#FF888888' (gray). -->
+        <attr name="prb_symbolicTickSelectedColor" format="reference|color" />
+
+
+        <!-- Drawable resource to use as a tick that is not selected (not rated). No default value. -->
+        <attr name="prb_tickNormalDrawable" format="reference" />
+
+        <!-- Drawable resource to use as a tick that is selected (rated). No default value. -->
+        <attr name="prb_tickSelectedDrawable" format="reference" />
+
+        <!-- Margin to be applied to tick drawables. Only applies to drawable-type ticks. Default is '1dp' (gray). -->
+        <attr name="prb_tickSpacing" format="dimension" />
+    </declare-styleable>
+    <item name="prb_tick_tag_id" type="id" />
+
+    <declare-styleable name="app">
+        <attr name="checked" format="boolean" />
+        <attr name="color_on" format="color" />
+        <attr name="color_off" format="color" />
+    </declare-styleable>
 </resources>

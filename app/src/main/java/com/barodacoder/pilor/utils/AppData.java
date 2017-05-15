@@ -3,8 +3,9 @@ package com.barodacoder.pilor.utils;
 import android.content.Context;
 import android.graphics.Typeface;
 
-public class AppData
-{
+import com.barodacoder.pilor.model.UserData;
+
+public class AppData {
     private static AppData instance;
     private Context context;
 
@@ -18,25 +19,21 @@ public class AppData
 
     private UserData userData;
 
-    private AppData(Context context)
-    {
+    private AppData(Context context) {
         this.context = context;
         userData = new UserData();
 
         initFonts();
     }
 
-    public static AppData getInstance(Context context)
-    {
-        if(instance == null)
-        {
+    public static AppData getInstance(Context context) {
+        if (instance == null) {
             instance = new AppData(context);
         }
         return instance;
     }
 
-    private void initFonts()
-    {
+    private void initFonts() {
         setFontRegular(Typeface.createFromAsset(context.getAssets(), "SF-UI-Text-Regular.otf"));
 
         setFontLight(Typeface.createFromAsset(context.getAssets(), "SF-UI-Text-Light.otf"));

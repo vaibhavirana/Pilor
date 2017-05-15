@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorbg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/action_bar_bg"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:id="@+id/tvTitle1"
+            style="@style/tv_header_title"
+            android:text="" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <com.barodacoder.pilor.custom.SwitchView
+            android:id="@+id/switchService"
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/login_et_login_padding"
+            app:checked="true"
+            app:color_off="#54FE05"
+            app:color_on="#54FE05" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/tv_header_title"
+            android:gravity="center"
+            android:text="@string/txt_business" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtJobRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/color_gray_dark"
+        android:paddingBottom="@dimen/dimen_4dp"
+        android:paddingLeft="@dimen/dimen_16dp"
+        android:paddingTop="@dimen/dimen_4dp"
+        android:text="@string/txt_job_request"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtJobRequest"
+        android:scrollbars="vertical" />
+
+    <TextView
+        android:id="@+id/txtJobCalander"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvRequest"
+        android:background="@color/color_gray_dark"
+        android:paddingBottom="@dimen/dimen_4dp"
+        android:paddingLeft="@dimen/dimen_16dp"
+        android:paddingTop="@dimen/dimen_4dp"
+        android:text="@string/txt_job_calender"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCalender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtJobCalander"
+        android:scrollbars="vertical" />
+</RelativeLayout>

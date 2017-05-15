@@ -3,8 +3,11 @@
 
     <!--<string name="fb_id">1239345152846915</string>-->
     <string name="facebook_app_id">1435222096552444</string>
+    <string name="google_app_id">AIzaSyDfpDniqcIzTwICSkwGHwALzQ_4wehgabg</string>
     <string name="fb_login_protocol_scheme">fb1435222096552444</string>
     <!-- 172350663252974-->
+
+    <string name="prb_default_symbolic_string">$</string>
 
     <string name="txt_loading">Loading...</string>
     <string name="txt_ok">Ok</string>
@@ -12,6 +15,7 @@
     <string name="txt_no">No</string>
     <string name="txt_failed">Failed</string>
     <string name="txt_yes_logout">Yes - Log out</string>
+    <string name="txt_yes_cancel">Yes - Cancel</string>
     <string name="txt_continue">Continue</string>
     <string name="txt_yes">Yes</string>
 
@@ -57,14 +61,16 @@
     <string name="txt_save">Save</string>
     <string name="txt_setting">Settings</string>
 
-    <string name="txt_your_profile">Your profile</string>
-    <string name="txt_change_password">Change password</string>
-    <string name="txt_my_job_post">My job posts</string>
+    <string name="txt_your_profile">Profile</string>
+    <string name="txt_redius">Redius: </string>
+    <string name="txt_change_password">Change Password</string>
+    <string name="txt_change_pin">Change Pin</string>
+    <string name="txt_hair_cutter_signup">Are you a haircutter? Signup now!</string>
     <string name="txt_contact_us">Contact us</string>
-    <string name="txt_facebook">Facebook</string>
-    <string name="txt_website">Website</string>
-    <string name="txt_wants_job">Do you want jobs as well?</string>
-    <string name="txt_sign_out">Sign out</string>
+    <string name="txt_recommendus">Recommend Us</string>
+    <string name="txt_terms">Terms &amp; Conditions</string>
+    <string name="txt_faq">FAQ</string>
+    <string name="txt_sign_out">Log out</string>
 
     <string name="txt_are_you_sure">Are you sure?</string>
 
@@ -72,6 +78,13 @@
 
     <string name="txt_open">OPEN</string>
     <string name="txt_closed">CLOSED</string>
+
+    <string name="txt_list">Explore</string>
+    <string name="txt_map">Map</string>
+
+    <string name="txt_price">Price</string>
+    <string name="txt_Photo">Photo</string>
+    <string name="txt_rating">Rating</string>
 
     <string name="txt_new">NEW</string>
     <string name="txt_bids">BIDS</string>
@@ -81,11 +94,18 @@
     <string name="txt_references">References</string>
     <string name="txt_support">Support</string>
     <string name="txt_payment_card">Payment card</string>
-    <string name="txt_payment_history">Payment history</string>
     <string name="txt_redeem_promocide">Redeem promocode</string>
     <string name="txt_change_passcode">Change passcode</string>
 
+    <string name="txt_select_service_title">Select Service</string>
+    <string name="txt_select_service">Please Select Service</string>
     <string name="txt_add_photo">Add or change your profile picture</string>
+    <string name="txt_add_rating">Tab a Star to Rate </string>
+    <string name="txt_add_rating_hint">Describe Your Experience Here</string>
+    <string name="txt_send_reviews">Send Reviews</string>
+
+    <string name="txt_job_request">Job Request</string>
+    <string name="txt_job_calender">Calender(Accepted Job)</string>
 
     <string name="txt_company_name">Company name</string>
     <string name="txt_address">Address</string>
@@ -124,6 +144,7 @@
 
     <string name="txt_done">Done</string>
     <string name="txt_cancel">Cancel</string>
+    <string name="txt_cancelled">Cancelled</string>
 
     <string name="txt_err_headline">Please enter headline</string>
     <string name="txt_err_description">Please enter work description</string>
@@ -149,6 +170,7 @@
 
     <string name="txt_date">Date:</string>
     <string name="txt_timenline">Timeline</string>
+    <string name="txt_time">Time</string>
 
     <string name="txt_create_bid">Create Bid</string>
 
@@ -170,8 +192,8 @@
 
     <string name="txt_select_winner">SELECT AS WINNER</string>
 
-    <string name="txt_bid_added_success">Bid added successfully</string>
-    <string name="txt_bid_added_failed">Failed to add bid. Please try again.</string>
+    <string name="txt_service_book_success">Service book successfully</string>
+    <string name="txt_service_book_failed">Failed to book service. Please try again.</string>
 
     <string name="txt_bid">Bid</string>
 
@@ -202,11 +224,36 @@
 
     <string name="txt_something_went_wrong">Something went wrong. Please tray again later.</string>
 
+    <string name="txt_no_barber_found">Sorry - no barber found near by.</string>
     <string name="txt_no_task_found">No task found</string>
     <string name="txt_no_bid_found">No bids found</string>
 
     <string name="txt_selected">SELECTED</string>
 
     <string name="txt_create_passcode">Create passcode</string>
+    <string name="refresh">Refresh</string>
+    <string name="back">Back</string>
+    <string name="txt_booking">Bookings</string>
+    <string name="txt_order">Order</string>
+    <string name="txt_order_cut">Order Cut</string>
+    <string name="txt_order_detail">You made an order with %1$s at %2$s.</string>
+    <string name="txt_cancel_detail">You order with %1$s  has been cancelled.</string>
+    <string name="txt_reminder">Reminder</string>
+    <string name="txt_reminder_detail">You cut at {{cutter-name}} is in 30 minutes.</string>
+    <string name="txt_rate">Rate</string>
+    <string name="txt_review">Review</string>
+    <string name="txt_rate_detail">Your haircut at %1$s is over - and you should use 2 mins to review it!</string>
+
+    <string name="txt_business">Business</string>
+    <string name="txt_service_and_pricing">Service and Pricing</string>
+    <string name="txt_opening_hours">Opening hours</string>
+    <string name="txt_payment_history">Payment history</string>
+    <string name="txt_payment">Payments</string>
+
+    <string name="str_opening">Open</string>
+    <string name="closing">Closing</string>
+    <string name="str_opening_hours_hint">Too mark a day as closed, please set both opening and closing time to 00:00 and it will show Closed in the app.</string>
+    <string name="str_enter_rate_of_service">Enter rate of service that you are providing!</string>
+
 
 </resources>

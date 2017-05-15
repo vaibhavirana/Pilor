@@ -1,9 +1,9 @@
-package com.barodacoder.pilor.utils;
+package com.barodacoder.pilor.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class UserData implements Serializable
-{
+public class UserData implements Serializable {
     private String userId = "";
     private String imageCount = "";
     private String coverImage1 = "";
@@ -50,8 +50,9 @@ public class UserData implements Serializable
     private String isActive = "";
     private String isCleaner = "";
     private String date = "";
-    private String openingHours = "";
+   // private String openingHours = "";
     private String userToken = "";
+    private List<Hours> openingHours ;
 
     private String msg = "";
     private int statusCode;
@@ -112,6 +113,7 @@ public class UserData implements Serializable
     public void setCoverImage5(String coverImage5) {
         this.coverImage5 = coverImage5;
     }
+
     public String getThumbImage1() {
         return thumbImage1;
     }
@@ -448,11 +450,11 @@ public class UserData implements Serializable
         this.date = date;
     }
 
-    public String getOpeningHours() {
+    public List<Hours> getOpeningHours() {
         return openingHours;
     }
 
-    public void setOpeningHours(String openingHours) {
+    public void setOpeningHours(List<Hours> openingHours) {
         this.openingHours = openingHours;
     }
 }

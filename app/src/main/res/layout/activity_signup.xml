@@ -6,8 +6,7 @@
 
     <ImageView
         android:id="@+id/imgBG"
-        style="@style/iv_bg_image"
-        />
+        style="@style/iv_bg_image" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,37 +29,37 @@
         <EditText
             android:id="@+id/etFullName"
             style="@style/et_login_details"
-            android:hint="@string/txt_fullname"/>
+            android:hint="@string/txt_fullname" />
 
         <EditText
             android:id="@+id/etEmail"
             style="@style/et_login_details"
             android:inputType="textEmailAddress"
-            android:hint="@string/txt_email"/>
+            android:hint="@string/txt_email" />
 
         <EditText
             android:visibility="gone"
             android:id="@+id/etPhone"
             style="@style/et_login_details"
             android:inputType="number"
-            android:hint="@string/txt_phone"/>
+            android:hint="@string/txt_phone" />
 
         <EditText
             android:id="@+id/etPassword"
             style="@style/et_login_details"
             android:inputType="textPassword"
-            android:hint="@string/txt_password"/>
+            android:hint="@string/txt_password" />
 
         <EditText
             android:id="@+id/etRePassword"
             style="@style/et_login_details"
             android:inputType="textPassword"
-            android:hint="@string/txt_repassword"/>
+            android:hint="@string/txt_repassword" />
 
         <Button
             android:id="@+id/btnSignup"
             style="@style/btn_login"
-            android:text="@string/txt_sign_up"/>
+            android:text="@string/txt_sign_up" />
 
     </LinearLayout>
 

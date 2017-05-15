@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.barodacoder.pilor.utils.ParseJson;
-import com.barodacoder.pilor.utils.UserData;
+import com.barodacoder.pilor.model.UserData;
 import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -34,9 +34,8 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-public class LandingActivity extends ActivityBase
-{
-    private Button  btnSignupFb, btnLoginBusiness,btnLogin;
+public class LandingActivity extends ActivityBase {
+    private Button btnSignupFb, btnLoginBusiness, btnLogin;
 
     private TextView tvLoginEmail;
 
@@ -53,21 +52,22 @@ public class LandingActivity extends ActivityBase
     private String fbImageUrl;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
+        //setStatusBarGradiant(this);
+
         super.onCreate(savedInstanceState);
 
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         AppEventsLogger.activateApp(this);
 
-       // logger.logPurchase(BigDecimal.valueOf(4.32), Currency.getInstance("USD"));
+        // logger.logPurchase(BigDecimal.valueOf(4.32), Currency.getInstance("USD"));
         setContentView(R.layout.activity_landing);
 
         initData();
 
         callbackManager = CallbackManager.Factory.create();
 
-        loginButton = ((LoginButton)findViewById(R.id.login_button));
+        loginButton = ((LoginButton) findViewById(R.id.login_button));
 
         List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
         loginButton.setReadPermissions(permissionNeeds);
@@ -93,7 +93,7 @@ public class LandingActivity extends ActivityBase
 
                                     fbId = object.getString("id");
                                     displayName = object.getString("name");
-                                    if(object.has("email"))
+                                    if (object.has("email"))
                                         email = object.getString("email");
                                     if (object.has("gender"))
                                         gender = object.getString("gender");
@@ -147,20 +147,17 @@ public class LandingActivity extends ActivityBase
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    protected void initData()
-    {
+    protected void initData() {
         super.initData();
     }
 
-    private void initUi()
-    {
+    private void initUi() {
         //((TextView) findViewById(R.id.tvAppName)).setTypeface(appData.getFontMedium());
 
         //((TextView) findViewById(R.id.tvLandingMsg)).setTypeface(appData.getFontRegular());
@@ -170,8 +167,7 @@ public class LandingActivity extends ActivityBase
                 .centerCrop()
                 .placeholder(R.color.colorPrimary)
                 .crossFade()
-                .into((ImageView)findViewById(R.id.imgBg));
-
+                .into((ImageView) findViewById(R.id.imgBg));
 
 
         btnSignupFb = (Button) findViewById(R.id.btnSignupFb);
@@ -215,8 +211,7 @@ public class LandingActivity extends ActivityBase
         });
     }
 
-    private void facebookLogin()
-    {
+    private void facebookLogin() {
         AsyncHttpClient client = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
@@ -252,8 +247,7 @@ public class LandingActivity extends ActivityBase
 
                     UserData userData = ParseJson.parseSignUp(response);
 
-                    if (userData.getStatusCode() == 1)
-                    {
+                    if (userData.getStatusCode() == 1) {
                         appData.setUserData(userData);
 
                         libFile.setUserId(appData.getUserData().getUserId());
@@ -268,20 +262,16 @@ public class LandingActivity extends ActivityBase
 
                         libFile.setFbLogin(true);
 
-                        if(appData.getUserData().getRole().equals("1"))
+                        if (appData.getUserData().getRole().equals("1"))
                             goToHomeScreen();//goToMainAdminScreen();
                         /*else if(appData.getUserData().getRole().equals("2"))
                             goToBusinessMainScreen();*/
                         else
                             goToHomeScreen();
-                    }
-                    else
-                    {
+                    } else {
                         showMsgDialog(getString(R.string.txt_invalid_email));
                     }
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -290,23 +280,19 @@ public class LandingActivity extends ActivityBase
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 cancelProgressDialog();
 
-                try
-                {
+                try {
                     String response = new String(responseBody, "UTF-8");
 
                     if (AppConstants.DEBUG)
                         Log.v(AppConstants.DEBUG_TAG, "FB LOGIN RESPONSE : FAILED : " + response);
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
     }
 
-    public void logout()
-    {
+    public void logout() {
         LoginManager.getInstance().logOut();
     }
 }

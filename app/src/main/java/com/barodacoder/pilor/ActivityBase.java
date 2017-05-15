@@ -1,18 +1,44 @@
 package com.barodacoder.pilor;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.barodacoder.pilor.business.ActivityBusinessMain;
+import com.barodacoder.pilor.business.ActivityBusinessOpeningHours;
+import com.barodacoder.pilor.business.ActivityBusinessPaymentHistory;
+import com.barodacoder.pilor.business.ActivityBusinessProfile;
+import com.barodacoder.pilor.business.ActivityBusinessService;
+import com.barodacoder.pilor.business.ActivityBusinessSetting;
+import com.barodacoder.pilor.model.BookService;
+import com.barodacoder.pilor.user.ActivityAddCard;
+import com.barodacoder.pilor.user.ActivityBooking;
+import com.barodacoder.pilor.user.ActivityChangePasscode;
+import com.barodacoder.pilor.user.ActivityCreatePayment;
+import com.barodacoder.pilor.user.ActivityCutterProfile;
+import com.barodacoder.pilor.user.ActivityEnterPin;
+import com.barodacoder.pilor.user.ActivitySetting;
+import com.barodacoder.pilor.user.ActivityYourProfile;
+import com.barodacoder.pilor.user.MainActivity;
 import com.barodacoder.pilor.utils.AppData;
 import com.barodacoder.pilor.utils.LibFile;
 
@@ -22,18 +48,30 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class ActivityBase extends AppCompatActivity
-{
-    protected AppData appData;
+public class ActivityBase extends AppCompatActivity {
+    public static AppData appData;
 
-    protected LibFile libFile;
+    public static LibFile libFile;
 
     protected ProgressDialog progressDialog;
 
     protected SimpleDateFormat dateFormat;
 
-    protected void initData()
-    {
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.action_bar_bg);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(R.color.transparent));
+            window.setNavigationBarColor(activity.getResources().getColor(R.color.transparent));
+            window.setBackgroundDrawable(background);
+
+        }
+    }
+
+    protected void initData() {
         appData = AppData.getInstance(getApplicationContext());
 
         libFile = LibFile.getInstance(getApplicationContext());
@@ -41,8 +79,7 @@ public class ActivityBase extends AppCompatActivity
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     }
 
-    protected void goToLandingScreen()
-    {
+    protected void goToLandingScreen() {
         Intent intent = new Intent(getApplicationContext(), LandingActivity.class);
 
         startActivity(intent);
@@ -52,8 +89,7 @@ public class ActivityBase extends AppCompatActivity
         finish();
     }
 
-    protected void goToLoginScreen(boolean isBusinessLogin)
-    {
+    protected void goToLoginScreen(boolean isBusinessLogin) {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
 
         intent.putExtra("IS_BUSINESS_LOGIN", isBusinessLogin);
@@ -72,8 +108,7 @@ public class ActivityBase extends AppCompatActivity
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }*/
 
-    protected void goToSignupScreen()
-    {
+    protected void goToSignupScreen() {
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
 
         startActivity(intent);
@@ -82,8 +117,7 @@ public class ActivityBase extends AppCompatActivity
     }
 
 
-    protected void goToHomeScreen()
-    {
+    protected void goToHomeScreen() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -96,32 +130,25 @@ public class ActivityBase extends AppCompatActivity
 
         finish();
     }
-/*
-    protected void goToSubCategoryScreen(Category category)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivitySubCategory.class);
 
-        intent.putExtra("SELECTED_CATEGORY", category);
+    protected void goToSettingScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivitySetting.class);
 
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToCreateJobScreen(Category category)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityCreateJob.class);
-
-        intent.putExtra("SELECTED_CATEGORY", category);
+    protected void goToYourProfileScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivityYourProfile.class);
 
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToLandingWithClearCache()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityLanding.class);
+    protected void goToLandingWithClearCache() {
+        Intent intent = new Intent(getApplicationContext(), LandingActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -134,68 +161,57 @@ public class ActivityBase extends AppCompatActivity
         finish();
     }
 
-    protected void goToSettingScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivitySetting.class);
+    protected void goToBookingScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivityBooking.class);
 
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToYourProfileScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityYourProfile.class);
+    protected void goToEnterPinScreen(BookService bookService) {
+        Intent intent = new Intent(getApplicationContext(), ActivityEnterPin.class);
+
+        intent.putExtra("BOOK_SERVICE", bookService);
 
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToMyJobPostsScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityMyJobPosts.class);
+    protected void goToCutterDetailPage() {
+        Intent intent = new Intent(getApplicationContext(), ActivityCutterProfile.class);
 
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToChangePasswordScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityChangePassword.class);
 
-        startActivity(intent);
+    protected void goToAddCardScreen(BookService bookService) {
+        Intent intent = new Intent(getApplicationContext(), ActivityAddCard.class);
+
+        intent.putExtra("BOOK_SERVICE", bookService);
+
+        startActivityForResult(intent, 1);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+
+        //finish();
     }
 
-    protected void goToBidListScreen(Tasks task)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBidsList.class);
 
-        intent.putExtra("SELECTED_TASK", task);
+    protected void goToCreatePaymentScreen(BookService bookService) {
+        Intent intent = new Intent(getApplicationContext(), ActivityCreatePayment.class);
+
+        intent.putExtra("BOOK_SERVICE", bookService);
 
         startActivityForResult(intent, 1);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToCompanyDetailScreen(Tasks task, Bids bid)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityCompanyDetail.class);
-
-        intent.putExtra("SELECTED_TASK", task);
-
-        intent.putExtra("SELECTED_BID", bid);
-
-        startActivityForResult(intent, 2);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToBusinessMainScreen()
-    {
+    protected void goToBusinessMainScreen() {
         Intent intent = new Intent(getApplicationContext(), ActivityBusinessMain.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -209,66 +225,15 @@ public class ActivityBase extends AppCompatActivity
         finish();
     }
 
-    protected void goToBusinessTaskDetailScreen(Tasks task)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBusinessTaskDetail.class);
-
-        intent.putExtra("SELECTED_TASK", task);
-
-        startActivityForResult(intent, 145);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToBusinessCreateBidScreen(Tasks task)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBusinessCreateBid.class);
-
-        intent.putExtra("SELECTED_TASK", task);
+    protected void goToBusinessSettingScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivityBusinessSetting.class);
 
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToBusinessSettingScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBusinessSettings.class);
-
-        startActivity(intent);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToBusinessProfileScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBusinessProfile.class);
-
-        startActivity(intent);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToBusinessReferenceScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBusinessReferences.class);
-
-        startActivity(intent);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToBusinessAddReferenceScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBusinessAddReference.class);
-
-        startActivityForResult(intent, 12345);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToBusinessPaymentHistoryScreen()
-    {
+    protected void goToBusinessPaymentHistoryScreen() {
         Intent intent = new Intent(getApplicationContext(), ActivityBusinessPaymentHistory.class);
 
         startActivity(intent);
@@ -276,85 +241,233 @@ public class ActivityBase extends AppCompatActivity
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
-    protected void goToAddCardScreen(Tasks task, Bids bid)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityAddCard.class);
-
-        intent.putExtra("SELECTED_TASK", task);
-
-        intent.putExtra("BID_TO_ADD", bid);
-
-        startActivityForResult(intent, 1);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-
-        //finish();
-    }
-
-    protected void goToCreatePaymentScreen(Tasks task, Bids bid)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityCreatePayment.class);
-
-        intent.putExtra("SELECTED_TASK", task);
-
-        intent.putExtra("BID_TO_ADD", bid);
-
-        startActivityForResult(intent, 1);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToEnterPinScreen(Tasks task, Bids bid)
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityEnterPin.class);
-
-        intent.putExtra("SELECTED_TASK", task);
-
-        intent.putExtra("BID_TO_ADD", bid);
-
-        startActivityForResult(intent, 1);
-
-        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }
-
-    protected void goToBusinessChangePasscodeScreen()
-    {
-        Intent intent = new Intent(getApplicationContext(), ActivityBusinessChangePasscode.class);
+    protected void goToBusinessOpeningHoursScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivityBusinessOpeningHours.class);
 
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
-    }*/
+    }
 
-    protected void dialNumber(String number)
-    {
+    protected void goToBusinessServiceScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivityBusinessService.class);
+
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+    }
+
+    protected void goToBusinessProfileScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivityBusinessProfile.class);
+
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+    }
+    /*
+        protected void goToSubCategoryScreen(Category category)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivitySubCategory.class);
+
+            intent.putExtra("SELECTED_CATEGORY", category);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToCreateJobScreen(Category category)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityCreateJob.class);
+
+            intent.putExtra("SELECTED_CATEGORY", category);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+
+
+
+        protected void goToMyJobPostsScreen()
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityMyJobPosts.class);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+
+
+        protected void goToBidListScreen(Tasks task)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBidsList.class);
+
+            intent.putExtra("SELECTED_TASK", task);
+
+            startActivityForResult(intent, 1);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToCompanyDetailScreen(Tasks task, Bids bid)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityCompanyDetail.class);
+
+            intent.putExtra("SELECTED_TASK", task);
+
+            intent.putExtra("SELECTED_BID", bid);
+
+            startActivityForResult(intent, 2);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+
+
+        protected void goToBusinessTaskDetailScreen(Tasks task)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBusinessTaskDetail.class);
+
+            intent.putExtra("SELECTED_TASK", task);
+
+            startActivityForResult(intent, 145);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToBusinessCreateBidScreen(Tasks task)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBusinessCreateBid.class);
+
+            intent.putExtra("SELECTED_TASK", task);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToBusinessSettingScreen()
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBusinessSettings.class);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToBusinessProfileScreen()
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBusinessProfile.class);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToBusinessReferenceScreen()
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBusinessReferences.class);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToBusinessAddReferenceScreen()
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBusinessAddReference.class);
+
+            startActivityForResult(intent, 12345);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToBusinessPaymentHistoryScreen()
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityBusinessPaymentHistory.class);
+
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToAddCardScreen(Tasks task, Bids bid)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityAddCard.class);
+
+            intent.putExtra("SELECTED_TASK", task);
+
+            intent.putExtra("BID_TO_ADD", bid);
+
+            startActivityForResult(intent, 1);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+
+            //finish();
+        }
+
+        protected void goToCreatePaymentScreen(Tasks task, Bids bid)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityCreatePayment.class);
+
+            intent.putExtra("SELECTED_TASK", task);
+
+            intent.putExtra("BID_TO_ADD", bid);
+
+            startActivityForResult(intent, 1);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+
+        protected void goToEnterPinScreen(Tasks task, Bids bid)
+        {
+            Intent intent = new Intent(getApplicationContext(), ActivityEnterPin.class);
+
+            intent.putExtra("SELECTED_TASK", task);
+
+            intent.putExtra("BID_TO_ADD", bid);
+
+            startActivityForResult(intent, 1);
+
+            overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+        }
+    */
+    protected void goToChangePasscodeScreen() {
+        Intent intent = new Intent(getApplicationContext(), ActivityChangePasscode.class);
+
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+    }
+
+    protected void dialNumber(String number) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
         startActivity(intent);
     }
-    protected void loadWebsite(String website)
-    {
-        if(!website.contains("http"))
+
+    protected void loadWebsite(String website) {
+        if (!website.contains("http"))
             website = "http://".concat(website);
 
-        if(AppConstants.DEBUG) Log.v(AppConstants.DEBUG_TAG, "URL LINK : " + website);
+        if (AppConstants.DEBUG) Log.v(AppConstants.DEBUG_TAG, "URL LINK : " + website);
 
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(website));
         startActivity(i);
     }
 
-    protected void hideSoftKeyboard()
-    {
-        if(getCurrentFocus() != null)
-        {
+    protected void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
 
-   /* protected void showSnackBar(View view, String message)
-    {
+    protected void showSnackBar(View view, String message) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
         snackbar.getView().setBackgroundColor(Color.BLACK);
 
@@ -365,12 +478,10 @@ public class ActivityBase extends AppCompatActivity
         snackbar.show();
 
         //Snackbar.make(view, message, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-    }*/
+    }
 
-    protected void showProgressDialog()
-    {
-        if(progressDialog != null && progressDialog.isShowing())
-        {
+    protected void showProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
 
@@ -385,16 +496,13 @@ public class ActivityBase extends AppCompatActivity
         progressDialog.show();
     }
 
-    protected void cancelProgressDialog()
-    {
-        if(progressDialog != null && progressDialog.isShowing())
-        {
+    protected void cancelProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.cancel();
         }
     }
 
-    protected void showOKAlertMsg(String title,String msg, final boolean isFinish)
-    {
+    protected void showOKAlertMsg(String title, String msg, final boolean isFinish) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         dialogBuilder.setTitle(title);
@@ -414,8 +522,7 @@ public class ActivityBase extends AppCompatActivity
         dialogBuilder.show();
     }
 
-    protected void showMsgDialog(String msg)
-    {
+    protected void showMsgDialog(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
@@ -428,10 +535,8 @@ public class ActivityBase extends AppCompatActivity
         return networkInfo != null && networkInfo.isConnected();
     }
 
-    protected static byte[] encrypt(byte[] data, byte[] key, byte[] ivs)
-    {
-        try
-        {
+    protected static byte[] encrypt(byte[] data, byte[] key, byte[] ivs) {
+        try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");//AES/CBC/PKCS5Padding
             SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
             byte[] finalIvs = new byte[16];
@@ -441,19 +546,15 @@ public class ActivityBase extends AppCompatActivity
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivps);
 
             return cipher.doFinal(data);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return null;
     }
 
-    protected static byte[] decrypt(byte[] data)
-    {
-        try
-        {
+    protected static byte[] decrypt(byte[] data) {
+        try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             SecretKeySpec secretKeySpec = new SecretKeySpec(AppConstants.AES128_KEY.getBytes("utf-8"), "AES");
             byte[] finalIvs = new byte[16];
@@ -462,9 +563,7 @@ public class ActivityBase extends AppCompatActivity
             IvParameterSpec ivps = new IvParameterSpec(finalIvs);
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivps);
             return cipher.doFinal(data);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

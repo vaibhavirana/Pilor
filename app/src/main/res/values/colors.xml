@@ -4,11 +4,22 @@
     <color name="colorPrimary">#448aff</color>
     <color name="colorLightPrimary">#0288D1</color>
     <color name="colorPrimaryTint">#a20288d1</color>
-    <color name="colorPrimaryDark">#578CB6</color>
+    <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#7139B4</color>
+    <color name="colorbg">#fafafa</color>
 
+    <color name="white">#FFFFFF</color>
+    <color name="c_e6e6e8">#e6e6e8</color>
+    <color name="c_efefef">#efefef</color>
+    <color name="c_2c2c2c">#2c2c2c</color>
 
+    <color name="cream_light">#d2cdcc</color>
+    <color name="grey">#aaaaaa</color>
     <color name="color_gray">#c3c3c3</color>
+    <color name="color_gray_dark">#9E9E9E</color>
+    <color name="color_gray_light">#E0E0E0</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent1">#40ffffff</color>
 
     <color name="color_vlight_gray">#f6f6f6</color>
 
@@ -19,5 +30,8 @@
     <color name="default_circle_indicator_stroke_color">#c3c3c3</color>
 
     <color name="color_google_red">#da2627</color>
+
+    <color name="color_default_marker">#7139B4</color>
+    <color name="color_transparent">#00000000</color>
 
 </resources>

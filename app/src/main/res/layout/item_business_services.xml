@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/rlContainer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvServiceName"
+        style="@style/txt_reg_14_grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="@dimen/dimen_12dp"
+        android:singleLine="true"
+        android:text="Service Name"/>
+
+    <com.barodacoder.pilor.custom.SwitchView
+        android:id="@+id/switchService"
+        android:layout_width="@dimen/dimen_48dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/login_et_login_padding"
+        app:color_off="@color/colorPrimaryDark"
+        app:color_on="@color/colorPrimaryDark"
+
+      />
+
+    <EditText
+        android:id="@+id/etPrice"
+        style="@style/txt_reg_12_grey"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/setting_layout_view_padding_bottom"
+        android:layout_marginRight="@dimen/login_et_login_padding"
+        android:layout_marginTop="@dimen/setting_layout_view_padding_bottom"
+        android:layout_toLeftOf="@+id/switchService"
+        android:background="@drawable/shape_et_box_cream_rounde_3"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:hint="@string/txt_rate"
+        android:text="0"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:maxLines="1"
+        android:padding="@dimen/setting_layout_view_padding_bottom"
+        android:singleLine="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dimen_16dp"
+        android:background="@color/c_e6e6e8"/>
+
+</RelativeLayout>

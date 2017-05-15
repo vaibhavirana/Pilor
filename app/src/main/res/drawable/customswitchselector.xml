@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_checked="true">
-        <shape
-            android:shape="rectangle"
-            android:visible="true"
-            android:dither="true"
-            android:useLevel="false">
-            <gradient
-                android:startColor="@color/colorPrimaryDark"
-                android:endColor="@color/colorPrimaryDark"
-                android:angle="270"/>
-            <corners
-                android:radius="15dp"/>
-            <size
-                android:width="80dp"
-                android:height="@dimen/login_ll_password_margin_bottom" />
-            <stroke
-                android:width="4dp"
-                android:color="#0000ffff"/>
-        </shape>
-    </item>
-    <item android:state_checked="false">
-        <shape
-            android:shape="rectangle"
-            android:visible="true"
-            android:dither="true"
-            android:useLevel="false">
-            <gradient
-                android:startColor="@color/colorPrimaryDark"
-                android:endColor="@color/colorPrimaryDark"
-                android:angle="270"/>
-            <corners
-                android:radius="15dp"/>
-            <size
-                android:width="80dp"
-                android:height="@dimen/login_ll_password_margin_bottom" />
-            <stroke
-                android:width="4dp"
-                android:color="#0000ffff"/>
-        </shape>
-    </item>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:state_window_focused="false" android:drawable="@drawable/segmented_control_slider" />
+    <item android:state_checked="false" android:state_window_focused="false" android:drawable="@color/transparent" />
+
+    <item android:state_checked="true" android:state_pressed="true" android:drawable="@drawable/segmented_control_slider" />
+    <item android:state_checked="false" android:state_pressed="true" android:drawable="@color/transparent" />
+
+    <!--  <item android:state_checked="true" android:state_focused="true"
+          android:drawable="@drawable/segmented_control_slider" />
+      <item android:state_checked="false" android:state_focused="true"
+          android:drawable="@drawable/btn_radio_off_selected" />-->
+
+    <item android:state_checked="false" android:drawable="@color/transparent" />
+    <item android:state_checked="true" android:drawable="@drawable/segmented_control_slider" />
 </selector>
