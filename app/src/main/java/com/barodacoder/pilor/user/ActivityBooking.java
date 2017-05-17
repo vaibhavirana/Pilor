@@ -141,9 +141,9 @@ public class ActivityBooking extends ActivityBase {
         public void onBindViewHolder(final AdapterBook.MyViewHolder holder, int position) {
 
             final ListBooking booking = listBookings.get(position);
-            Log.e("booking", booking.is_service_accepted + "");
+           // Log.e("booking", booking.is_service_accepted + "");
             String title = null, detail = null, action = null;
-            if (booking.is_service_accepted == 1 || booking.is_service_accepted == 0) {
+            if (booking.is_service_accepted == 0) {
                 title = getString(R.string.txt_order);
                 action = getString(R.string.txt_cancel);
                 detail = String.format(getString(R.string.txt_order_detail), booking.display_name, booking.date_of_booking);
@@ -153,24 +153,37 @@ public class ActivityBooking extends ActivityBase {
                 holder.tvAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showCancelAlertMsg("", getString(R.string.txt_are_you_sure),booking.book_id);
+                        showCancelAlertMsg("", getString(R.string.txt_are_you_sure), booking.book_id);
+                       // cancleBooking(booking.book_id);
+                    }
+                });
+            } else if (booking.is_service_accepted == 1) {
+                // reschedule
+                title = getString(R.string.txt_order);
+                action = getString(R.string.txt_cancel);
+                detail = String.format(getString(R.string.txt_order_detail), booking.display_name, booking.date_of_booking);
+                holder.tvAction.setVisibility(View.VISIBLE);
+                holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
+                holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
+                holder.tvAction.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showCancelAlertMsg("", getString(R.string.txt_are_you_sure), booking.book_id);
                         //cancleBooking(booking.book_id);
                     }
                 });
-            }
-            if (booking.is_service_accepted == 4 || booking.is_service_accepted == 2) {
-                title = getString(R.string.txt_cancelled);
-                action = getString(R.string.txt_cancel);
+            } else if (booking.is_service_accepted == 2) {
+                title = getString(R.string.txt_rejected);
+                //action = getString(R.string.txt_cancel);
                 holder.tvAction.setVisibility(View.GONE);
-                detail = String.format(getString(R.string.txt_cancel_detail), booking.display_name);
-            }
-            if (booking.is_service_accepted == 3) {
+                detail = String.format(getString(R.string.txt_reject_detail), booking.display_name);
+            } else if (booking.is_service_accepted == 3) {
                 title = getString(R.string.txt_rate);
                 action = getString(R.string.txt_review);
                 detail = String.format(getString(R.string.txt_rate_detail), booking.display_name);
                 holder.tvAction.setVisibility(View.VISIBLE);
-               // holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
-               // holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
+                // holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
+                // holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
                 holder.tvAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -179,6 +192,11 @@ public class ActivityBooking extends ActivityBase {
                         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
                     }
                 });
+            } else if (booking.is_service_accepted == 4) {
+                title = getString(R.string.txt_cancelled);
+                action = getString(R.string.txt_cancel);
+                holder.tvAction.setVisibility(View.GONE);
+                detail = String.format(getString(R.string.txt_cancel_detail), booking.display_name);
             }
             holder.tvTitle.setText(title);
             //holder.tvDetail.setText(URLDecoder.decode(booking.display_name));
@@ -307,7 +325,7 @@ public class ActivityBooking extends ActivityBase {
         Date date = new Date();
         String datestring = dateFormat.format(date);
         params.put("localtime", datestring);
-       // dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        // dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         //params.put("localtime_UTC", dateFormat.format(date));
         Log.v(AppConstants.DEBUG_TAG, "BOOKING_LIST REQUEST : " + params.toString());
 
@@ -329,10 +347,9 @@ public class ActivityBooking extends ActivityBase {
                     if (AppConstants.DEBUG)
                         Log.v(AppConstants.DEBUG_TAG, "CUTTER_LIST RESPONSE : " + response);
 
-                   // JSONObject jsonRoot = new JSONObject(response);
+                    // JSONObject jsonRoot = new JSONObject(response);
 
-                    if(ParseJson.parseListBooking(response).statusCode==1)
-                    {
+                    if (ParseJson.parseListBooking(response).statusCode == 1) {
                         listBookings.clear();
                         getBookingList();
 
@@ -346,7 +363,7 @@ public class ActivityBooking extends ActivityBase {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-              //  swipeRefresh.setRefreshing(false);
+                //  swipeRefresh.setRefreshing(false);
                 progressDialog.dismiss();
                 try {
                     String response = new String(responseBody, "UTF-8");

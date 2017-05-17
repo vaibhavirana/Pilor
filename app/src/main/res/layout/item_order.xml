@@ -20,9 +20,10 @@
         app:siBorderWidth="1dp" />
 
     <LinearLayout
+        android:id="@+id/llDetail"
         android:layout_margin="@dimen/dimen_4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_toLeftOf="@+id/tvAction"
         android:gravity="center"
         android:layout_toRightOf="@+id/ivUserPic"
@@ -73,19 +74,19 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen_5dp"
         android:layout_marginRight="@dimen/setting_ic_arrow_size_height"
-        android:text="mark as done"
+        android:text="@string/txt_mark_as_done"
         android:paddingTop="@dimen/dimen_4dp"
         android:paddingBottom="@dimen/dimen_4dp"
         android:paddingLeft="@dimen/dimen_8dp"
         android:paddingRight="@dimen/dimen_8dp"
         android:background="@drawable/bg_blue_bordered_rounded_5"
-        android:textColor="@color/c_2c2c2c"
-        android:textSize="@dimen/login_et_login_font" />
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/login_tv_forgot_font" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/ivUserPic"
+        android:layout_below="@+id/llDetail"
         android:layout_marginLeft="@dimen/login_et_login_padding"
         android:background="@color/c_e6e6e8" />
 </RelativeLayout>

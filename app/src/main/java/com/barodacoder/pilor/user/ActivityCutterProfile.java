@@ -227,7 +227,10 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOrderCut:
-                showDateTimePicker();
+                if (selectedIds.size() > 0) {
+                    showDateTimePicker();
+                }else
+                    showOKAlertMsg(getString(R.string.txt_select_service_title), getString(R.string.txt_select_service), false);
                 break;
         }
     }
@@ -255,17 +258,15 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                                 + " " + hour24 + ":" + min
                                 + ":" + sec);
 
-                        if (selectedIds.size() > 0)
-                        {
+
                             BookService bookService=new BookService();
                             bookService.service_id=android.text.TextUtils.join(",", selectedIds);
                             bookService.date_of_booking=selectedDate;
                             bookService.service_provide_by=userCutter.getUserId();
                             bookService.price= String.valueOf(totalPrice);
                             goToEnterPinScreen(bookService);
-                        }
-                        else
-                            showOKAlertMsg(getString(R.string.txt_select_service_title), getString(R.string.txt_select_service), false);
+
+
                     }
 
                     @Override

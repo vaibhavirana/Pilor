@@ -24,8 +24,7 @@ import java.util.TimeZone;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPasswordInputListener, BlurLockView.OnLeftButtonClickListener
-{
+public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPasswordInputListener, BlurLockView.OnLeftButtonClickListener {
     private BlurLockView blurlockview;
 
     private boolean isFirstTime = true;
@@ -33,8 +32,8 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
     private BookService bookService;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarGradiant(this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_enter_pin);
@@ -45,8 +44,7 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
 
         overridePendingTransition(R.anim.slide_in_from_left_to_right, R.anim.slide_out_from_left_to_right);
@@ -54,20 +52,18 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
         finish();
     }
 
-    protected void initData()
-    {
+    protected void initData() {
         super.initData();
 
         bookService = null;
 
         bookService = (BookService) getIntent().getSerializableExtra("BOOK_SERVICE");
 
-       // bid = (Bids) getIntent().getSerializableExtra("BID_TO_ADD");
+        // bid = (Bids) getIntent().getSerializableExtra("BID_TO_ADD");
     }
 
-    private void initUi()
-    {
-        blurlockview = (BlurLockView)findViewById(R.id.blurlockview);
+    private void initUi() {
+        blurlockview = (BlurLockView) findViewById(R.id.blurlockview);
 
         blurlockview.setCorrectPassword(libFile.getPasscode());
 
@@ -77,16 +73,15 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
 
             isFirstTime = true;
         }*/
-        if(!libFile.getPasscode().equals("6581"))
-        {
+        if (!libFile.getPasscode().equals("6581")) {
             passcode = libFile.getPasscode();
 
-            blurlockview.setTitle("39 DKK");
-
+            if (bookService != null && bookService.price != null)
+                blurlockview.setTitle(bookService.price+" DKK");
+            else
+                blurlockview.setTitle("Enter Pin");
             isFirstTime = false;
-        }
-        else
-        {
+        } else {
             blurlockview.setTitle(getString(R.string.txt_create_passcode));
         }
 
@@ -102,9 +97,9 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
     }
 
     @Override
-    public void correct(String inputPassword)
-    {
-        if(AppConstants.DEBUG) Log.v(AppConstants.DEBUG_TAG, "PASSWORD : CORRECT : " + inputPassword);
+    public void correct(String inputPassword) {
+        if (AppConstants.DEBUG)
+            Log.v(AppConstants.DEBUG_TAG, "PASSWORD : CORRECT : " + inputPassword);
 
         //Toast.makeText(ActivityEnterPin.this, "Password Correct", Toast.LENGTH_SHORT).show();
 
@@ -114,25 +109,23 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
     }
 
     @Override
-    public void incorrect(String inputPassword)
-    {
-        if(AppConstants.DEBUG) Log.v(AppConstants.DEBUG_TAG, "PASSWORD : INCORRECT : "+inputPassword);
+    public void incorrect(String inputPassword) {
+        if (AppConstants.DEBUG)
+            Log.v(AppConstants.DEBUG_TAG, "PASSWORD : INCORRECT : " + inputPassword);
 
         //Toast.makeText(ActivityEnterPin.this, "Incorrect password", Toast.LENGTH_SHORT).show();
 
-       doAction(inputPassword);
+        doAction(inputPassword);
     }
 
     @Override
-    public void input(String inputPassword)
-    {
-        if(AppConstants.DEBUG) Log.v(AppConstants.DEBUG_TAG, "PASSWORD : INPUT : "+inputPassword);
+    public void input(String inputPassword) {
+        if (AppConstants.DEBUG)
+            Log.v(AppConstants.DEBUG_TAG, "PASSWORD : INPUT : " + inputPassword);
     }
 
-    public void doAction(String inputPassword)
-    {
-        if(isFirstTime)
-        {
+    public void doAction(String inputPassword) {
+        if (isFirstTime) {
             isFirstTime = false;
 
             passcode = inputPassword;
@@ -141,42 +134,32 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
 
             initUi();
 
-            blurlockview.setTitle("39 DKK");
-        }
-        else
-        {
-            if(inputPassword.equals(passcode))
-            {
+            blurlockview.setTitle("Enter Pin");
+        } else {
+            if (inputPassword.equals(passcode)) {
                 libFile.setPasscode(passcode);
 
-                if(libFile.getCardNumber().equals(""))
-                {
+                if (libFile.getCardNumber().equals("")) {
                     goToAddCardScreen(bookService);
 
                     finish();
-                }
-                else
-                {
-                    if(bookService!=null)
-                    {
+                } else {
+                    if (bookService != null) {
                         bookService();
-                    }else
-                    {
+                    } else {
                         goToAddCardScreen(bookService);
                         finish();
                     }
                     // addBid();
                 }
-            }
-            else
-            {
+            } else {
                 Toast.makeText(ActivityEnterPin.this, "Incorrect password", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     @Override
-    public void onClick()
-    {
+    public void onClick() {
         onBackPressed();
     }
 
@@ -198,7 +181,7 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
         params.put("service_provide_by", bookService.service_provide_by);
         params.put("date_of_booking", bookService.date_of_booking);
         params.put("booking_date", bookService.date_of_booking);
-        params.put("service_id",bookService.service_id);
+        params.put("service_id", bookService.service_id);
         // params.put("service_id", selectedService);
         params.put("price", bookService.price);
 

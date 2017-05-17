@@ -1,6 +1,7 @@
 package com.barodacoder.pilor.user;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -133,6 +135,32 @@ public class MainActivity extends EasyLocationAppCompatActivity {
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    @Override
+    public void onBackPressed() {
+       // super.onBackPressed();
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        dialogBuilder.setPositiveButton(getString(R.string.txt_yes), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+                finish();
+            }
+        });
+
+        dialogBuilder.setNegativeButton(getString(R.string.txt_no), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        dialogBuilder.setTitle(this.getString(R.string.exit_title));
+
+        dialogBuilder.setMessage(this.getString(R.string.exit));
+
+        dialogBuilder.show();
     }
 
     protected void initData() {

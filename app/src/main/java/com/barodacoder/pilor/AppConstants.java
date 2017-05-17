@@ -14,7 +14,7 @@ public class AppConstants {
 
     public static final int DEVICE_TYPE = 2;
 
-    public static final String MERCHANT_ID = "8026162";//"1021528";
+    public static final String MERCHANT_ID = "8027756";//"1027756";
 
     public static final String AES128_KEY = "5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB"; //"5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB";
 
@@ -199,7 +199,7 @@ book_id(*)
     user_id(*)
     user_token(*)
      */
- public static final String URL_UPDATE_TIME = URL_BASE + "update_time";
+    public static final String URL_UPDATE_TIME = URL_BASE + "update_time";
 
     /*
     "user_id(*)
@@ -207,12 +207,21 @@ book_id(*)
     opening_hours(*)"
      */
 
-    public static final String URL_LIST_BOOKING_FOR_CUTTER= URL_BASE + "list_booking_for_cleaner";
+    public static final String URL_LIST_BOOKING_FOR_CUTTER = URL_BASE + "list_booking_for_cleaner";
 
     /*
     "user_id(*)
     user_token(*)
     opening_hours(*)"
+     */
+
+    public static final String URL_UPDATE_SERVICE_STATUS_BY_CUTTER = URL_BASE + "update_service_status";
+
+    /*
+   "user_id(*)
+    user_token(*)
+    book_id(*)
+    is_service_accepted(*) [2: if cutter cancel 1: if cutter accept  3: if cutter mark as done]"
      */
 
 }

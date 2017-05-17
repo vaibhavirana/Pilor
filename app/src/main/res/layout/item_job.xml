@@ -67,32 +67,32 @@
 
     <ImageView
         android:id="@+id/ivClear"
-        android:layout_width="@dimen/dimen_36dp"
-        android:layout_height="@dimen/dimen_36dp"
+        android:layout_width="@dimen/setting_ll_separator_fb_margin_left"
+        android:layout_height="@dimen/setting_ll_separator_fb_margin_left"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/dimen_2dp"
-        android:clickable="true"
+        android:layout_marginLeft="@dimen/dimen_4dp"
+        android:layout_marginRight="@dimen/dimen_4dp"
         android:src="@drawable/nope" />
 
     <ImageView
         android:id="@+id/ivReschedule"
-        android:layout_width="@dimen/dimen_36dp"
-        android:layout_height="@dimen/dimen_36dp"
+        android:layout_width="@dimen/setting_ll_separator_fb_margin_left"
+        android:layout_height="@dimen/setting_ll_separator_fb_margin_left"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/ivClear"
-        android:clickable="true"
-        android:layout_margin="@dimen/dimen_2dp"
+        android:layout_marginLeft="@dimen/dimen_4dp"
+        android:layout_marginRight="@dimen/dimen_4dp"
         android:src="@drawable/other_time" />
 
     <ImageView
         android:id="@+id/ivAccept"
-        android:layout_width="@dimen/dimen_36dp"
-        android:layout_height="@dimen/dimen_36dp"
+        android:layout_width="@dimen/setting_ll_separator_fb_margin_left"
+        android:layout_height="@dimen/setting_ll_separator_fb_margin_left"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/ivReschedule"
-        android:clickable="true"
-        android:layout_margin="@dimen/dimen_2dp"
+        android:layout_marginLeft="@dimen/dimen_4dp"
+        android:layout_marginRight="@dimen/dimen_4dp"
         android:src="@drawable/checkmarkn" />
 
 

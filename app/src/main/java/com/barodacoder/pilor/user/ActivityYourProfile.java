@@ -146,7 +146,7 @@ public class ActivityYourProfile extends ActivityBase {
                     // 选择图片回调
                     @Override
                     public void onPickImage(Uri imageUri) {
-                        Log.e("image url", imageUri.getPath());
+                        Log.e("image url pick", imageUri.getPath());
                        /* ivImage.setImageURI(null);
                         ivImage.setImageURI(imageUri);*/
                         Glide.with(ActivityYourProfile.this).load(new File(imageUri.getPath())).asBitmap().centerCrop()
@@ -171,7 +171,7 @@ public class ActivityYourProfile extends ActivityBase {
 
                     @Override
                     public void onCropImage(Uri imageUri) {
-                        Log.e("image url", imageUri.getPath());
+                        Log.e("image url crop", imageUri.getPath());
                         Glide.with(ActivityYourProfile.this).load(new File(imageUri.getPath()))
                                 .asBitmap().centerCrop().into(new BitmapImageViewTarget(ivImage) {
                             @Override
@@ -275,7 +275,7 @@ public class ActivityYourProfile extends ActivityBase {
         AsyncHttpClient client = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
-
+       // Log.v(AppConstants.DEBUG_TAG, "FILE : " + file.toString());
         try {
             params.put("user_id", libFile.getUserId());
             params.put("user_token", libFile.getUserToken());
@@ -284,6 +284,9 @@ public class ActivityYourProfile extends ActivityBase {
             // params.put("mobile", etPhone.getText().toString());
             //params.put("bio", etBio.getText().toString());
             params.put("profile_pic", file);
+
+            Log.v(AppConstants.DEBUG_TAG, "UPDATE PROFILE REQQUEST : " + params.toString());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

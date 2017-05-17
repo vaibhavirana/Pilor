@@ -399,10 +399,10 @@ public class ParseJson {
         JSONObject jsonRoot = new JSONObject(response);
 
         if (jsonRoot.has("msg"))
-            serviceResp.msg=(jsonRoot.getString("msg"));
+            serviceResp.msg = (jsonRoot.getString("msg"));
 
         if (jsonRoot.has("status_code"))
-            serviceResp.statusCode=(jsonRoot.getInt("status_code"));
+            serviceResp.statusCode = (jsonRoot.getInt("status_code"));
 
         if (jsonRoot.has("info")) {
             JSONArray jsnArr = jsonRoot.getJSONArray("info");
@@ -410,7 +410,7 @@ public class ParseJson {
                 listBookings.add(parseServiceList(jsnArr.getJSONObject(i)));
             }
 
-            serviceResp.info=listBookings;
+            serviceResp.info = listBookings;
         }
 
         return serviceResp;
@@ -445,10 +445,10 @@ public class ParseJson {
         JSONObject jsonRoot = new JSONObject(response);
 
         if (jsonRoot.has("msg"))
-            openingHoursResp.msg=(jsonRoot.getString("msg"));
+            openingHoursResp.msg = (jsonRoot.getString("msg"));
 
         if (jsonRoot.has("status_code"))
-            openingHoursResp.statusCode=(jsonRoot.getInt("status_code"));
+            openingHoursResp.statusCode = (jsonRoot.getInt("status_code"));
 
         if (jsonRoot.has("info")) {
             JSONArray jsnArr = jsonRoot.getJSONArray("info");
@@ -456,7 +456,7 @@ public class ParseJson {
                 listHoues.add(parseHoursList(jsnArr.getJSONObject(i)));
             }
 
-            openingHoursResp.info=listHoues;
+            openingHoursResp.info = listHoues;
         }
 
         return openingHoursResp;
@@ -585,20 +585,20 @@ public class ParseJson {
 
         //Log.e("resp",response);
         ArrayList<BookService> bookServices = new ArrayList<>();
-        BookService bookService=new BookService();
+        BookService bookService = new BookService();
         JSONObject jsonRoot = new JSONObject(response);
 
         if (jsonRoot.has("msg"))
-            bookingResp.msg=(jsonRoot.getString("msg"));
+            bookingResp.msg = (jsonRoot.getString("msg"));
 
         if (jsonRoot.has("status_code"))
-            bookingResp.statusCode=(jsonRoot.getInt("status_code"));
+            bookingResp.statusCode = (jsonRoot.getInt("status_code"));
 
         if (jsonRoot.has("info")) {
-          //  JSONArray jsnArr = jsonRoot.getJSONArray("info");
-            bookService=parseBookingService(jsonRoot.getJSONObject("info"));
+            //  JSONArray jsnArr = jsonRoot.getJSONArray("info");
+            bookService = parseBookingService(jsonRoot.getJSONObject("info"));
 
-            bookingResp.info=(bookService);
+            bookingResp.info = (bookService);
             //  Log.e("info",userCutters.toString());
 
         }
@@ -610,34 +610,34 @@ public class ParseJson {
         BookService bookService = new BookService();
 
         if (jsonRoot.has("user_id"))
-            bookService.user_id=(jsonRoot.getString("user_id"));
+            bookService.user_id = (jsonRoot.getString("user_id"));
 
         if (jsonRoot.has("service_provide_by"))
-            bookService.service_provide_by=(jsonRoot.getString("service_provide_by"));
+            bookService.service_provide_by = (jsonRoot.getString("service_provide_by"));
 
         if (jsonRoot.has("date_of_booking"))
-            bookService.date_of_booking=(jsonRoot.getString("date_of_booking"));
+            bookService.date_of_booking = (jsonRoot.getString("date_of_booking"));
 
         if (jsonRoot.has("price"))
-            bookService.price=(jsonRoot.getString("price"));
+            bookService.price = (jsonRoot.getString("price"));
 
         if (jsonRoot.has("service_id"))
-            bookService.service_id=(jsonRoot.getString("service_id"));
+            bookService.service_id = (jsonRoot.getString("service_id"));
 
         if (jsonRoot.has("localtime"))
-            bookService.localtime=(jsonRoot.getString("localtime"));
+            bookService.localtime = (jsonRoot.getString("localtime"));
 
         if (jsonRoot.has("localtime_UTC"))
-            bookService.localtime_UTC=(jsonRoot.getString("localtime_UTC"));
+            bookService.localtime_UTC = (jsonRoot.getString("localtime_UTC"));
 
         if (jsonRoot.has("book_id"))
-            bookService.book_id=(jsonRoot.getString("book_id"));
+            bookService.book_id = (jsonRoot.getString("book_id"));
 
         if (jsonRoot.has("payment_status"))
-            bookService.payment_status=(jsonRoot.getString("payment_status"));
+            bookService.payment_status = (jsonRoot.getString("payment_status"));
 
         if (jsonRoot.has("payment_status_msg"))
-            bookService.payment_status_msg=(jsonRoot.getString("payment_status_msg"));
+            bookService.payment_status_msg = (jsonRoot.getString("payment_status_msg"));
         return bookService;
     }
 
@@ -687,22 +687,34 @@ public class ParseJson {
         ListBookingResp bookingResp = new ListBookingResp();
 
         //Log.e("resp",response);
-        ArrayList<ListBooking> listBookings = new ArrayList<>();
-         JSONObject jsonRoot = new JSONObject(response);
+        ArrayList<ListBooking> info = new ArrayList<>();
+        ArrayList<ListBooking> accepted_info = new ArrayList<>();
+        JSONObject jsonRoot = new JSONObject(response);
 
         if (jsonRoot.has("msg"))
-            bookingResp.msg=(jsonRoot.getString("msg"));
+            bookingResp.msg = (jsonRoot.getString("msg"));
 
         if (jsonRoot.has("status_code"))
-            bookingResp.statusCode=(jsonRoot.getInt("status_code"));
+            bookingResp.statusCode = (jsonRoot.getInt("status_code"));
 
         if (jsonRoot.has("info")) {
+            info.clear();
             JSONArray jsnArr = jsonRoot.getJSONArray("info");
             for (int i = 0; i < jsnArr.length(); i++) {
-                listBookings.add(parseBoooking(jsnArr.getJSONObject(i)));
+                info.add(parseBoooking(jsnArr.getJSONObject(i)));
             }
 
-            bookingResp.info=listBookings;
+            bookingResp.info = info;
+        }
+
+        if (jsonRoot.has("accepted_info")) {
+            accepted_info.clear();
+            JSONArray jsnArr = jsonRoot.getJSONArray("accepted_info");
+            for (int i = 0; i < jsnArr.length(); i++) {
+                accepted_info.add(parseBoooking(jsnArr.getJSONObject(i)));
+            }
+
+            bookingResp.accepted_info = accepted_info;
         }
 
         return bookingResp;
@@ -712,64 +724,67 @@ public class ParseJson {
         ListBooking listBooking = new ListBooking();
 
         if (jsonBooking.has("user_id"))
-            listBooking.user_id=(jsonBooking.getString("user_id"));
+            listBooking.user_id = (jsonBooking.getString("user_id"));
 
         if (jsonBooking.has("service_id"))
-            listBooking.service_id=(jsonBooking.getString("service_id"));
+            listBooking.service_id = (jsonBooking.getString("service_id"));
 
         if (jsonBooking.has("book_id"))
-            listBooking.book_id=(jsonBooking.getString("book_id"));
+            listBooking.book_id = (jsonBooking.getString("book_id"));
 
         if (jsonBooking.has("service_provide_by"))
-            listBooking.service_provide_by=(jsonBooking.getString("service_provide_by"));
+            listBooking.service_provide_by = (jsonBooking.getString("service_provide_by"));
 
         if (jsonBooking.has("date_of_booking"))
-            listBooking.date_of_booking=(jsonBooking.getString("date_of_booking"));
+            listBooking.date_of_booking = (jsonBooking.getString("date_of_booking"));
 
         if (jsonBooking.has("accepted_date"))
-            listBooking.accepted_date=(jsonBooking.getString("accepted_date"));
+            listBooking.accepted_date = (jsonBooking.getString("accepted_date"));
 
         if (jsonBooking.has("created_date"))
-            listBooking.created_date=(jsonBooking.getString("created_date"));
+            listBooking.created_date = (jsonBooking.getString("created_date"));
 
         if (jsonBooking.has("localtime"))
-            listBooking.localtime=(jsonBooking.getString("localtime"));
+            listBooking.localtime = (jsonBooking.getString("localtime"));
 
         if (jsonBooking.has("localtime_UTC"))
-            listBooking.localtime_UTC=(jsonBooking.getString("localtime_UTC"));
+            listBooking.localtime_UTC = (jsonBooking.getString("localtime_UTC"));
 
         if (jsonBooking.has("price"))
-            listBooking.price=(jsonBooking.getString("price"));
+            listBooking.price = (jsonBooking.getString("price"));
 
         if (jsonBooking.has("is_service_accepted"))
-            listBooking.is_service_accepted=(jsonBooking.getInt("is_service_accepted"));
+            listBooking.is_service_accepted = (jsonBooking.getInt("is_service_accepted"));
 
         if (jsonBooking.has("is_reschedule"))
-            listBooking.is_reschedule=(jsonBooking.getString("is_reschedule"));
+            listBooking.is_reschedule = (jsonBooking.getString("is_reschedule"));
 
         if (jsonBooking.has("is_done"))
-            listBooking.is_done=(jsonBooking.getString("is_done"));
+            listBooking.is_done = (jsonBooking.getString("is_done"));
 
         if (jsonBooking.has("is_review_added"))
-            listBooking.is_review_added=(jsonBooking.getString("is_review_added"));
+            listBooking.is_review_added = (jsonBooking.getString("is_review_added"));
 
         if (jsonBooking.has("hide_by_business"))
-            listBooking.hide_by_business=(jsonBooking.getString("hide_by_business"));
+            listBooking.hide_by_business = (jsonBooking.getString("hide_by_business"));
 
         if (jsonBooking.has("display_name"))
-            listBooking.display_name=(jsonBooking.getString("display_name"));
+            listBooking.display_name = (jsonBooking.getString("display_name"));
+
+        if (jsonBooking.has("profile_pic"))
+            listBooking.profile_pic = (jsonBooking.getString("profile_pic"));
 
         if (jsonBooking.has("mobile"))
-            listBooking.mobile=(jsonBooking.getString("mobile"));
+            listBooking.mobile = (jsonBooking.getString("mobile"));
 
         if (jsonBooking.has("email"))
-            listBooking.email=(jsonBooking.getString("email"));
+            listBooking.email = (jsonBooking.getString("email"));
 
         if (jsonBooking.has("latitude"))
-            listBooking.latitude=(jsonBooking.getString("latitude"));
+            listBooking.latitude = (jsonBooking.getString("latitude"));
 
         if (jsonBooking.has("longitude"))
-            listBooking.longitude=(jsonBooking.getString("longitude"));
+            listBooking.longitude = (jsonBooking.getString("longitude"));
 
         if (jsonBooking.has("category_name"))
             listBooking.category_name = (jsonBooking.getString("category_name"));
@@ -777,56 +792,53 @@ public class ParseJson {
         return listBooking;
     }
 
-    public static ArrayList<PaymentHistory> parsePaymentHistory(String response) throws JSONException
-    {
+    public static ArrayList<PaymentHistory> parsePaymentHistory(String response) throws JSONException {
         ArrayList<PaymentHistory> alPayment = new ArrayList<>();
 
         JSONObject jsonRoot = new JSONObject(response);
 
-        if(jsonRoot.has("info"))
-        {
+        if (jsonRoot.has("info")) {
             JSONArray jsnArr = jsonRoot.getJSONArray("info");
 
-            for(int i = 0; i < jsnArr.length(); i++)
-            {
+            for (int i = 0; i < jsnArr.length(); i++) {
                 JSONObject jsonInfo = jsnArr.getJSONObject(i);
 
                 PaymentHistory payment = new PaymentHistory();
 
-                if(jsonInfo.has("tauto_id"))
+                if (jsonInfo.has("tauto_id"))
                     payment.setId(jsonInfo.getString("tauto_id"));
 
-                if(jsonInfo.has("transaction_type"))
+                if (jsonInfo.has("transaction_type"))
                     payment.setTransactionType(jsonInfo.getString("transaction_type"));
 
-                if(jsonInfo.has("withdraw_status"))
+                if (jsonInfo.has("withdraw_status"))
                     payment.setWithdrawStatus(jsonInfo.getString("withdraw_status"));
 
-                if(jsonInfo.has("transaction_id"))
+                if (jsonInfo.has("transaction_id"))
                     payment.setTransactionId(jsonInfo.getString("transaction_id"));
 
-                if(jsonInfo.has("uid_to"))
+                if (jsonInfo.has("uid_to"))
                     payment.setUidTo(jsonInfo.getString("uid_to"));
 
-                if(jsonInfo.has("uid_from"))
+                if (jsonInfo.has("uid_from"))
                     payment.setUidFrom(jsonInfo.getString("uid_from"));
 
-                if(jsonInfo.has("amount"))
+                if (jsonInfo.has("amount"))
                     payment.setAmount(jsonInfo.getString("amount"));
 
-                if(jsonInfo.has("book_id"))
+                if (jsonInfo.has("book_id"))
                     payment.setBook_id(jsonInfo.getString("book_id"));
 
-                if(jsonInfo.has("payment_release_flag"))
+                if (jsonInfo.has("payment_release_flag"))
                     payment.setReleaseDate(jsonInfo.getString("payment_release_flag"));
 
-                if(jsonInfo.has("date"))
+                if (jsonInfo.has("date"))
                     payment.setDate(jsonInfo.getString("date"));
 
-                if(jsonInfo.has("profile_pic"))
+                if (jsonInfo.has("profile_pic"))
                     payment.setProfilePic(jsonInfo.getString("profile_pic"));
 
-                if(jsonInfo.has("display_name"))
+                if (jsonInfo.has("display_name"))
                     payment.setDisplayName(jsonInfo.getString("display_name"));
 
                 alPayment.add(payment);

@@ -102,6 +102,7 @@ public class ActivityAddCard extends ActivityBase
             public void onClick(View view)
             {
                 goToCreatePaymentScreen(bookService);
+                finish();
             }
         });
 

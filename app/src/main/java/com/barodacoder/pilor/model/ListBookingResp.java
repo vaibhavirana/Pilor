@@ -13,9 +13,11 @@ public class ListBookingResp implements Serializable {
     public int statusCode;
 
     public ArrayList<ListBooking> info;
+    public ArrayList<ListBooking> accepted_info;
 
     public ListBookingResp() {
         info=new ArrayList<>();
+        accepted_info=new ArrayList<>();
     }
 
 

@@ -145,6 +145,7 @@
     <string name="txt_done">Done</string>
     <string name="txt_cancel">Cancel</string>
     <string name="txt_cancelled">Cancelled</string>
+    <string name="txt_rejected">Rejected</string>
 
     <string name="txt_err_headline">Please enter headline</string>
     <string name="txt_err_description">Please enter work description</string>
@@ -238,6 +239,7 @@
     <string name="txt_order_cut">Order Cut</string>
     <string name="txt_order_detail">You made an order with %1$s at %2$s.</string>
     <string name="txt_cancel_detail">You order with %1$s  has been cancelled.</string>
+    <string name="txt_reject_detail">You order with %1$s  has been rejected.</string>
     <string name="txt_reminder">Reminder</string>
     <string name="txt_reminder_detail">You cut at {{cutter-name}} is in 30 minutes.</string>
     <string name="txt_rate">Rate</string>
@@ -249,11 +251,15 @@
     <string name="txt_opening_hours">Opening hours</string>
     <string name="txt_payment_history">Payment history</string>
     <string name="txt_payment">Payments</string>
+    <string name="txt_mark_as_done">Mark as done</string>
+    <string name="txt_completed">Completed</string>
 
     <string name="str_opening">Open</string>
     <string name="closing">Closing</string>
     <string name="str_opening_hours_hint">Too mark a day as closed, please set both opening and closing time to 00:00 and it will show Closed in the app.</string>
     <string name="str_enter_rate_of_service">Enter rate of service that you are providing!</string>
+    <string name="exit">Are you sure you want to close App?</string>
+    <string name="exit_title">Close App</string>
 
 
 </resources>
