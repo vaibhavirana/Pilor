@@ -2,6 +2,7 @@ package com.barodacoder.pilor.business;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -48,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
+
 
 public class ActivityBusinessProfile extends ActivityBase {
     private Toolbar toolbar;
@@ -108,10 +110,15 @@ public class ActivityBusinessProfile extends ActivityBase {
         cutter = AppData.getInstance(this).getUserData();
         image_url = new ArrayList<>();
         image_url_file = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i <= 5; i++) {
             image_url_file.add(file);
         }
         if (cutter != null) {
+            if (cutter.getProfile().length() > 0)
+                image_url.add(cutter.getProfile());
+            else
+                image_url.add("no_image");
+
             if (cutter.getCoverImage1().length() > 0)
                 image_url.add(cutter.getCoverImage1());
             else
@@ -248,20 +255,21 @@ public class ActivityBusinessProfile extends ActivityBase {
             params.put("mobile", etPhone.getText().toString());
             params.put("bio", etBio.getText().toString());
             params.put("address", etAddress.getText().toString());
-            //params.put("profile_pic", file);
+            params.put("profile_pic", file);
             // fileSource=new File(imageUri.getPath());
-            Log.e("file ",image_url_file.size()+" || "+ image_url_file.get(0).toString());
+            Log.e("file ", image_url_file.size() + " || " + image_url_file.get(0).toString());
 
-            params.put("cover_image1",image_url_file.get(0));
+            params.put("cover_image1", image_url_file.get(0));
+            params.put("thumb_image1", resizeImage(image_url_file.get(0)));
             params.put("cover_image2", image_url_file.get(1));
-            params.put("cover_image3", image_url_file.get(2));
-            params.put("cover_image4", image_url_file.get(3));
-            params.put("cover_image5", image_url_file.get(4));
-            /*params.put("thumb_image1", file);
             params.put("thumb_image2", file);
+            params.put("cover_image3", image_url_file.get(2));
             params.put("thumb_image3", file);
+            params.put("cover_image4", image_url_file.get(3));
             params.put("thumb_image4", file);
-            params.put("thumb_image5", file);*/
+            params.put("cover_image5", image_url_file.get(4));
+            params.put("thumb_image5", file);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -327,6 +335,26 @@ public class ActivityBusinessProfile extends ActivityBase {
         });
     }
 
+    private File resizeImage(File file_url) {
+        Bitmap b = BitmapFactory.decodeFile(file_url.getPath());
+        Bitmap out = Bitmap.createScaledBitmap(b, 400, 400, false);
+        // File file1 = new File(file_url, "resize.png");
+        File file1 = new File(getExternalCacheDir(), file_url.getName());
+        FileOutputStream fOut;
+        try {
+            fOut = new FileOutputStream(file1);
+            out.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            fOut.flush();
+            fOut.close();
+            b.recycle();
+            out.recycle();
+            copyImage(file1, file);
+        } catch (Exception e) {
+        }
+
+        return file1;
+    }
+
     public class AdapterPhoto extends RecyclerView.Adapter<AdapterPhoto.MyViewHolder> {
         public class MyViewHolder extends RecyclerView.ViewHolder {
             private CircularImageView ivImage;
@@ -350,8 +378,14 @@ public class ActivityBusinessProfile extends ActivityBase {
         @Override
         public void onBindViewHolder(final AdapterPhoto.MyViewHolder holder, final int position) {
 
+            int default_image;
+            if (position == 0)
+                default_image = R.drawable.user;
+            else
+                default_image = R.drawable.default_image;
+
             if (image_url.get(position).equals("no_image")) {
-                Glide.with(ActivityBusinessProfile.this).load(R.drawable.icon_no_image)
+                Glide.with(ActivityBusinessProfile.this).load(default_image)
                         .asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.ivImage) {
                     @Override
                     protected void setResource(Bitmap resource) {
@@ -365,7 +399,7 @@ public class ActivityBusinessProfile extends ActivityBase {
             } else {
                 Glide.with(ActivityBusinessProfile.this).load(image_url.get(position))
                         .asBitmap().centerCrop()
-                        .placeholder(R.drawable.icon_no_image)
+                        .placeholder(default_image)
                         .into(new BitmapImageViewTarget(holder.ivImage) {
                             @Override
                             protected void setResource(Bitmap resource) {
@@ -378,51 +412,32 @@ public class ActivityBusinessProfile extends ActivityBase {
             }
 
 
-            holder.ivImage.setOnClickListener(new View.OnClickListener() {
+
+
+
+        holder.ivImage.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v){
+            imagePicker.startChooser(ActivityBusinessProfile.this, new ImagePicker.Callback() {
+                // 选择图片回调
                 @Override
-                public void onClick(View v) {
-                    imagePicker.startChooser(ActivityBusinessProfile.this, new ImagePicker.Callback() {
-                        // 选择图片回调
-                        @Override
-                        public void onPickImage(Uri imageUri) {
-                            Log.e("image url", imageUri.getPath());
+                public void onPickImage(Uri imageUri) {
+                    Log.e("image url", imageUri.getPath());
                        /* ivImage.setImageURI(null);
                         ivImage.setImageURI(imageUri);*/
-                            fileSource = new File(imageUri.getPath());
-                            file = new File(getExternalCacheDir(), fileSource.getName());
-                            try {
-                                copyImage(fileSource , file);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            image_url_file.set(position,file);
-                            Log.e("image set at",position+"");
-                            Glide.with(ActivityBusinessProfile.this).load(new File(imageUri.getPath())).asBitmap().centerCrop()
-                                    .into(new BitmapImageViewTarget(holder.ivImage) {
-                                        @Override
-                                        protected void setResource(Bitmap resource) {
-                                            RoundedBitmapDrawable circularBitmapDrawable =
-                                                    RoundedBitmapDrawableFactory.create(ActivityBusinessProfile.this.getResources(), resource);
-                                            circularBitmapDrawable.setCircular(true);
-                                            holder.ivImage.setImageDrawable(circularBitmapDrawable);
-                                        }
-                                    });
-
-                        }
-
-                        @Override
-                        public void onCropImage(Uri imageUri) {
-                            Log.e("image url", imageUri.getPath());
-                            fileSource = new File(imageUri.getPath());
-                            file = new File(getExternalCacheDir(), fileSource.getName());
-                            try {
-                                copyImage(fileSource , file);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            image_url_file.set(position,file);
-                            Glide.with(ActivityBusinessProfile.this).load(fileSource)
-                                    .asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.ivImage) {
+                    fileSource = new File(imageUri.getPath());
+                    file = new File(getExternalCacheDir(), fileSource.getName());
+                    try {
+                        copyImage(fileSource, file);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    image_url_file.set(position, file);
+                    Log.e("image set at", position + "");
+                    Glide.with(ActivityBusinessProfile.this).load(new File(imageUri.getPath())).asBitmap().centerCrop()
+                            .into(new BitmapImageViewTarget(holder.ivImage) {
                                 @Override
                                 protected void setResource(Bitmap resource) {
                                     RoundedBitmapDrawable circularBitmapDrawable =
@@ -432,38 +447,65 @@ public class ActivityBusinessProfile extends ActivityBase {
                                 }
                             });
 
-                        }
+                }
 
+                @Override
+                public void onCropImage(Uri imageUri) {
+                    Log.e("image url", imageUri.getPath());
+                    fileSource = new File(imageUri.getPath());
+                    file = new File(getExternalCacheDir(), fileSource.getName());
+                    try {
+                        copyImage(fileSource, file);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    image_url_file.set(position, file);
+                    Glide.with(ActivityBusinessProfile.this).load(fileSource)
+                            .asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.ivImage) {
                         @Override
-                        public void cropConfig(CropImage.ActivityBuilder builder) {
-                            builder
-                                    .setMultiTouchEnabled(false)
-                                    .setGuidelines(CropImageView.Guidelines.OFF)
-                                    .setCropShape(CropImageView.CropShape.RECTANGLE)
-                                    .setRequestedSize(960, 540);
-                            //.setAspectRatio(16, 9);
-                        }
-
-                        // 用户拒绝授权回调
-                        @Override
-                        public void onPermissionDenied(int requestCode, String[] permissions,
-                                                       int[] grantResults) {
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(ActivityBusinessProfile.this.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            holder.ivImage.setImageDrawable(circularBitmapDrawable);
                         }
                     });
+
+                }
+
+                @Override
+                public void cropConfig(CropImage.ActivityBuilder builder) {
+                    builder
+                            .setMultiTouchEnabled(false)
+                            .setGuidelines(CropImageView.Guidelines.OFF)
+                            .setCropShape(CropImageView.CropShape.RECTANGLE)
+                            .setRequestedSize(960, 540);
+                    //.setAspectRatio(16, 9);
+                }
+
+                // 用户拒绝授权回调
+                @Override
+                public void onPermissionDenied(int requestCode, String[] permissions,
+                                               int[] grantResults) {
                 }
             });
-
+        }
         }
 
-        @Override
-        public int getItemCount() {
+        );
 
-            return 5;
-            //return image_url.size();
-        }
     }
-    protected void  copyImage(File src , File dest) throws IOException
-    {
+
+    @Override
+    public int getItemCount() {
+
+        return 5;
+        //return image_url.size();
+    }
+
+}
+
+    protected void copyImage(File src, File dest) throws IOException {
         InputStream inputStream = new FileInputStream(src);
         OutputStream outputStream = new FileOutputStream(dest);
 
@@ -471,12 +513,11 @@ public class ActivityBusinessProfile extends ActivityBase {
 
         int length;
 
-        while ((length = inputStream.read(buffer)) > 0)
-        {
+        while ((length = inputStream.read(buffer)) > 0) {
             outputStream.write(buffer, 0, length);
         }
 
-        if(AppConstants.DEBUG) Log.d(AppConstants.DEBUG_TAG, "File Copied !!! ");
+        if (AppConstants.DEBUG) Log.d(AppConstants.DEBUG_TAG, "File Copied !!! ");
 
         inputStream.close();
 

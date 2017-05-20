@@ -15,6 +15,7 @@ public class AppConstants {
     public static final int DEVICE_TYPE = 2;
 
     public static final String MERCHANT_ID = "8027756";//"1027756";
+    //public static final String MERCHANT_ID = "1027756";//"1027756";
 
     public static final String AES128_KEY = "5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB"; //"5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB";
 
@@ -29,7 +30,7 @@ public class AppConstants {
     public static final String URL_BECOME_CUTTER = "http://pilors.dk/frisør.html";
 
     public static final String URL_BASE = "http://inmomenthosting.info/pilors_test/api_pilors/";
-    // public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
+  //   public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
 
     public static final String URL_LOGIN = URL_BASE + "login";
     /*
@@ -224,4 +225,12 @@ book_id(*)
     is_service_accepted(*) [2: if cutter cancel 1: if cutter accept  3: if cutter mark as done]"
      */
 
+
+    public static final String URL_CHANGE_PASSWORD = URL_BASE + "change_password";
+    /*
+    user_id(*)
+    user_token(*)
+    current_password(*)
+    new_password(*)
+     */
 }

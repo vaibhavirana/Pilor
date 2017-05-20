@@ -8,6 +8,6 @@
     android:layout_marginTop="@dimen/setting_layout_view_padding_bottom"
     android:layout_marginLeft="@dimen/dimen_4dp"
     android:layout_marginRight="@dimen/dimen_4dp"
-    android:src="@drawable/user"
+    android:src="@drawable/default_image"
     app:siBorderColor="@color/colorPrimary"
     app:siBorderWidth="0dp" />

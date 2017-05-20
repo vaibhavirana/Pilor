@@ -60,6 +60,7 @@ public class ActivityBusinessSetting extends ActivityBase {
         ((TextView) findViewById(R.id.tvOpeningHours)).setTypeface(appData.getFontRegular());
         ((TextView) findViewById(R.id.tvPaymentHistory)).setTypeface(appData.getFontRegular());
         ((TextView) findViewById(R.id.tvSignout)).setTypeface(appData.getFontRegular());
+        ((TextView) findViewById(R.id.tvPassword)).setTypeface(appData.getFontRegular());
 
 
         findViewById(R.id.rlMyProfile).setOnClickListener(new View.OnClickListener() {
@@ -91,6 +92,12 @@ public class ActivityBusinessSetting extends ActivityBase {
             }
         });
 
+        findViewById(R.id.rlPassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToChangePasswordScreen();
+            }
+        });
 
         findViewById(R.id.rlSignout).setOnClickListener(new View.OnClickListener() {
             @Override

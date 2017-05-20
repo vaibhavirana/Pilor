@@ -164,6 +164,7 @@ public class ProperRatingBar extends LinearLayout {
     private void redrawTickSelection(ImageView tick, boolean isSelected) {
         if (isSelected) {
             tick.setImageDrawable(tickSelectedDrawable);
+            tick.setAlpha(1f);
         } else {
             tick.setImageDrawable(tickNormalDrawable);
             tick.setAlpha(0.5f);

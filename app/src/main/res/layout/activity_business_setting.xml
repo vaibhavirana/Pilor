@@ -121,6 +121,23 @@
                         android:src="@drawable/icon_next_grey" />
                 </RelativeLayout>
 
+                <View style="@style/separator_horizontal_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/rlPassword"
+                    style="@style/rl_setting_view" >
+
+                    <TextView
+                        android:id="@+id/tvPassword"
+                        style="@style/tv_setting"
+                        android:text="@string/txt_change_password" />
+
+                    <ImageView
+                        style="@style/iv_arrow_nect"
+                        android:src="@drawable/icon_next_grey" />
+                </RelativeLayout>
+
+
             </LinearLayout>
 
             <View

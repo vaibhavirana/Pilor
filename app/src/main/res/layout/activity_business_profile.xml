@@ -47,10 +47,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-           <android.support.v7.widget.RecyclerView
-               android:id="@+id/rvGallery"
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/landing_iv_logo_size_width"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_margin="@dimen/login_et_login_padding"
+                android:id="@+id/rvGallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/etFullName"
@@ -83,21 +84,21 @@
             <EditText
                 android:id="@+id/etAddress"
                 style="@style/edit_text_white"
-                android:layout_marginTop="@dimen/dimen_16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16dp"
                 android:hint="@string/txt_address" />
 
 
             <EditText
                 android:id="@+id/etPhone"
                 style="@style/edit_text_white"
-                android:layout_marginTop="@dimen/dimen_16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:hint="@string/txt_phone"
                 android:inputType="number"
-                android:maxLength="10"
-                android:hint="@string/txt_phone" />
+                android:maxLength="10" />
 
         </LinearLayout>
 

@@ -1,6 +1,8 @@
 package com.barodacoder.pilor.user;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -14,10 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.barodacoder.pilor.ActivityBase;
 import com.barodacoder.pilor.AppConstants;
@@ -68,6 +72,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
     private String selectedDate;
     private double totalPrice = 0;
     public ArrayList<String> selectedIds;
+    private int mYear, mMonth, mDay, mHour, mMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,7 +233,8 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
         switch (v.getId()) {
             case R.id.btnOrderCut:
                 if (selectedIds.size() > 0) {
-                    showDateTimePicker();
+                   // showDateTimePicker();
+                    datePickerDialog();
                 }else
                     showOKAlertMsg(getString(R.string.txt_select_service_title), getString(R.string.txt_select_service), false);
                 break;
@@ -259,12 +265,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                                 + ":" + sec);
 
 
-                            BookService bookService=new BookService();
-                            bookService.service_id=android.text.TextUtils.join(",", selectedIds);
-                            bookService.date_of_booking=selectedDate;
-                            bookService.service_provide_by=userCutter.getUserId();
-                            bookService.price= String.valueOf(totalPrice);
-                            goToEnterPinScreen(bookService);
+
 
 
                     }
@@ -583,5 +584,63 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                 }
             }
         });
+    }
+
+    public void datePickerDialog()
+    {
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        Log.e("date:",dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        selectedDate = year
+                                + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+
+                        timePickerDialog(c);
+                    }
+                }, mYear, mMonth, mDay);
+        c.add(Calendar.DAY_OF_YEAR,1);
+        datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+        datePickerDialog.show();
+    }
+
+    public void timePickerDialog(Calendar c)
+    {
+
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+
+                        Log.e("time",hourOfDay + ":" + minute);
+                        selectedDate = selectedDate+ " " + hourOfDay + ":" + minute
+                                + ":00" ;
+
+                        Log.e("time",selectedDate);
+
+                        BookService bookService=new BookService();
+                        bookService.service_id=android.text.TextUtils.join(",", selectedIds);
+                        bookService.date_of_booking=selectedDate;
+                        bookService.service_provide_by=userCutter.getUserId();
+                        bookService.price= String.valueOf(totalPrice);
+                        goToEnterPinScreen(bookService);
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+
     }
 }

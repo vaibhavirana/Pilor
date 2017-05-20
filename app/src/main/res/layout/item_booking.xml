@@ -3,9 +3,9 @@
     android:id="@+id/llRate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_list_selector"
-    android:layout_marginBottom="0.5dp"
-    android:layout_marginTop="0.5dp">
+    android:background="@color/white"
+    android:layout_marginBottom="0.2dp"
+    android:layout_marginTop="0.2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,6 +16,7 @@
             android:id="@+id/tvTitle"
             style="@style/tv_setting"
             android:layout_centerVertical="false"
+            android:layout_marginTop="@dimen/dimen_5dp"
             android:text="@string/txt_rate"
             android:textStyle="bold" />
 
@@ -36,6 +37,7 @@
             android:id="@+id/tvAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dimen_5dp"
@@ -46,7 +48,7 @@
             android:paddingLeft="@dimen/dimen_8dp"
             android:paddingRight="@dimen/dimen_8dp"
             android:background="@drawable/bg_blue_bordered_rounded_5"
-            android:textColor="@color/c_2c2c2c"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/login_et_login_font" />
     </RelativeLayout>
 

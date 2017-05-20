@@ -158,18 +158,19 @@ public class ActivityBooking extends ActivityBase {
                     }
                 });
             } else if (booking.is_service_accepted == 1) {
-                // reschedule
-                title = getString(R.string.txt_order);
-                action = getString(R.string.txt_cancel);
-                detail = String.format(getString(R.string.txt_order_detail), booking.display_name, booking.date_of_booking);
+                title = getString(R.string.txt_rate);
+                action = getString(R.string.txt_review);
+                detail = String.format(getString(R.string.txt_rate_detail), booking.display_name);
                 holder.tvAction.setVisibility(View.VISIBLE);
-                holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
-                holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
+                // holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
+                // holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
                 holder.tvAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showCancelAlertMsg("", getString(R.string.txt_are_you_sure), booking.book_id);
-                        //cancleBooking(booking.book_id);
+                        Intent intent = new Intent(getApplicationContext(), ActivitySendReview.class);
+                        intent.putExtra("booking",booking);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
                     }
                 });
             } else if (booking.is_service_accepted == 2) {

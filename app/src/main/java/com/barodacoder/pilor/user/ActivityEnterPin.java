@@ -205,7 +205,7 @@ public class ActivityEnterPin extends ActivityBase implements BlurLockView.OnPas
                 public void onStart() {
                     super.onStart();
 
-                    showProgressDialog();
+                    showProgressDialog(getString(R.string.txt_service_booking));
                 }
 
                 @Override

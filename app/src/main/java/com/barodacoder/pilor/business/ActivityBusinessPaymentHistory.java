@@ -28,9 +28,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.net.URLDecoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -172,30 +170,29 @@ public class ActivityBusinessPaymentHistory extends ActivityBase {
                         .asBitmap().centerCrop()
                         .placeholder(R.drawable.user)
                         .into(new BitmapImageViewTarget(holder.ivImage) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable =
-                                RoundedBitmapDrawableFactory.create(ActivityBusinessPaymentHistory.this.getResources(), resource);
-                        circularBitmapDrawable.setCircular(true);
-                        holder.ivImage.setImageDrawable(circularBitmapDrawable);
-                    }
-                });
+                            @Override
+                            protected void setResource(Bitmap resource) {
+                                RoundedBitmapDrawable circularBitmapDrawable =
+                                        RoundedBitmapDrawableFactory.create(ActivityBusinessPaymentHistory.this.getResources(), resource);
+                                circularBitmapDrawable.setCircular(true);
+                                holder.ivImage.setImageDrawable(circularBitmapDrawable);
+                            }
+                        });
             holder.tvName.setText(URLDecoder.decode(history.getDisplayName()));
 
             holder.tvPrice.setText(history.getAmount().concat(" DKK"));
 
-            try {
-                String commentDate = history.getDate();
-
-                Date date = dateFormat.parse(commentDate);
-
+            holder.tvDate.setText(history.getDate());
+           /* try {
+                // String commentDate = history.getDate();
+                //Date date = dateFormat.parse(commentDate);
                 //2016-12-06 13:47:04
-                SimpleDateFormat sdfFinal = new SimpleDateFormat("MMM dd");
+                // SimpleDateFormat sdfFinal = new SimpleDateFormat("MMM dd");
+                //holder.tvDate.setText((sdfFinal.format(date)));
 
-                holder.tvDate.setText((sdfFinal.format(date)));
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         @Override

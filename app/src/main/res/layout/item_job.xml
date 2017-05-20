@@ -20,9 +20,10 @@
         app:siBorderWidth="1dp" />
 
     <LinearLayout
+        android:id="@+id/llDetail"
         android:layout_margin="@dimen/dimen_4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_toLeftOf="@+id/ivAccept"
         android:gravity="center"
         android:layout_toRightOf="@+id/ivUserPic"
@@ -99,7 +100,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/ivUserPic"
+        android:layout_below="@+id/llDetail"
         android:layout_marginLeft="@dimen/login_et_login_padding"
         android:background="@color/c_e6e6e8" />
 </RelativeLayout>

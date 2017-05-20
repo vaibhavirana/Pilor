@@ -261,8 +261,7 @@ public class ActivityCreatePayment extends ActivityBase
                 @Override
                 public void onStart() {
                     super.onStart();
-                    progressDialog.setMessage("Booking..");
-                    showProgressDialog();
+                    showProgressDialog(getString(R.string.txt_service_booking));
                 }
 
                 @Override

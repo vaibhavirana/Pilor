@@ -23,6 +23,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.barodacoder.pilor.business.ActivityBusinessChangePassword;
 import com.barodacoder.pilor.business.ActivityBusinessMain;
 import com.barodacoder.pilor.business.ActivityBusinessOpeningHours;
 import com.barodacoder.pilor.business.ActivityBusinessPaymentHistory;
@@ -241,6 +242,16 @@ public class ActivityBase extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }
 
+
+    protected void goToChangePasswordScreen()
+    {
+        Intent intent = new Intent(getApplicationContext(), ActivityBusinessChangePassword.class);
+
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+    }
+
     protected void goToBusinessOpeningHoursScreen() {
         Intent intent = new Intent(getApplicationContext(), ActivityBusinessOpeningHours.class);
 
@@ -320,6 +331,22 @@ public class ActivityBase extends AppCompatActivity {
         //progressDialog.setTitle(title);
 
         progressDialog.setMessage(getString(R.string.txt_loading));
+
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+    }
+
+    protected void showProgressDialog(String msg) {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+
+        progressDialog = new ProgressDialog(this);
+
+        //progressDialog.setTitle(title);
+
+        progressDialog.setMessage(msg);
 
         progressDialog.setCancelable(false);
 

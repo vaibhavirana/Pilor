@@ -7,15 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.barodacoder.pilor.ActivityBase;
 import com.barodacoder.pilor.AppConstants;
 import com.barodacoder.pilor.R;
-import com.barodacoder.pilor.model.UserData;
+import com.barodacoder.pilor.model.ListBooking;
 import com.barodacoder.pilor.rating.ProperRatingBar;
 import com.barodacoder.pilor.rating.RatingListener;
-import com.barodacoder.pilor.utils.ParseJson;
+import com.bumptech.glide.Glide;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -32,6 +31,8 @@ public class ActivitySendReview extends ActivityBase {
 
     private ProperRatingBar ratingBar;
 
+    private ListBooking booking = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setStatusBarGradiant(this);
@@ -40,6 +41,8 @@ public class ActivitySendReview extends ActivityBase {
 
         setContentView(R.layout.activity_add_rating);
 
+        if (getIntent().getSerializableExtra("booking") != null)
+            booking = (ListBooking) getIntent().getSerializableExtra("booking");
         initData();
 
         initUi();
@@ -86,9 +89,9 @@ public class ActivitySendReview extends ActivityBase {
 
         ivImage = (CircularImageView) findViewById(R.id.ivImage);
 
-        ratingBar= (ProperRatingBar) findViewById(R.id.rating);
+        ratingBar = (ProperRatingBar) findViewById(R.id.rating);
         ratingBar.setListener(ratingListener);
-      /*  if (!appData.getUserData().getProfile().equals("")) {
+        if (!appData.getUserData().getProfile().equals("")) {
             Log.e("image", appData.getUserData().getProfile());
             if (appData.getUserData().getProfile().contains("graph.facebook.com")) {
                 String profilePic = appData.getUserData().getProfile().replace("http", "https");
@@ -99,24 +102,23 @@ public class ActivitySendReview extends ActivityBase {
             }
         }
 
-*/
         etDesc = (EditText) findViewById(R.id.etDesc);
         etDesc.setTypeface(appData.getFontRegular());
-      //  etDesc.setText(URLDecoder.decode(appData.getUserData().getDisplayName()));
+        //  etDesc.setText(URLDecoder.decode(appData.getUserData().getDisplayName()));
 
 
     }
 
     private void validateProfileData() {
         hideSoftKeyboard();
-
-        sendRating();
+        if (booking != null)
+            sendRating();
     }
 
     private RatingListener ratingListener = new RatingListener() {
         @Override
         public void onRatePicked(ProperRatingBar ratingBar1) {
-            Log.e("rating",ratingBar1.getRating()+"");
+            Log.e("rating", ratingBar1.getRating() + "");
             ratingBar.setRating(ratingBar1.getRating());
             /*Snackbar.make(rootView,
                     String.format(getString(R.string.rating_listener_snack_caption), ratingBar.getRating()),
@@ -133,9 +135,9 @@ public class ActivitySendReview extends ActivityBase {
             params.put("user_id", libFile.getUserId());
             params.put("user_token", libFile.getUserToken());
             params.put("review_text", etDesc.getText().toString());
-           /* params.put("review_start", ratingBar.getRating());
-            params.put("cutter_id", etEmail.getText().toString());
-            params.put("book_id", etEmail.getText().toString());*/
+            params.put("review_star", ratingBar.getRating());
+            params.put("cutter_id", booking.service_provide_by);
+            params.put("book_id", booking.book_id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -144,7 +146,6 @@ public class ActivitySendReview extends ActivityBase {
             @Override
             public void onStart() {
                 super.onStart();
-
                 showProgressDialog();
             }
 
@@ -158,7 +159,7 @@ public class ActivitySendReview extends ActivityBase {
                     if (AppConstants.DEBUG)
                         Log.v(AppConstants.DEBUG_TAG, "UPDATE PROFILE RESPONSE : " + response);
 
-                    UserData userData = ParseJson.parseSignUp(response);
+                    /*UserData userData = ParseJson.parseSignUp(response);
 
                     if (userData.getStatusCode() == 1) {
                         appData.setUserData(userData);
@@ -174,11 +175,10 @@ public class ActivitySendReview extends ActivityBase {
                         onBackPressed();
                     } else {
                         showOKAlertMsg(getString(R.string.txt_failed), getString(R.string.txt_failed_update_profile), false);
-                    }
+                    }*/
                 } catch (Exception e) {
                     e.printStackTrace();
 
-                    goToLandingScreen();
                 }
             }
 

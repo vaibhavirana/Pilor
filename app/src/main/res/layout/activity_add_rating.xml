@@ -52,8 +52,9 @@
 
             <com.barodacoder.pilor.rating.ProperRatingBar
                 android:id="@+id/rating"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_below="@+id/ivImage"
                 android:layout_marginBottom="@dimen/setting_layout_view_padding_top"
                 android:layout_marginLeft="@dimen/setting_layout_view_padding_bottom"
@@ -86,6 +87,7 @@
                 android:id="@+id/btnSend"
                 style="@style/btn_login"
                 android:layout_marginTop="@dimen/dimen_36dp"
+                android:background="@drawable/bg_blue_solid_rounded_5"
                 android:textAllCaps="false"
                 android:text="@string/txt_send_reviews" />
 
