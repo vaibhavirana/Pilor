@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.barodacoder.pilor.ActivityBase;
@@ -26,10 +29,13 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TimeZone;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -114,12 +120,19 @@ public class ActivityBooking extends ActivityBase {
     public class AdapterBook extends RecyclerView.Adapter<AdapterBook.MyViewHolder> {
         public class MyViewHolder extends RecyclerView.ViewHolder {
             private TextView tvTitle, tvDetail, tvAction;
+            private RelativeLayout rlAction;
+            private LinearLayout llAction;
+            private ImageView ivAccept, ivClear;
 
             public MyViewHolder(View view) {
                 super(view);
                 tvTitle = (TextView) view.findViewById(R.id.tvTitle);
                 tvDetail = (TextView) view.findViewById(R.id.tvDetail);
                 tvAction = (TextView) view.findViewById(R.id.tvAction);
+                rlAction = (RelativeLayout) view.findViewById(R.id.rlAction);
+                llAction = (LinearLayout) view.findViewById(R.id.llAction);
+                ivAccept = (ImageView) view.findViewById(R.id.ivAccept);
+                ivClear = (ImageView) view.findViewById(R.id.ivClear);
 
                 tvTitle.setTypeface(AppData.getInstance(ActivityBooking.this).getFontBold());
                 tvDetail.setTypeface(AppData.getInstance(ActivityBooking.this).getFontRegular());
@@ -133,7 +146,7 @@ public class ActivityBooking extends ActivityBase {
 
         @Override
         public AdapterBook.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booking, parent, false);
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booking_revised, parent, false);
             return new AdapterBook.MyViewHolder(itemView);
         }
 
@@ -141,12 +154,47 @@ public class ActivityBooking extends ActivityBase {
         public void onBindViewHolder(final AdapterBook.MyViewHolder holder, int position) {
 
             final ListBooking booking = listBookings.get(position);
-           // Log.e("booking", booking.is_service_accepted + "");
+            // Log.e("booking", booking.is_service_accepted + "");
             String title = null, detail = null, action = null;
             if (booking.is_service_accepted == 0) {
-                title = getString(R.string.txt_order);
+                if (booking.is_reschedule == 0) {
+                    title = getString(R.string.txt_order);
+                    action = getString(R.string.txt_cancel);
+                    detail = String.format(getString(R.string.txt_order_detail), booking.display_name, booking.date_of_booking);
+                    holder.tvAction.setVisibility(View.VISIBLE);
+                    holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
+                    holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
+                    holder.tvAction.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showCancelAlertMsg("", getString(R.string.txt_are_you_sure), booking.book_id);
+                            // cancleBooking(booking.book_id);
+                        }
+                    });
+                } else {
+                    title = getString(R.string.txt_change_time);
+                    // action = getString(R.string.txt_cancel);
+                    detail = String.format(getString(R.string.txt_reschedule_detail),
+                            booking.display_name, booking.date_of_booking);
+                    holder.tvAction.setVisibility(View.GONE);
+                    holder.llAction.setVisibility(View.VISIBLE);
+                    holder.ivAccept.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            updateRescheduleService(booking.book_id, 1);
+                        }
+                    });
+                    holder.ivClear.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            updateRescheduleService(booking.book_id, 4);
+                        }
+                    });
+                }
+            } else if (booking.is_service_accepted == 1) {
+                title = getString(R.string.txt_order_confirmed);
                 action = getString(R.string.txt_cancel);
-                detail = String.format(getString(R.string.txt_order_detail), booking.display_name, booking.date_of_booking);
+                detail = String.format(getString(R.string.txt_confirm_detail), booking.display_name, booking.date_of_booking);
                 holder.tvAction.setVisibility(View.VISIBLE);
                 holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
                 holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
@@ -154,23 +202,7 @@ public class ActivityBooking extends ActivityBase {
                     @Override
                     public void onClick(View v) {
                         showCancelAlertMsg("", getString(R.string.txt_are_you_sure), booking.book_id);
-                       // cancleBooking(booking.book_id);
-                    }
-                });
-            } else if (booking.is_service_accepted == 1) {
-                title = getString(R.string.txt_rate);
-                action = getString(R.string.txt_review);
-                detail = String.format(getString(R.string.txt_rate_detail), booking.display_name);
-                holder.tvAction.setVisibility(View.VISIBLE);
-                // holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
-                // holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
-                holder.tvAction.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), ActivitySendReview.class);
-                        intent.putExtra("booking",booking);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
+                        // cancleBooking(booking.book_id);
                     }
                 });
             } else if (booking.is_service_accepted == 2) {
@@ -212,6 +244,68 @@ public class ActivityBooking extends ActivityBase {
             return listBookings.size();
             //return 3;
         }
+    }
+
+    private void updateRescheduleService(String book_id, int is_service_accepted) {
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        RequestParams params = new RequestParams();
+
+        params.put("user_id", libFile.getUserId());
+        params.put("user_token", libFile.getUserToken());
+        params.put("book_id", book_id);
+        params.put("is_service_accepted", is_service_accepted);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String datestring = dateFormat.format(date);
+        params.put("localtime", datestring);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        params.put("localtime_UTC", dateFormat.format(date));
+        Log.e("req", params.toString());
+        client.post(AppConstants.URL_UPDATE_RESCHEDULE_REQUEST, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                showProgressDialog();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                try {
+                    cancelProgressDialog();
+                    String response = new String(responseBody, "UTF-8");
+
+                    if (AppConstants.DEBUG)
+                        Log.e(AppConstants.DEBUG_TAG, "SERVICE  RESPONSE : " + response);
+                    JSONObject jsonRoot = new JSONObject(response);
+
+                    if (jsonRoot.has("status_code") && jsonRoot.getInt("status_code") == 1) {
+                        //Toast.makeText(ActivityBooking.this, getString(R.string.txt_review_successfully), Toast.LENGTH_LONG).show();
+                        getBookingList();
+                    } /*else {
+                        showOKAlertMsg(getString(R.string.txt_failed), getString(R.string.txt_review_failed), false);
+                    }*/
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                try {
+                    cancelProgressDialog();
+                    String response = new String(responseBody, "UTF-8");
+
+                    if (AppConstants.DEBUG)
+                        Log.e(AppConstants.DEBUG_TAG, "PAYMENT HISTORY RESPONSE : FAILED : " + response);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 

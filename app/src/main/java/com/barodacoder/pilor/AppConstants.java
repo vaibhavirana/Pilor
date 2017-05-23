@@ -19,18 +19,18 @@ public class AppConstants {
 
     public static final String AES128_KEY = "5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB"; //"5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB";
 
-    public static final String URL_CONTACT = "http://www.snapfixed.dk/contact";
+    public static final String URL_FAQ = "http://www.pilors.dk/faq";
 
-    public static final String URL_FACEBOOK = "http://www.snapfixed.dk/fb";
+    public static final String URL_CONTACT = "http://www.pilors.dk/contact";
 
-    public static final String URL_WEBSITE = "http://www.snapfixed.dk";
+    public static final String URL_TERMS = "http://www.pilors.dk/terms";
 
-    public static final String URL_WANT_JOB = "http://www.snapfixed.dk/getstarted";
+    public static final String URL_RECOMMENDUS = "https://play.google.com/store/apps/details?id=com.barodacoder.pilor";
 
-    public static final String URL_BECOME_CUTTER = "http://pilors.dk/frisør.html";
+    public static final String URL_BECOME_CUTTER = "http://pilors.dk/signup";
 
     public static final String URL_BASE = "http://inmomenthosting.info/pilors_test/api_pilors/";
-  //   public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
+    //   public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
 
     public static final String URL_LOGIN = URL_BASE + "login";
     /*
@@ -233,4 +233,20 @@ book_id(*)
     current_password(*)
     new_password(*)
      */
+
+    public static final String URL_RESCHEDULE_REQUEST = URL_BASE + "request_for_reschedule";
+   /* user_id(*)
+    user_token(*)
+    book_id(*)
+    is_service_accepted(*) [pass 0]
+    localtime(*)
+    localtime_UTC(*)
+    date_of_booking(*)*/
+
+    public static final String URL_UPDATE_RESCHEDULE_REQUEST = URL_BASE + "reschedule_status_update";
+   /* user_id(*)
+      user_token(*)
+      book_id(*)
+      is_service_accepted(*)  [pass 1 if accept  and  pass 4 if cancel]
+      localtime(*)*/
 }

@@ -29,7 +29,7 @@ public class MapViewListItemView extends LinearLayout {
     }
 
     private void setupView() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_cutter, this);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_cutter_map, this);
         mMapView = (MapView) view.findViewById(R.id.map);
 
         setOrientation(VERTICAL);

@@ -52,7 +52,7 @@
         android:textColor="@android:color/white"
         android:visibility="visible" />
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnOrderCut"
@@ -76,8 +76,8 @@
                     android:id="@+id/opacityFilter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/user" />
+                    android:scaleType="fitXY"
+                     />
 
 
                 <com.github.siyamed.shapeimageview.CircularImageView
@@ -111,6 +111,17 @@
 
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txtBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:text="Services"
+                android:textSize="@dimen/login_et_login_font"
+                />
 
             <RadioGroup
                 android:id="@+id/segmented3"
@@ -171,11 +182,13 @@
                     android:layout_margin="@dimen/dimen_4dp"
                     android:gravity="center"
                     android:padding="@dimen/dimen_4dp"
-                    android:text="Services"
+                    android:text="@string/txt_services"
+                    android:textColor="@color/color_light_black_options"
                     android:textSize="@dimen/landing_tv_msg_font"
-                    android:textStyle="bold" />
+                     />
 
                 <android.support.v7.widget.RecyclerView
+                    android:nestedScrollingEnabled="false"
                     android:id="@+id/rvDetail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -184,15 +197,18 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
+                android:nestedScrollingEnabled="false"
                 android:id="@+id/rvPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/setting_layout_view_padding_bottom"
                 android:layout_marginRight="@dimen/setting_layout_view_padding_bottom"
                 android:layout_marginTop="@dimen/dimen_8dp"
+
                 android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
+                android:nestedScrollingEnabled="false"
                 android:id="@+id/rvRate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -203,7 +219,7 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </RelativeLayout>

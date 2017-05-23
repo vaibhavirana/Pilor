@@ -62,6 +62,7 @@ public class ActivitySetting extends ActivityBase {
         ((TextView) findViewById(R.id.tvRedius)).setTypeface(appData.getFontRegular());
         ((TextView) findViewById(R.id.tvContactUs)).setTypeface(appData.getFontRegular());
         ((TextView) findViewById(R.id.tvHairCutterSignup)).setTypeface(appData.getFontRegular());
+        ((TextView) findViewById(R.id.tvRecommendUs)).setTypeface(appData.getFontRegular());
         ((TextView) findViewById(R.id.tvTerms)).setTypeface(appData.getFontRegular());
         ((TextView) findViewById(R.id.tvFaq)).setTypeface(appData.getFontRegular());
         ((TextView) findViewById(R.id.tvSignout)).setTypeface(appData.getFontRegular());
@@ -129,24 +130,24 @@ public class ActivitySetting extends ActivityBase {
             }
         });
 
-        findViewById(R.id.rlFacebook).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.rlRecommendUs).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadWebsite(AppConstants.URL_FACEBOOK);
+                loadWebsite(AppConstants.URL_RECOMMENDUS);
             }
         });
 
         findViewById(R.id.rlTerms).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadWebsite(AppConstants.URL_WEBSITE);
+                loadWebsite(AppConstants.URL_TERMS);
             }
         });
 
         findViewById(R.id.rlFaq).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadWebsite(AppConstants.URL_WANT_JOB);
+                loadWebsite(AppConstants.URL_FAQ);
             }
         });
 

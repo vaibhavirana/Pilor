@@ -1,10 +1,13 @@
 package com.barodacoder.pilor.business;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,8 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.barodacoder.pilor.ActivityBase;
 import com.barodacoder.pilor.AppConstants;
@@ -33,7 +38,9 @@ import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -41,11 +48,15 @@ public class ActivityBusinessMain extends ActivityBase {
     private Toolbar toolbar;
 
     private RecyclerView rvRequest, rvCalender;
+    private SwipeRefreshLayout swipeRefresh;
 
     private AdapterJob adpJobs;
     private AdapterCalender adpCalender;
 
     private ArrayList<ListBooking> listBookings, listJob, listCalender;
+    private int mYear, mMonth, mDay, mHour, mMinute;
+    private String selectedDate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +86,7 @@ public class ActivityBusinessMain extends ActivityBase {
         ((TextView) findViewById(R.id.tvTitle)).setTypeface(appData.getFontMedium());
         ((TextView) findViewById(R.id.tvTitle)).setText(URLDecoder.decode(appData.getUserData().getDisplayName()));
 
+
         adpJobs = new AdapterJob();
         rvRequest = (RecyclerView) findViewById(R.id.rvRequest);
         rvRequest.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -84,6 +96,14 @@ public class ActivityBusinessMain extends ActivityBase {
         rvCalender = (RecyclerView) findViewById(R.id.rvCalender);
         rvCalender.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvCalender.setAdapter(adpCalender);
+
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAllJobList();
+            }
+        });
 
     }
 
@@ -196,7 +216,8 @@ public class ActivityBusinessMain extends ActivityBase {
             holder.ivReschedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showMsgDialog("Reschedule date");
+                   // showMsgDialog("Reschedule date");
+                    datePickerDialog(listBooking.book_id);
                 }
             });
         }
@@ -270,14 +291,14 @@ public class ActivityBusinessMain extends ActivityBase {
             holder.tvTime.setText(getString(R.string.txt_time).concat(": ").concat(URLDecoder.decode(listBooking.date_of_booking)));
             holder.tvOrder.setText(getString(R.string.txt_order).concat(": ").concat(URLDecoder.decode(listBooking.category_name)));
 
-            if (listBooking.is_service_accepted == 1) {
+            if (listBooking.is_done == 0) {
                 holder.tvAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         updateService(listBooking.book_id, 3);
                     }
                 });
-            } else {
+            } else  if (listBooking.is_done ==3) {
                 holder.tvAction.setText(getResources().getString(R.string.txt_completed));
             }
         }
@@ -327,6 +348,7 @@ public class ActivityBusinessMain extends ActivityBase {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                swipeRefresh.setRefreshing(false);
 
                 try {
                     String response = new String(responseBody, "UTF-8");
@@ -352,6 +374,7 @@ public class ActivityBusinessMain extends ActivityBase {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                swipeRefresh.setRefreshing(false);
 
                 try {
                     String response = new String(responseBody, "UTF-8");
@@ -379,7 +402,129 @@ public class ActivityBusinessMain extends ActivityBase {
         Date date = new Date();
         String datestring = dateFormat.format(date);
         params.put("localtime", datestring);
+
+       // Log.e("req",params.toString());
         client.post(AppConstants.URL_UPDATE_SERVICE_STATUS_BY_CUTTER, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                showProgressDialog();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                try {
+                    cancelProgressDialog();
+                    String response = new String(responseBody, "UTF-8");
+
+                    if (AppConstants.DEBUG)
+                        Log.e(AppConstants.DEBUG_TAG, "SERVICE  RESPONSE : " + response);
+                    if (ParseJson.parseListBooking(response).statusCode == 1)
+                        getAllJobList();
+                    //swipeRefresh.setRefreshing(false);
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                try {
+                    cancelProgressDialog();
+                    String response = new String(responseBody, "UTF-8");
+
+                    if (AppConstants.DEBUG)
+                        Log.v(AppConstants.DEBUG_TAG, "PAYMENT HISTORY RESPONSE : FAILED : " + response);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void datePickerDialog(final String bookId)
+    {
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        Log.e("date:",dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        selectedDate = year
+                                + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+
+                        timePickerDialog(bookId,c);
+                    }
+                }, mYear, mMonth, mDay);
+        c.add(Calendar.DAY_OF_YEAR,1);
+        datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+        datePickerDialog.show();
+    }
+
+    public void timePickerDialog(final String bookId, Calendar c)
+    {
+
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+
+                        Log.e("time",hourOfDay + ":" + minute);
+                        selectedDate = selectedDate+ " " + hourOfDay + ":" + minute
+                                + ":00" ;
+
+                        Log.e("time",selectedDate);
+
+                        rescheduleService(bookId,selectedDate);
+                     /*   BookService bookService=new BookService();
+                        bookService.service_id=android.text.TextUtils.join(",", selectedIds);
+                        bookService.date_of_booking=selectedDate;
+                        bookService.service_provide_by=userCutter.getUserId();
+                        bookService.price= String.valueOf(totalPrice);
+                        goToEnterPinScreen(bookService);*/
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+
+    }
+
+    private void rescheduleService(String book_id,String booking_date) {
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        RequestParams params = new RequestParams();
+
+        params.put("user_id", libFile.getUserId());
+        params.put("user_token", libFile.getUserToken());
+        params.put("book_id", book_id);
+        params.put("is_service_accepted", 0);
+        params.put("date_of_booking", booking_date);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String datestring = dateFormat.format(date);
+        params.put("localtime", datestring);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        params.put("localtime_UTC", dateFormat.format(date));
+        Log.e("req",params.toString());
+        client.post(AppConstants.URL_RESCHEDULE_REQUEST, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -393,7 +538,7 @@ public class ActivityBusinessMain extends ActivityBase {
                     String response = new String(responseBody, "UTF-8");
 
                     if (AppConstants.DEBUG)
-                        Log.v(AppConstants.DEBUG_TAG, "SERVICE  RESPONSE : " + response);
+                        Log.e(AppConstants.DEBUG_TAG, "SERVICE  RESPONSE : " + response);
                    /* if (ParseJson.parseListBooking(response).statusCode == 1)
                         listBookings.addAll(ParseJson.parseListBooking(response).info);
                     */
@@ -413,7 +558,7 @@ public class ActivityBusinessMain extends ActivityBase {
                     String response = new String(responseBody, "UTF-8");
 
                     if (AppConstants.DEBUG)
-                        Log.v(AppConstants.DEBUG_TAG, "PAYMENT HISTORY RESPONSE : FAILED : " + response);
+                        Log.e(AppConstants.DEBUG_TAG, "PAYMENT HISTORY RESPONSE : FAILED : " + response);
 
                 } catch (Exception e) {
                     e.printStackTrace();

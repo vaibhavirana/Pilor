@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +37,6 @@ import com.akhgupta.easylocation.EasyLocationRequestBuilder;
 import com.barodacoder.pilor.AppConstants;
 import com.barodacoder.pilor.R;
 import com.barodacoder.pilor.custom.EmptyLayout;
-import com.barodacoder.pilor.custom.MapViewListItemView;
 import com.barodacoder.pilor.model.UserCutter;
 import com.barodacoder.pilor.rating.ProperRatingBar;
 import com.barodacoder.pilor.utils.ParseJson;
@@ -139,7 +139,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
 
     @Override
     public void onBackPressed() {
-       // super.onBackPressed();
+        // super.onBackPressed();
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         dialogBuilder.setPositiveButton(getString(R.string.txt_yes), new DialogInterface.OnClickListener() {
@@ -377,8 +377,83 @@ public class MainActivity extends EasyLocationAppCompatActivity {
         showToast("Location services are still Off");
     }
 
-
     public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.MyViewHolder> {
+
+        public class MyViewHolder extends RecyclerView.ViewHolder {
+            private ImageView ivImage;
+            private CircularImageView ivImage1;
+            private TextView tvCatName, tvDistance, tvDistance1;
+            private ProperRatingBar ratingBar;
+
+            public MyViewHolder(View view) {
+                super(view);
+                ivImage = (ImageView) view.findViewById(R.id.ivImage);
+                ivImage1 = (CircularImageView) view.findViewById(R.id.ivImage1);
+                ratingBar = (ProperRatingBar) view.findViewById(R.id.rating);
+                tvDistance = (TextView) view.findViewById(R.id.tvDistance);
+                tvDistance1 = (TextView) view.findViewById(R.id.tvDistance1);
+                tvCatName = (TextView) view.findViewById(R.id.tvCatName);
+                tvCatName.setTypeface(appData.getFontBold());
+                tvDistance.setTypeface(appData.getFontBold());
+                tvDistance1.setTypeface(appData.getFontRegular());
+
+            }
+
+        }
+
+        public AdapterCategories() {
+            //this.moviesList = moviesList;
+        }
+
+        @Override
+        public AdapterCategories.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cutter, parent, false);
+            return new AdapterCategories.MyViewHolder(itemView);
+        }
+
+
+        @Override
+        public void onBindViewHolder(final MyViewHolder holder, int position) {
+
+            final UserCutter userCutter = cutterArrayList.get(position);
+
+           // if (!userCutter.getThumbImage1().equals(""))
+                Glide.with(getApplicationContext()).load(userCutter.getThumbImage1())
+                        .placeholder(R.drawable.default_image)
+                        .into(holder.ivImage);
+
+            if (!userCutter.getProfile().equals(""))
+                Glide.with(getApplicationContext()).load(userCutter.getProfile()).asBitmap().centerCrop()
+                        .placeholder(R.drawable.icon_no_image)
+                        .into(new BitmapImageViewTarget(holder.ivImage1) {
+                            @Override
+                            protected void setResource(Bitmap resource) {
+                                RoundedBitmapDrawable circularBitmapDrawable =
+                                        RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
+                                circularBitmapDrawable.setCircular(true);
+                                holder.ivImage1.setImageDrawable(circularBitmapDrawable);
+                            }
+                        });
+
+            holder.tvCatName.setText(userCutter.getDisplayName());
+            holder.tvDistance.setText("From " + userCutter.getMin_rate() + " DKK");
+            DecimalFormat df = new DecimalFormat("#.##");
+            holder.tvDistance1.setText(df.format(distance(userCutter.getLatitude(), userCutter.getLongitude())) + " km");
+            Log.e("rating", cutterArrayList.get(position).getAvarage_rating() + "");
+            holder.ratingBar.setRating(userCutter.getAvarage_rating());
+            //   holder.ratingBar.setRating(2);
+        }
+
+        @Override
+        public int getItemCount() {
+
+            //return 5;
+            return cutterArrayList.size();
+        }
+    }
+
+
+   /* public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.MyViewHolder> {
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             private ImageView ivImage;
@@ -507,7 +582,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
             //return 5;
             return cutterArrayList.size();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

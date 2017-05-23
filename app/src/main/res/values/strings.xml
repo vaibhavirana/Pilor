@@ -154,8 +154,8 @@
     <string name="txt_Err_budget_amt">Budget should be greater than 0</string>
     <string name="txt_err_expiry_date">Please select expiry date</string>
 
-    <string name="txt_task_successfully">Task created successfully.</string>
-    <string name="txt_task_failed">There is some problem in creating task. Please check task details and try again.</string>
+    <string name="txt_review_successfully">Review send successfully.</string>
+    <string name="txt_review_failed">There is some problem in sending review. Please try again.</string>
 
     <string name="txt_days_left">DAYS LEFT:</string>
 
@@ -238,9 +238,14 @@
     <string name="txt_booking">Bookings</string>
     <string name="txt_order">Order</string>
     <string name="txt_order_cut">Order Cut</string>
+    <string name="txt_order_confirmed">Order Confirmed</string>
+    <string name="txt_change_time">Change time</string>
     <string name="txt_order_detail">You made an order with %1$s at %2$s.</string>
     <string name="txt_cancel_detail">You order with %1$s  has been cancelled.</string>
-    <string name="txt_reject_detail">You order with %1$s  has been rejected.</string>
+    <string name="txt_reject_detail">You order at %1$s  was cancelled.</string>
+    <string name="txt_confirm_detail">Your booking request at %1$s date %2$s can only be cancelled with a fee of 50%% of the total price.</string>
+    <string name="txt_reschedule_detail">Your hairdresser %1$s  has requested to change time to %2$s.\n
+        </string>
     <string name="txt_reminder">Reminder</string>
     <string name="txt_reminder_detail">You cut at {{cutter-name}} is in 30 minutes.</string>
     <string name="txt_rate">Rate</string>
@@ -261,6 +266,9 @@
     <string name="str_enter_rate_of_service">Enter rate of service that you are providing!</string>
     <string name="exit">Are you sure you want to close App?</string>
     <string name="exit_title">Close App</string>
+
+
+    <string name="txt_services">Services</string>
 
 
 </resources>

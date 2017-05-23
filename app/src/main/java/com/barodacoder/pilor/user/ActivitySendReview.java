@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.barodacoder.pilor.ActivityBase;
 import com.barodacoder.pilor.AppConstants;
@@ -19,6 +20,8 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -159,23 +162,18 @@ public class ActivitySendReview extends ActivityBase {
                     if (AppConstants.DEBUG)
                         Log.v(AppConstants.DEBUG_TAG, "UPDATE PROFILE RESPONSE : " + response);
 
-                    /*UserData userData = ParseJson.parseSignUp(response);
+                    JSONObject jsonRoot = new JSONObject(response);
 
-                    if (userData.getStatusCode() == 1) {
-                        appData.setUserData(userData);
-
-                        libFile.setUserId(appData.getUserData().getUserId());
-
-                        libFile.setUserToken(appData.getUserData().getUserToken());
-
-                        libFile.setEmailId(userData.getEmail());
-
-                        Toast.makeText(ActivitySendReview.this, getString(R.string.txt_success_update_profile), Toast.LENGTH_LONG).show();
+                    if(jsonRoot.has("status_code") && jsonRoot.getInt("status_code")==1)
+                    {
+                        Toast.makeText(ActivitySendReview.this, getString(R.string.txt_review_successfully), Toast.LENGTH_LONG).show();
 
                         onBackPressed();
-                    } else {
-                        showOKAlertMsg(getString(R.string.txt_failed), getString(R.string.txt_failed_update_profile), false);
-                    }*/
+                    }
+                    else {
+                        showOKAlertMsg(getString(R.string.txt_failed), getString(R.string.txt_review_failed), false);
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
 

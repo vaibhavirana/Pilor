@@ -18,8 +18,8 @@ public class ListBooking implements Serializable {
     public String localtime_UTC;
     public String price;
     public int is_service_accepted;
-    public String is_reschedule;
-    public String is_done;
+    public int is_reschedule;
+    public int is_done;
     public String is_review_added;
     public String hide_by_business;
     public String display_name;

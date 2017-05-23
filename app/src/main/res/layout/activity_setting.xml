@@ -190,7 +190,7 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/rlFacebook"
+                    android:id="@+id/rlRecommendUs"
                     style="@style/rl_setting_view">
 
                     <TextView

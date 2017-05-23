@@ -757,10 +757,10 @@ public class ParseJson {
             listBooking.is_service_accepted = (jsonBooking.getInt("is_service_accepted"));
 
         if (jsonBooking.has("is_reschedule"))
-            listBooking.is_reschedule = (jsonBooking.getString("is_reschedule"));
+            listBooking.is_reschedule = (jsonBooking.getInt("is_reschedule"));
 
         if (jsonBooking.has("is_done"))
-            listBooking.is_done = (jsonBooking.getString("is_done"));
+            listBooking.is_done = (jsonBooking.getInt("is_done"));
 
         if (jsonBooking.has("is_review_added"))
             listBooking.is_review_added = (jsonBooking.getString("is_review_added"));

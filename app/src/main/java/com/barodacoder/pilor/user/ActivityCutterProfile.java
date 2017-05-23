@@ -137,7 +137,9 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
         });
 
         ((TextView) findViewById(R.id.tvTitle)).setTypeface(appData.getFontMedium());
+        ((TextView) findViewById(R.id.txtBio)).setTypeface(appData.getFontMedium());
         ((TextView) findViewById(R.id.tvTitle)).setText(userCutter.getDisplayName());
+        ((TextView) findViewById(R.id.txtBio)).setText(userCutter.getBio());
 
         ratingBar = (ProperRatingBar) findViewById(R.id.rating);
         //ratingBar.setRating(4);
@@ -156,12 +158,15 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
         llPrice = (LinearLayout) findViewById(R.id.llPrice);
 
         setPriceLayout();
-        Glide.with(getApplicationContext()).load(userCutter.getProfile()).placeholder(R.drawable.icon_no_image)
+
+        Glide.with(getApplicationContext()).load(userCutter.getProfile())
                 .bitmapTransform(new BlurTransformation(this, 30))
+                .placeholder(R.drawable.user)
                 .into(opacityFilter);
 
+
         Glide.with(getApplicationContext()).load(userCutter.getProfile()).asBitmap().centerCrop()
-                .placeholder(R.drawable.icon_no_image)
+                .placeholder(R.drawable.user)
                 .into(new BitmapImageViewTarget(ivImage) {
                     @Override
                     protected void setResource(Bitmap resource) {
@@ -233,9 +238,9 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
         switch (v.getId()) {
             case R.id.btnOrderCut:
                 if (selectedIds.size() > 0) {
-                   // showDateTimePicker();
+                    // showDateTimePicker();
                     datePickerDialog();
-                }else
+                } else
                     showOKAlertMsg(getString(R.string.txt_select_service_title), getString(R.string.txt_select_service), false);
                 break;
         }
@@ -263,9 +268,6 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                                 + "-" + (monthNumber + 1) + "-" + calendarSelected.get(Calendar.DAY_OF_MONTH)
                                 + " " + hour24 + ":" + min
                                 + ":" + sec);
-
-
-
 
 
                     }
@@ -360,7 +362,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                     .placeholder(R.drawable.user)
                     .into(holder.ivImage);*/
             Glide.with(getApplicationContext()).load(rating.getProfile_pic()).asBitmap().centerCrop()
-                    .placeholder(R.drawable.icon_no_image)
+                    .placeholder(R.drawable.user)
                     .into(new BitmapImageViewTarget(holder.ivImage) {
                         @Override
                         protected void setResource(Bitmap resource) {
@@ -425,7 +427,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                     if (isSelect[0]) {
                         isSelect[0] = false;
                         // selectedService=services.get(position)+",";
-                       // Log.e("deselected",selectedIds.toString() +" || "+selectedIds.contains(services.get(position).getService_id()));
+                        // Log.e("deselected",selectedIds.toString() +" || "+selectedIds.contains(services.get(position).getService_id()));
 
                         holder.imgSelect.setImageDrawable(getResources().getDrawable(R.drawable.checkmark_unselected));
                        /* selectedIds.remove(services.get(position).getService_id());
@@ -434,7 +436,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
 
                             selectedIds.remove(services.get(position).getService_id());
                             totalPrice = totalPrice - Double.parseDouble(services.get(position).getRate());
-                            Log.e("deselected",selectedIds.toString());
+                            Log.e("deselected", selectedIds.toString());
                         } else {
                             selectedIds.add(services.get(position).getService_id());
                             totalPrice = totalPrice + Double.parseDouble(services.get(position).getRate());
@@ -452,12 +454,12 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
 
                             selectedIds.remove(services.get(position).getService_id());
                             totalPrice = totalPrice - Double.parseDouble(services.get(position).getRate());
-                            Log.e("deselected",selectedIds.toString());
+                            Log.e("deselected", selectedIds.toString());
                         } else {
                             selectedIds.add(services.get(position).getService_id());
                             totalPrice = totalPrice + Double.parseDouble(services.get(position).getRate());
                         }
-                       // Log.e("selected",selectedIds.toString());
+                        // Log.e("selected",selectedIds.toString());
                     }
 
                 }
@@ -476,7 +478,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
 
                             selectedIds.remove(services.get(position).getService_id());
                             totalPrice = totalPrice - Double.parseDouble(services.get(position).getRate());
-                            Log.e("deselected",selectedIds.toString());
+                            Log.e("deselected", selectedIds.toString());
                         } else {
                             selectedIds.add(services.get(position).getService_id());
                             totalPrice = totalPrice + Double.parseDouble(services.get(position).getRate());
@@ -485,7 +487,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                     } else {
                         isSelect[0] = true;
                         holder.imgSelect.setImageDrawable(getResources().getDrawable(R.drawable.checkmark_selected));
-                       // selectedService=services.get(position).getService_id();
+                        // selectedService=services.get(position).getService_id();
                        /* totalPrice= Double.parseDouble(services.get(position).getRate());
                         selectedIds.add(services.get(position).getService_id());
                         totalPrice = totalPrice + Double.parseDouble(services.get(position).getRate());
@@ -494,7 +496,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
 
                             selectedIds.remove(services.get(position).getService_id());
                             totalPrice = totalPrice - Double.parseDouble(services.get(position).getRate());
-                            Log.e("deselected",selectedIds.toString());
+                            Log.e("deselected", selectedIds.toString());
                         } else {
                             selectedIds.add(services.get(position).getService_id());
                             totalPrice = totalPrice + Double.parseDouble(services.get(position).getRate());
@@ -586,8 +588,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
         });
     }
 
-    public void datePickerDialog()
-    {
+    public void datePickerDialog() {
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
@@ -600,20 +601,19 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        Log.e("date:",dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        Log.e("date:", dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                         selectedDate = year
                                 + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
 
                         timePickerDialog(c);
                     }
                 }, mYear, mMonth, mDay);
-        c.add(Calendar.DAY_OF_YEAR,1);
+        c.add(Calendar.DAY_OF_YEAR, 1);
         datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
         datePickerDialog.show();
     }
 
-    public void timePickerDialog(Calendar c)
-    {
+    public void timePickerDialog(Calendar c) {
 
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
@@ -626,17 +626,17 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
 
-                        Log.e("time",hourOfDay + ":" + minute);
-                        selectedDate = selectedDate+ " " + hourOfDay + ":" + minute
-                                + ":00" ;
+                        Log.e("time", hourOfDay + ":" + minute);
+                        selectedDate = selectedDate + " " + hourOfDay + ":" + minute
+                                + ":00";
 
-                        Log.e("time",selectedDate);
+                        Log.e("time", selectedDate);
 
-                        BookService bookService=new BookService();
-                        bookService.service_id=android.text.TextUtils.join(",", selectedIds);
-                        bookService.date_of_booking=selectedDate;
-                        bookService.service_provide_by=userCutter.getUserId();
-                        bookService.price= String.valueOf(totalPrice);
+                        BookService bookService = new BookService();
+                        bookService.service_id = android.text.TextUtils.join(",", selectedIds);
+                        bookService.date_of_booking = selectedDate;
+                        bookService.service_provide_by = userCutter.getUserId();
+                        bookService.price = String.valueOf(totalPrice);
                         goToEnterPinScreen(bookService);
                     }
                 }, mHour, mMinute, false);
