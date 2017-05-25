@@ -12,69 +12,65 @@
     <string name="txt_service_booking">Booking your service...</string>
     <string name="txt_ok">Ok</string>
 
-    <string name="txt_no">No</string>
+    <string name="txt_no">Nej</string>
     <string name="txt_failed">Failed</string>
-    <string name="txt_yes_logout">Yes - Log out</string>
-    <string name="txt_yes_cancel">Yes - Cancel</string>
+    <string name="txt_yes_logout">Ja - Log ud</string>
+    <string name="txt_yes_cancel">Ja - Aflys</string>
     <string name="txt_continue">Continue</string>
-    <string name="txt_yes">Yes</string>
-
-    <string name="txt_landing_msg">You have a task or idea that you\nneed to get fixed. Get it SnapFixed.</string>
+    <string name="txt_yes">Ja</string>
 
     <string name="txt_signup_email">Signup with email instead?</string>
     <string name="txt_signup_fb">SIGNUP WITH FACEBOOK</string>
     <string name="txt_already_acct">Already have an account? Login with email</string>
-    <string name="txt_cutter_login">LOGIN AS CUTTER</string>
+    <string name="txt_cutter_login">LOG IND SOM FRISØR</string>
 
     <string name="txt_fullname">Your name</string>
-    <string name="txt_bio">Bio (Max 120 characters)</string>
+    <string name="txt_bio">Bio (maximum 120 tegn)</string>
     <string name="txt_email">Email</string>
     <string name="txt_phone">Phone number</string>
-    <string name="txt_password">Password</string>
-    <string name="txt_repassword">Retype password</string>
-    <string name="txt_forgot_pass">Forgot your password?</string>
+    <string name="txt_password">Kode</string>
+    <string name="txt_repassword">Indtast kode igen</string>
+    <string name="txt_forgot_pass">Glemt din adgangskode?</string>
     <string name="txt_dont_have_acct">Don\'t have account?</string>
 
-    <string name="txt_current_pass">Current password</string>
-    <string name="txt_new_pass">New password</string>
-    <string name="txt_retype_new_pass">Retype new password</string>
+    <string name="txt_current_pass">Indtast nuværende kodeord.</string>
+    <string name="txt_new_pass">Indtast ny adgangskode</string>
+    <string name="txt_retype_new_pass">Indtast ny kode igen</string>
 
     <string name="txt_login">LOGIN</string>
     <string name="txt_sign_up">SIGNUP</string>
     <string name="txt_submit">SUBMIT</string>
 
-    <string name="txt_err_name">Please enter full name</string>
-    <string name="txt_err_email">Please enter email</string>
-    <string name="txt_err_valid_email">Please enter valid email</string>
-    <string name="txt_err_phone">Please enter phone number</string>
+    <string name="txt_err_name">Indtast dit navn.</string>
+    <string name="txt_err_email">Indtast din email.</string>
+    <string name="txt_err_valid_email">Indtast gyldig email.</string>
+    <string name="txt_err_phone">Indtast dit telefonnummer</string>
     <string name="txt_err_bio">Please enter some text about your profile</string>
-    <string name="txt_err_password">Please enter password</string>
-    <string name="txt_err_repassword">Please retype password</string>
-    <string name="txt_err_password_match">Please check your both password</string>
+    <string name="txt_err_password">Indtast din kode</string>
+    <string name="txt_err_repassword">Indtast kode igen</string>
+    <string name="txt_err_password_match">Koderne er ikke ens</string>
 
-    <string name="txt_err_curr_pass">Please enter current password</string>
-    <string name="txt_err_new_pass">Please enter new password</string>
-    <string name="txt_err_renew_pass">Please retype new password</string>
-    <string name="txt_err_match_curr_pass">Current password does not match with your password</string>
-    <string name="txt_err_match_new_pass">New password and Retype new password should be same</string>
+    <string name="txt_err_curr_pass">Indtast nuværende kodeord.</string>
+    <string name="txt_err_new_pass">Indtast nyt kodeord.</string>
+    <string name="txt_err_renew_pass">Indtast nyt kodeord.</string>
+    <string name="txt_err_match_curr_pass">Adgangskode ikke matchet.</string>
+    <string name="txt_err_match_new_pass">Koderne er ikke ens</string>
 
     <string name="txt_save">Save</string>
-    <string name="txt_setting">Settings</string>
+    <string name="txt_setting">Indstillinger</string>
 
-    <string name="txt_your_profile">Profile</string>
+    <string name="txt_your_profile">Profil</string>
     <string name="txt_redius">Redius: </string>
-    <string name="txt_change_password">Change Password</string>
-    <string name="txt_change_pin">Change Pin</string>
-    <string name="txt_hair_cutter_signup">Are you a haircutter? Signup now!</string>
-    <string name="txt_contact_us">Contact us</string>
-    <string name="txt_recommendus">Recommend Us</string>
-    <string name="txt_terms">Terms &amp; Conditions</string>
+    <string name="txt_change_password">Skift Adgangskode</string>
+    <string name="txt_change_pin">Ændr pin</string>
+    <string name="txt_hair_cutter_signup">Er du frisør? Opret bruger her!</string>
+    <string name="txt_contact_us">Kontakt os</string>
+    <string name="txt_recommendus">Anbefal os</string>
+    <string name="txt_terms">Handelsbetingelser</string>
     <string name="txt_faq">FAQ</string>
-    <string name="txt_sign_out">Log out</string>
+    <string name="txt_sign_out">Log ud</string>
 
-    <string name="txt_are_you_sure">Are you sure?</string>
-
-    <string name="txt_my_tasks">My tasks</string>
+    <string name="txt_are_you_sure">Er du sikker?</string>
 
     <string name="txt_open">OPEN</string>
     <string name="txt_closed">CLOSED</string>
@@ -104,34 +100,12 @@
     <string name="txt_add_rating_hint">Describe Your Experience Here</string>
     <string name="txt_send_reviews">Send Reviews</string>
 
-    <string name="txt_job_request">Job Request</string>
-    <string name="txt_job_calender">Calender(Accepted Job)</string>
-
-    <string name="txt_company_name">Company name</string>
-    <string name="txt_address">Address</string>
-    <string name="txt_company_desc">Company description (120 characters)</string>
+    <string name="txt_job_request">Bookinger (afventer)</string>
+    <string name="txt_job_calender">Bookinger (accepteret)</string>
 
     <string name="txt_invalid_email">Invalid email/password</string>
 
     <string name="txt_create_job">Create a job</string>
-
-    <string name="txt_add_photo_video">Add photos or videos to your job.</string>
-
-    <string name="txt_headline">Headline (Max 50 characters)</string>
-
-    <string name="txt_desc_200">Description (200 characters)</string>
-
-    <string name="txt_not_allowed_contact">Its not allowed to add your contact information.</string>
-
-    <string name="txt_special_requirement">Any special requirements? (200 characters)</string>
-
-    <string name="txt_distance_msg">How long away could your freelancer be from you?</string>
-
-    <string name="txt_budget">Budget</string>
-    <string name="txt_expiry_date">Expiry date</string>
-
-    <string name="txt_create_job_capital">CREATE JOB</string>
-    <string name="txt_create_job_msg">You will be notified when you have some bids.</string>
 
     <string name="permission_gps_rationale">Location permission is needed to proceed further.</string>
     <string name="permission_gps_denied">Location permission was denied. Please consider granting it in order to access the Location!</string>
@@ -142,16 +116,11 @@
 
     <string name="txt_select_image">Select image:</string>
 
-    <string name="txt_done">Done</string>
-    <string name="txt_cancel">Cancel</string>
-    <string name="txt_cancelled">Cancelled</string>
-    <string name="txt_rejected">Rejected</string>
+    <string name="txt_done">Færdig</string>
+    <string name="txt_cancel">Aflys</string>
+    <string name="txt_cancelled">Aflyst</string>
+    <string name="txt_rejected">Annulleret</string>
 
-    <string name="txt_err_headline">Please enter headline</string>
-    <string name="txt_err_description">Please enter work description</string>
-    <string name="txt_err_budget">Please enter budget</string>
-    <string name="txt_Err_budget_amt">Budget should be greater than 0</string>
-    <string name="txt_err_expiry_date">Please select expiry date</string>
 
     <string name="txt_review_successfully">Review send successfully.</string>
     <string name="txt_review_failed">There is some problem in sending review. Please try again.</string>
@@ -161,7 +130,7 @@
     <string name="txt_success_update_profile">Profile updated successfully</string>
     <string name="txt_failed_update_profile">Failed to update profile. Please try again.</string>
 
-    <string name="txt_success_change_pass">Password changes successfully</string>
+    <string name="txt_success_change_pass">Adgangskode ændret</string>
     <string name="txt_failed_change_pass">Failed to change password. Please try again.</string>
 
     <string name="txt_bid_on_job">BID ON JOB</string>
@@ -171,39 +140,12 @@
 
     <string name="txt_date">Date:</string>
     <string name="txt_timenline">Timeline</string>
-    <string name="txt_time">Time</string>
-
-    <string name="txt_create_bid">Create Bid</string>
-
-    <string name="txt_bid_dkk">Bid in DKK</string>
-    <string name="txt_any_comment_200">Any comments? (200 characters)</string>
-    <string name="txt_deadline">Deadline</string>
-
-    <string name="txt_err_bid">Please enter bid amount</string>
-    <string name="txt_err_bid_amt">Bid amount should be greater than 0</string>
-    <string name="txt_err_deadline">Please select deadline</string>
+    <string name="txt_time">Tidspunkt</string>
 
     <string name="txt_delete">Delete</string>
 
-    <string name="txt_headline_txt">Headline</string>
-
-    <string name="txt_create_reference">CREATE REFERENCE</string>
-
-    <string name="txt_company_detail">Company details</string>
-
-    <string name="txt_select_winner">SELECT AS WINNER</string>
-
     <string name="txt_service_book_success">Service book successfully</string>
     <string name="txt_service_book_failed">Failed to book service. Please try again.</string>
-
-    <string name="txt_bid">Bid</string>
-
-    <string name="txt_references_add_success">Reference added successfully</string>
-    <string name="txt_references_add_failed">Failed to add reference. Please try again.</string>
-
-    <string name="txt_references_delete_failed">Failed to delete reference. Please try again.</string>
-
-    <string name="txt_delete_reference">Delete Reference</string>
 
     <string name="txt_forgot_pass_sent">We have sent you an email to recover your password</string>
 
@@ -221,9 +163,8 @@
 
     <string name="txt_any">ANY</string>
 
-    <string name="txt_bid_added_by_you">You have already added bid on this task</string>
 
-    <string name="txt_something_went_wrong">Something went wrong. Please tray again later.</string>
+    <string name="txt_something_went_wrong">Noget gik galt!  Prøv igen senere.</string>
 
     <string name="txt_no_barber_found">Sorry - no barber found near by.</string>
     <string name="txt_no_task_found">No task found</string>
@@ -235,7 +176,7 @@
     <string name="refresh">Refresh</string>
     <string name="back">Back</string>
     <string name="txt_booking">Bookings</string>
-    <string name="txt_order">Order</string>
+    <string name="txt_order">Booking</string>
     <string name="txt_order_cut">Order Cut</string>
     <string name="txt_order_confirmed">Order Confirmed</string>
     <string name="txt_change_time">Change time</string>
@@ -251,13 +192,13 @@
     <string name="txt_review">Review</string>
     <string name="txt_rate_detail">Your haircut at %1$s is over - and you should use 2 mins to review it!</string>
 
-    <string name="txt_business">Business</string>
-    <string name="txt_service_and_pricing">Service and Pricing</string>
-    <string name="txt_opening_hours">Opening hours</string>
-    <string name="txt_payment_history">Payment history</string>
-    <string name="txt_payment">Payments</string>
-    <string name="txt_mark_as_done">Mark as done</string>
-    <string name="txt_completed">Completed</string>
+    <string name="txt_business">Frisør</string>
+    <string name="txt_service_and_pricing">Ydelser og priser</string>
+    <string name="txt_opening_hours">Åbningstider</string>
+    <string name="txt_payment_history">Betalingshistorik</string>
+    <string name="txt_payment">Betalinger</string>
+    <string name="txt_mark_as_done">Marker som udført</string>
+    <string name="txt_completed">Udført</string>
 
     <string name="str_opening">Open</string>
     <string name="closing">Closing</string>
@@ -267,8 +208,8 @@
     <string name="exit_title">Close App</string>
 
 
-    <string name="txt_services">Services</string>
-    <string name="txt_search">Search</string>
+    <string name="txt_services">Ydelser</string>
+    <string name="txt_search">Søg</string>
 
 
 </resources>

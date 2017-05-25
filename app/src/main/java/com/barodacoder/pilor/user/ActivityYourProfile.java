@@ -19,8 +19,8 @@ import android.widget.Toast;
 import com.barodacoder.pilor.ActivityBase;
 import com.barodacoder.pilor.AppConstants;
 import com.barodacoder.pilor.R;
-import com.barodacoder.pilor.utils.ParseJson;
 import com.barodacoder.pilor.model.UserData;
+import com.barodacoder.pilor.utils.ParseJson;
 import com.barodacoder.pilor.utils.Validator;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -133,9 +133,34 @@ public class ActivityYourProfile extends ActivityBase {
             if (appData.getUserData().getProfile().contains("graph.facebook.com")) {
                 String profilePic = appData.getUserData().getProfile().replace("http", "https");
 
-                Glide.with(getApplicationContext()).load(profilePic).placeholder(R.drawable.icon_no_image).into(ivImage);
+               // Glide.with(getApplicationContext()).load(profilePic).placeholder(R.drawable.icon_no_image).into(ivImage);
+                Glide.with(this).load(profilePic)
+                        .asBitmap().centerCrop()
+                        .placeholder(R.drawable.user)
+                        .into(new BitmapImageViewTarget(ivImage) {
+                            @Override
+                            protected void setResource(Bitmap resource) {
+                                RoundedBitmapDrawable circularBitmapDrawable =
+                                        RoundedBitmapDrawableFactory.create(ActivityYourProfile.this.getResources(), resource);
+                                circularBitmapDrawable.setCircular(true);
+                                ivImage.setImageDrawable(circularBitmapDrawable);
+                            }
+                        });
+
             } else {
-                Glide.with(getApplicationContext()).load(appData.getUserData().getProfile()).placeholder(R.drawable.icon_no_image).into(ivImage);
+                //Glide.with(getApplicationContext()).load(appData.getUserData().getProfile()).placeholder(R.drawable.icon_no_image).into(ivImage);
+                Glide.with(this).load(appData.getUserData().getProfile())
+                        .asBitmap().centerCrop()
+                        .placeholder(R.drawable.user)
+                        .into(new BitmapImageViewTarget(ivImage) {
+                            @Override
+                            protected void setResource(Bitmap resource) {
+                                RoundedBitmapDrawable circularBitmapDrawable =
+                                        RoundedBitmapDrawableFactory.create(ActivityYourProfile.this.getResources(), resource);
+                                circularBitmapDrawable.setCircular(true);
+                                ivImage.setImageDrawable(circularBitmapDrawable);
+                            }
+                        });
             }
         }
 

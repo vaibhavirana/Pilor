@@ -83,7 +83,7 @@ public class LoginActivity extends ActivityBase {
         tvDontHaveAcct = (TextView) findViewById(R.id.tvDontHaveAcct);
         tvDontHaveAcct.setTypeface(appData.getFontRegular());
 
-        if (isBusinessLogin)
+        if (!isBusinessLogin)
             tvDontHaveAcct.setVisibility(View.VISIBLE);
         else
             tvDontHaveAcct.setVisibility(View.GONE);
@@ -156,6 +156,8 @@ public class LoginActivity extends ActivityBase {
         params.put("device_token", libFile.getDeviceToken());
         params.put("device_id", libFile.getDeviceId());
 
+        Log.e("token",libFile.getDeviceToken());
+        Log.e("req",params.toString());
         client.post(AppConstants.URL_LOGIN, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {

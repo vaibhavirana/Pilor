@@ -53,7 +53,7 @@ public class ActivityBusinessMain extends ActivityBase {
     private AdapterJob adpJobs;
     private AdapterCalender adpCalender;
 
-    private ArrayList<ListBooking> listBookings, listJob, listCalender;
+    private ArrayList<ListBooking> listJob, listCalender;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private String selectedDate;
 
@@ -74,7 +74,6 @@ public class ActivityBusinessMain extends ActivityBase {
 
     protected void initData() {
         super.initData();
-        listBookings = new ArrayList<>();
         listJob = new ArrayList<>();
         listCalender = new ArrayList<>();
     }
@@ -86,15 +85,14 @@ public class ActivityBusinessMain extends ActivityBase {
         ((TextView) findViewById(R.id.tvTitle)).setTypeface(appData.getFontMedium());
         ((TextView) findViewById(R.id.tvTitle)).setText(URLDecoder.decode(appData.getUserData().getDisplayName()));
 
-
-        adpJobs = new AdapterJob();
         rvRequest = (RecyclerView) findViewById(R.id.rvRequest);
         rvRequest.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        adpJobs = new AdapterJob();
         rvRequest.setAdapter(adpJobs);
 
-        adpCalender = new AdapterCalender();
         rvCalender = (RecyclerView) findViewById(R.id.rvCalender);
         rvCalender.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        adpCalender = new AdapterCalender();
         rvCalender.setAdapter(adpCalender);
 
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
@@ -262,16 +260,13 @@ public class ActivityBusinessMain extends ActivityBase {
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
-
-            //itemView.setOnClickListener(mOnClickListener);
-
             return new MyViewHolder(itemView);
         }
 
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
             final ListBooking listBooking = listCalender.get(position);
-            Log.e("data", listCalender.get(position).toString());
+           // Log.e("data", listCalender.get(position).toString());
             if (listBooking.profile_pic != null && !listBooking.profile_pic.equals("")) {    //Glide.with(getApplicationContext()).load(listBooking.profile_pic).placeholder(R.drawable.user).into(holder.ivUserPic);
                 Glide.with(ActivityBusinessMain.this).load(listBooking.profile_pic)
                         .asBitmap().centerCrop()
@@ -357,13 +352,20 @@ public class ActivityBusinessMain extends ActivityBase {
                         Log.v(AppConstants.DEBUG_TAG, "SERVICE  RESPONSE : " + response);
                     if (ParseJson.parseListBooking(response).statusCode == 1) {
                         listJob.clear();
+                        listJob.addAll(ParseJson.parseListBooking(response).info);
+                       // adpJobs.notifyDataSetChanged();
+
+                        adpJobs = new AdapterJob();
+                        rvRequest.setAdapter(adpJobs);
+
                         listCalender.clear();
                         // listBookings.addAll(ParseJson.parseListBooking(response).info);
-                        listJob.addAll(ParseJson.parseListBooking(response).info);
                         listCalender.addAll(ParseJson.parseListBooking(response).accepted_info);
+                        //adpCalender.notifyDataSetChanged();
+                        adpCalender = new AdapterCalender();
+                        rvCalender.setAdapter(adpCalender);
 
-                        adpCalender.notifyDataSetChanged();
-                        adpJobs.notifyDataSetChanged();
+
                     }
                     //swipeRefresh.setRefreshing(false);
 
@@ -528,7 +530,7 @@ public class ActivityBusinessMain extends ActivityBase {
             @Override
             public void onStart() {
                 super.onStart();
-                //showProgressDialog();
+                showProgressDialog();
             }
 
             @Override
@@ -536,7 +538,7 @@ public class ActivityBusinessMain extends ActivityBase {
 
                 try {
                     String response = new String(responseBody, "UTF-8");
-
+                    cancelProgressDialog();
                     if (AppConstants.DEBUG)
                         Log.e(AppConstants.DEBUG_TAG, "SERVICE  RESPONSE : " + response);
                    /* if (ParseJson.parseListBooking(response).statusCode == 1)
@@ -555,6 +557,7 @@ public class ActivityBusinessMain extends ActivityBase {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
                 try {
+                    cancelProgressDialog();
                     String response = new String(responseBody, "UTF-8");
 
                     if (AppConstants.DEBUG)

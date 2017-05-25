@@ -499,8 +499,8 @@ public class ActivityBusinessProfile extends ActivityBase {
     @Override
     public int getItemCount() {
 
-        return 5;
-        //return image_url.size();
+        //return 5;
+        return image_url.size();
     }
 
 }

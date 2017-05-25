@@ -161,7 +161,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
 
         Glide.with(getApplicationContext()).load(userCutter.getProfile())
                 .bitmapTransform(new BlurTransformation(this, 30))
-                .placeholder(R.drawable.user)
+                //.placeholder(R.drawable.user)
                 .into(opacityFilter);
 
 

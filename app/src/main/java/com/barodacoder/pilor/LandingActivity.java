@@ -225,6 +225,7 @@ public class LandingActivity extends ActivityBase {
         params.put("device_token", libFile.getDeviceToken());
         params.put("device_id", libFile.getDeviceId());
 
+
         client.post(AppConstants.URL_LOGIN_FACEBOOK, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {

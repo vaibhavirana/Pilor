@@ -47,8 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_5dp"
             android:layout_marginRight="@dimen/setting_ic_arrow_size_height"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:text="Time:.."
             android:textColor="@color/c_2c2c2c"
             android:textSize="@dimen/login_tv_forgot_font" />
