@@ -1,33 +1,33 @@
 <resources>
-    <string name="app_name">Pilor</string>
+    <string name="app_name">Pilors</string>
 
     <!--<string name="fb_id">1239345152846915</string>-->
     <string name="facebook_app_id">1435222096552444</string>
     <string name="fb_login_protocol_scheme">fb1435222096552444</string>
     <!-- 172350663252974-->
-   <!-- <string name="google_app_id">AIzaSyDfpDniqcIzTwICSkwGHwALzQ_4wehgabg</string>
-  -->  <string name="prb_default_symbolic_string">$</string>
+    <string name="google_app_id">AIzaSyDfpDniqcIzTwICSkwGHwALzQ_4wehgabg</string>
+    <string name="prb_default_symbolic_string">$</string>
 
-    <string name="txt_loading">Loading...</string>
-    <string name="txt_service_booking">Booking your service...</string>
+    <string name="txt_loading">Indlæser...</string>
+    <string name="txt_service_booking">Bestilling af din service...</string>
     <string name="txt_ok">Ok</string>
 
     <string name="txt_no">Nej</string>
-    <string name="txt_failed">Failed</string>
+    <string name="txt_failed">mislykkedes</string>
     <string name="txt_yes_logout">Ja - Log ud</string>
     <string name="txt_yes_cancel">Ja - Aflys</string>
-    <string name="txt_continue">Continue</string>
+    <string name="txt_continue">Fortsæt</string>
     <string name="txt_yes">Ja</string>
 
-    <string name="txt_signup_email">Signup with email instead?</string>
-    <string name="txt_signup_fb">SIGNUP WITH FACEBOOK</string>
-    <string name="txt_already_acct">Already have an account? Login with email</string>
+    <string name="txt_signup_email">Opret dig med email i stedet?</string>
+    <string name="txt_signup_fb">Opret dig med FACEBOOK</string>
+    <string name="txt_already_acct">har du allerede en bruger? Log ind med email</string>
     <string name="txt_cutter_login">LOG IND SOM FRISØR</string>
 
-    <string name="txt_fullname">Your name</string>
-    <string name="txt_bio">Bio (maximum 120 tegn)</string>
+    <string name="txt_fullname">Dit navn</string>
+    <string name="txt_bio">Bio (maks. 120 tegn)</string>
     <string name="txt_email">Email</string>
-    <string name="txt_phone">Phone number</string>
+    <string name="txt_phone">Telefonnummer</string>
     <string name="txt_password">Kode</string>
     <string name="txt_repassword">Indtast kode igen</string>
     <string name="txt_forgot_pass">Glemt din adgangskode?</string>
@@ -72,125 +72,113 @@
 
     <string name="txt_are_you_sure">Er du sikker?</string>
 
-    <string name="txt_open">OPEN</string>
-    <string name="txt_closed">CLOSED</string>
+    <string name="txt_open">åben</string>
+    <string name="txt_closed">lukket</string>
 
-    <string name="txt_list">Explore</string>
-    <string name="txt_map">Map</string>
+    <string name="txt_list">Udforsk</string>
+    <string name="txt_map">Kort</string>
 
-    <string name="txt_price">Price</string>
-    <string name="txt_Photo">Photo</string>
-    <string name="txt_rating">Rating</string>
+    <string name="txt_price">Priser</string>
+    <string name="txt_Photo">Billeder</string>
+    <string name="txt_rating">Anmeldelser</string>
 
-    <string name="txt_new">NEW</string>
-    <string name="txt_bids">BIDS</string>
 
-    <string name="txt_add_references">Add Reference</string>
-
-    <string name="txt_references">References</string>
     <string name="txt_support">Support</string>
     <string name="txt_payment_card">Payment card</string>
     <string name="txt_redeem_promocide">Redeem promocode</string>
     <string name="txt_change_passcode">Change passcode</string>
 
-    <string name="txt_select_service_title">Select Service</string>
-    <string name="txt_select_service">Please Select Service</string>
-    <string name="txt_add_photo">Add or change your profile picture</string>
-    <string name="txt_add_rating">Tab a Star to Rate </string>
-    <string name="txt_add_rating_hint">Describe Your Experience Here</string>
-    <string name="txt_send_reviews">Send Reviews</string>
+    <string name="txt_select_service_title">Vælg Service</string>
+    <string name="txt_select_service">Vælg venligst Service</string>
+    <string name="txt_add_photo">Tilføj eller skift dit profilbillede</string>
+    <string name="txt_add_rating">Tab en stjerne for at bedømme</string>
+    <string name="txt_add_rating_hint">Beskriv din oplevelse her</string>
+    <string name="txt_send_reviews">Send anmeldelser</string>
 
     <string name="txt_job_request">Bookinger (afventer)</string>
     <string name="txt_job_calender">Bookinger (accepteret)</string>
 
-    <string name="txt_invalid_email">Invalid email/password</string>
+    <string name="txt_invalid_email">Ugyldig email / adgangskode</string>
 
-    <string name="txt_create_job">Create a job</string>
+    <string name="permission_gps_rationale">Lokal tilladelse er nødvendig for at fortsætte yderligere.</string>
+    <string name="permission_gps_denied">Stedstilladelse blev nægtet. Overvej venligst at give det for at få adgang til lokationen!</string>
+    <string name="permission_gps_never_askagain">Stedstilladelse blev nægtet med aldrig spørge igen.</string>
 
-    <string name="permission_gps_rationale">Location permission is needed to proceed further.</string>
-    <string name="permission_gps_denied">Location permission was denied. Please consider granting it in order to access the Location!</string>
-    <string name="permission_gps_never_askagain">Location permission was denied with never ask again.</string>
+    <string name="txt_allow">Give lov til</string>
+    <string name="txt_deny">Nægte</string>
 
-    <string name="txt_allow">Allow</string>
-    <string name="txt_deny">Deny</string>
-
-    <string name="txt_select_image">Select image:</string>
+    <string name="txt_select_image">Vælg billede:</string>
 
     <string name="txt_done">Færdig</string>
-    <string name="txt_cancel">Aflys</string>
-    <string name="txt_cancelled">Aflyst</string>
-    <string name="txt_rejected">Annulleret</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="txt_cancelled">Cancelled</string>
+    <string name="txt_rejected">Rejected</string>
 
 
-    <string name="txt_review_successfully">Review send successfully.</string>
-    <string name="txt_review_failed">There is some problem in sending review. Please try again.</string>
+    <string name="txt_review_successfully">Gennemgå send med succes.</string>
+    <string name="txt_review_failed">Der er noget problem med at sende anmeldelse. Prøv igen.</string>
 
-    <string name="txt_days_left">DAYS LEFT:</string>
+    <string name="txt_days_left">DAGE TILBAGE:</string>
 
-    <string name="txt_success_update_profile">Profile updated successfully</string>
-    <string name="txt_failed_update_profile">Failed to update profile. Please try again.</string>
+    <string name="txt_success_update_profile">Profil opdateret med succes</string>
+    <string name="txt_failed_update_profile">Kunne ikke opdatere profilen. Prøv igen.</string>
 
     <string name="txt_success_change_pass">Adgangskode ændret</string>
-    <string name="txt_failed_change_pass">Failed to change password. Please try again.</string>
+    <string name="txt_failed_change_pass">Kunne ikke ændre adgangskode. Prøv igen.</string>
 
-    <string name="txt_bid_on_job">BID ON JOB</string>
+    <string name="txt_description">Beskrivelse</string>
+    <string name="txt_additional_requirement">Yderligere krav</string>
 
-    <string name="txt_description">Description</string>
-    <string name="txt_additional_requirement">Additional Requirement</string>
-
-    <string name="txt_date">Date:</string>
-    <string name="txt_timenline">Timeline</string>
+    <string name="txt_date">Dato:</string>
+    <string name="txt_timenline">Tidslinje</string>
     <string name="txt_time">Tidspunkt</string>
 
-    <string name="txt_delete">Delete</string>
+    <string name="txt_delete">Slet</string>
 
-    <string name="txt_service_book_success">Service book successfully</string>
-    <string name="txt_service_book_failed">Failed to book service. Please try again.</string>
+    <string name="txt_service_book_success">Servicebog med succes</string>
+    <string name="txt_service_book_failed">Kunne ikke bestille service. Prøv igen.</string>
 
-    <string name="txt_forgot_pass_sent">We have sent you an email to recover your password</string>
+    <string name="txt_forgot_pass_sent">Vi har sendt dig en email for at gendanne dit kodeord</string>
 
-    <string name="txt_add_payment_card">Add Payment Card</string>
-    <string name="txt_add_credit_card">Add credit card</string>
-    <string name="txt_delete_credit_card">Delete card</string>
-    <string name="txt_card_msg">This card will be saved and used for future purchases</string>
-    <string name="txt_stored_card_num">Stored credit card number</string>
+    <string name="txt_add_payment_card">Tilføj betalingskort</string>
+    <string name="txt_add_credit_card">Tilføj kreditkort</string>
+    <string name="txt_delete_credit_card">Slet kort</string>
+    <string name="txt_card_msg">Dette kort gemmes og bruges til fremtidige indkøb</string>
+    <string name="txt_stored_card_num">Gemt kreditkortnummer</string>
 
-    <string name="txt_accept">Accept</string>
-    <string name="txt_accept_msg">You have to pay 39 DKK. Do you want to continue?</string>
+    <string name="txt_accept">Acceptere</string>
+    <string name="txt_accept_msg">Du skal betale 39 DKK. Vil du fortsætte?</string>
 
-    <string name="txt_new_passcode">New passcode</string>
-    <string name="txt_confirm_passcode">Confirm passcode</string>
+    <string name="txt_new_passcode">Ny adgangskode</string>
+    <string name="txt_confirm_passcode">Bekræft adgangskode</string>
 
-    <string name="txt_any">ANY</string>
-
+    <string name="txt_any">NOGEN</string>
 
     <string name="txt_something_went_wrong">Noget gik galt!  Prøv igen senere.</string>
 
-    <string name="txt_no_barber_found">Sorry - no barber found near by.</string>
-    <string name="txt_no_task_found">No task found</string>
-    <string name="txt_no_bid_found">No bids found</string>
+    <string name="txt_no_barber_found">Beklager - ingen barbermand fundet i nærheden.</string>
 
-    <string name="txt_selected">SELECTED</string>
+    <string name="txt_selected">VALGTE</string>
 
-    <string name="txt_create_passcode">Create passcode</string>
-    <string name="refresh">Refresh</string>
-    <string name="back">Back</string>
-    <string name="txt_booking">Bookings</string>
+    <string name="txt_create_passcode">Opret adgangskode</string>
+    <string name="refresh">Opdater</string>
+    <string name="back">Tilbage</string>
+    <string name="txt_booking">Bestillinger</string>
     <string name="txt_order">Booking</string>
-    <string name="txt_order_cut">Order Cut</string>
+    <string name="txt_order_cut">Ordreudskæring</string>
     <string name="txt_order_confirmed">Order Confirmed</string>
     <string name="txt_change_time">Change time</string>
-    <string name="txt_order_detail">You made an order with %1$s at %2$s.</string>
-    <string name="txt_cancel_detail">You order with %1$s  has been cancelled.</string>
-    <string name="txt_reject_detail">You order at %1$s  was cancelled.</string>
-    <string name="txt_confirm_detail">Your booking request at %1$s date %2$s can only be cancelled with a fee of 50%% of the total price.</string>
-    <string name="txt_reschedule_detail">Your hairdresser %1$s  has requested to change time to %2$s.\n
+    <string name="txt_order_detail">Du har lavet en ordre med %1$s på %2$s.</string>
+    <string name="txt_cancel_detail">Du bestiller hos %1$s Er blevet annulleret.</string>
+    <string name="txt_reject_detail">Din ordre på %1$s  Blev annulleret.</string>
+    <string name="txt_confirm_detail">Din booking anmodning på %1$s dato %2$s Kan kun annulleres med et gebyr på 50%% af den samlede pris.</string>
+    <string name="txt_reschedule_detail">Din frisør %1$s  Har bedt om at ændre tid til %2$s.\n
         </string>
     <string name="txt_reminder">Reminder</string>
     <string name="txt_reminder_detail">You cut at {{cutter-name}} is in 30 minutes.</string>
     <string name="txt_rate">Rate</string>
     <string name="txt_review">Review</string>
-    <string name="txt_rate_detail">Your haircut at %1$s is over - and you should use 2 mins to review it!</string>
+    <string name="txt_rate_detail">Din frisør på %1$s Er forbi - og du skal bruge 2 minutter til at gennemgå det!</string>
 
     <string name="txt_business">Frisør</string>
     <string name="txt_service_and_pricing">Ydelser og priser</string>
@@ -198,14 +186,14 @@
     <string name="txt_payment_history">Betalingshistorik</string>
     <string name="txt_payment">Betalinger</string>
     <string name="txt_mark_as_done">Marker som udført</string>
-    <string name="txt_completed">Udført</string>
+    <string name="txt_completed">Completed</string>
 
     <string name="str_opening">Open</string>
     <string name="closing">Closing</string>
-    <string name="str_opening_hours_hint">Too mark a day as closed, please set both opening and closing time to 00:00 and it will show Closed in the app.</string>
-    <string name="str_enter_rate_of_service">Enter rate of service that you are providing!</string>
-    <string name="exit">Are you sure you want to close App?</string>
-    <string name="exit_title">Close App</string>
+    <string name="str_opening_hours_hint">For at markere en dag som lukket, skal du indstille både åbnings- og lukningstid til 00:00, og det vil blive vist lukket i appen.</string>
+    <string name="str_enter_rate_of_service">Indtast serviceniveau, du leverer!</string>
+    <string name="exit">Er du sikker på at du vil lukke App?</string>
+    <string name="exit_title">Luk App</string>
 
 
     <string name="txt_services">Ydelser</string>

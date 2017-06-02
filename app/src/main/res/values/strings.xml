@@ -1,19 +1,19 @@
 <resources>
-    <string name="app_name">Pilor</string>
+    <string name="app_name">Pilors</string>
 
     <!--<string name="fb_id">1239345152846915</string>-->
     <string name="facebook_app_id">1435222096552444</string>
     <string name="fb_login_protocol_scheme">fb1435222096552444</string>
     <!-- 172350663252974-->
-   <!-- <string name="google_app_id">AIzaSyDfpDniqcIzTwICSkwGHwALzQ_4wehgabg</string>
-  -->  <string name="prb_default_symbolic_string">$</string>
+    <string name="google_app_id">AIzaSyDfpDniqcIzTwICSkwGHwALzQ_4wehgabg</string>
+    <string name="prb_default_symbolic_string">$</string>
 
     <string name="txt_loading">Loading...</string>
     <string name="txt_service_booking">Booking your service...</string>
     <string name="txt_ok">Ok</string>
 
     <string name="txt_no">No</string>
-    <string name="txt_failed">Failed</string>
+    <string name="txt_failed">Failed</string>x
     <string name="txt_yes_logout">Yes - Log out</string>
     <string name="txt_yes_cancel">Yes - Cancel</string>
     <string name="txt_continue">Continue</string>
@@ -82,16 +82,10 @@
     <string name="txt_list">Explore</string>
     <string name="txt_map">Map</string>
 
-    <string name="txt_price">Price</string>
-    <string name="txt_Photo">Photo</string>
+    <string name="txt_price">Prices</string>
+    <string name="txt_Photo">Photos</string>
     <string name="txt_rating">Rating</string>
 
-    <string name="txt_new">NEW</string>
-    <string name="txt_bids">BIDS</string>
-
-    <string name="txt_add_references">Add Reference</string>
-
-    <string name="txt_references">References</string>
     <string name="txt_support">Support</string>
     <string name="txt_payment_card">Payment card</string>
     <string name="txt_redeem_promocide">Redeem promocode</string>
@@ -240,8 +234,8 @@
     <string name="txt_order_confirmed">Order Confirmed</string>
     <string name="txt_change_time">Change time</string>
     <string name="txt_order_detail">You made an order with %1$s at %2$s.</string>
-    <string name="txt_cancel_detail">You order with %1$s  has been cancelled.</string>
-    <string name="txt_reject_detail">You order at %1$s  was cancelled.</string>
+    <string name="txt_cancel_detail">Your order with %1$s  has been cancelled.</string>
+    <string name="txt_reject_detail">Your order at %1$s  was cancelled.</string>
     <string name="txt_confirm_detail">Your booking request at %1$s date %2$s can only be cancelled with a fee of 50%% of the total price.</string>
     <string name="txt_reschedule_detail">Your hairdresser %1$s  has requested to change time to %2$s.\n
         </string>

@@ -31,8 +31,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/login_et_login_padding"
             app:checked="true"
-            app:color_off="#54FE05"
-            app:color_on="#54FE05" />
+            app:color_off="@color/colorGreen"
+            app:color_on="@color/colorGreen" />
 
         <TextView
             android:id="@+id/tvTitle"

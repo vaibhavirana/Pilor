@@ -20,7 +20,7 @@ public class ListBooking implements Serializable {
     public int is_service_accepted;
     public int is_reschedule;
     public int is_done;
-    public String is_review_added;
+    public int is_review_added;
     public String hide_by_business;
     public String display_name;
     public String mobile;

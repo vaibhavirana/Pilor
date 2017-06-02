@@ -77,7 +77,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                     />
+                    />
+
+                <ImageView
+                    android:id="@+id/opacityFilter1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    />
 
 
                 <com.github.siyamed.shapeimageview.CircularImageView
@@ -102,12 +109,12 @@
                     android:gravity="center"
                     android:textSize="40sp"
                     android:textStyle="bold"
+                    app:prb_clickable="true"
                     app:prb_defaultRating="4"
                     app:prb_tickNormalDrawable="@drawable/star_for_ratings"
                     app:prb_tickSelectedDrawable="@drawable/star_for_ratings"
                     app:prb_tickSpacing="@dimen/dimen_2dp"
-                    app:prb_totalTicks="5"
-                    app:prb_clickable="true" />
+                    app:prb_totalTicks="5" />
 
 
             </RelativeLayout>
@@ -116,12 +123,11 @@
                 android:id="@+id/txtBio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8dp"
                 android:layout_marginLeft="@dimen/dimen_16dp"
                 android:layout_marginRight="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
                 android:text="Services"
-                android:textSize="@dimen/login_et_login_font"
-                />
+                android:textSize="@dimen/login_et_login_font" />
 
             <RadioGroup
                 android:id="@+id/segmented3"
@@ -184,37 +190,36 @@
                     android:padding="@dimen/dimen_4dp"
                     android:text="@string/txt_services"
                     android:textColor="@color/color_light_black_options"
-                    android:textSize="@dimen/landing_tv_msg_font"
-                     />
+                    android:textSize="@dimen/landing_tv_msg_font" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:nestedScrollingEnabled="false"
                     android:id="@+id/rvDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false" />
 
 
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:nestedScrollingEnabled="false"
                 android:id="@+id/rvPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/setting_layout_view_padding_bottom"
                 android:layout_marginRight="@dimen/setting_layout_view_padding_bottom"
                 android:layout_marginTop="@dimen/dimen_8dp"
+                android:nestedScrollingEnabled="false"
 
                 android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
-                android:nestedScrollingEnabled="false"
                 android:id="@+id/rvRate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dimen_36dp"
                 android:layout_marginRight="@dimen/dimen_36dp"
                 android:layout_marginTop="@dimen/dimen_8dp"
+                android:nestedScrollingEnabled="false"
                 android:visibility="gone" />
 
         </LinearLayout>

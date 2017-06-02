@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_8dp"
+    android:background="@drawable/bg_light_gray_rounded_corners_5"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/txtSaloonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:background="@drawable/bg_white_rounded_5"
+        android:padding="@dimen/dimen_8dp"
+        android:text="@string/app_name"
+        android:textColor="@color/color_light_black_options"
+        android:textSize="@dimen/landing_tv_msg_font" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="1dp"
+        android:paddingRight="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:text="@string/app_name"
+        android:textColor="@color/color_light_black_options"
+        android:textSize="@dimen/login_tv_forgot_font" />
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtDate"
+        android:layout_margin="1dp"
+        android:paddingRight="@dimen/dimen_8dp"
+        android:text="@string/app_name"
+        android:textColor="@color/color_light_black_options"
+        android:textSize="@dimen/login_tv_forgot_font"/>
+
+
+    <View
+        android:id="@+id/viewChangePass"
+        style="@style/separator_horizontal_gray"
+        android:background="@color/c_2c2c2c"
+        android:layout_below="@+id/txtSaloonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewChangePass"
+        android:layout_marginBottom="@dimen/dimen_4dp"
+        android:layout_marginLeft="@dimen/dimen_8dp"
+        android:layout_marginRight="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_6dp">
+
+        <TextView
+            android:id="@+id/txtCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_8dp"
+            android:layout_marginRight="@dimen/dimen_8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_green_rounded_5"
+            android:gravity="center"
+            android:padding="@dimen/dimen_5dp"
+            android:text="call"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/landing_tv_msg_font" />
+
+        <TextView
+            android:id="@+id/txtSMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_8dp"
+            android:layout_marginRight="@dimen/dimen_8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_primary_rounded_5"
+            android:gravity="center"
+            android:padding="@dimen/dimen_5dp"
+            android:text="sms"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/landing_tv_msg_font" />
+
+        <TextView
+            android:id="@+id/txtMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_8dp"
+            android:layout_marginRight="@dimen/dimen_8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_yellow_rounded_5"
+            android:gravity="center"
+            android:padding="@dimen/dimen_5dp"
+            android:text="@string/txt_map"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/landing_tv_msg_font" />
+    </LinearLayout>
+</RelativeLayout>

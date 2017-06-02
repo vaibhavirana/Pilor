@@ -32,6 +32,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -119,8 +120,8 @@ public class ActivityBooking extends ActivityBase {
 
     public class AdapterBook extends RecyclerView.Adapter<AdapterBook.MyViewHolder> {
         public class MyViewHolder extends RecyclerView.ViewHolder {
-            private TextView tvTitle, tvDetail, tvAction;
-            private RelativeLayout rlAction;
+            private TextView tvTitle, tvDetail, tvAction,txtSaloonName,txtDate,txtTime,txtCall,txtSMS,txtMap;
+            private RelativeLayout rlAction, rlBottom;
             private LinearLayout llAction;
             private ImageView ivAccept, ivClear;
 
@@ -129,7 +130,15 @@ public class ActivityBooking extends ActivityBase {
                 tvTitle = (TextView) view.findViewById(R.id.tvTitle);
                 tvDetail = (TextView) view.findViewById(R.id.tvDetail);
                 tvAction = (TextView) view.findViewById(R.id.tvAction);
+                txtSaloonName = (TextView) view.findViewById(R.id.txtSaloonName);
+                txtDate = (TextView) view.findViewById(R.id.txtDate);
+                txtTime = (TextView) view.findViewById(R.id.txtTime);
+                txtCall = (TextView) view.findViewById(R.id.txtCall);
+                txtSMS = (TextView) view.findViewById(R.id.txtSMS);
+                txtMap = (TextView) view.findViewById(R.id.txtMap);
+
                 rlAction = (RelativeLayout) view.findViewById(R.id.rlAction);
+                rlBottom = (RelativeLayout) view.findViewById(R.id.rlBottom);
                 llAction = (LinearLayout) view.findViewById(R.id.llAction);
                 ivAccept = (ImageView) view.findViewById(R.id.ivAccept);
                 ivClear = (ImageView) view.findViewById(R.id.ivClear);
@@ -162,6 +171,7 @@ public class ActivityBooking extends ActivityBase {
                     action = getString(R.string.txt_cancel);
                     detail = String.format(getString(R.string.txt_order_detail), booking.display_name, booking.date_of_booking);
                     holder.tvAction.setVisibility(View.VISIBLE);
+                    holder.rlBottom.setVisibility(View.GONE);
                     holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
                     holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
                     holder.tvAction.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +188,7 @@ public class ActivityBooking extends ActivityBase {
                             booking.display_name, booking.date_of_booking);
                     holder.tvAction.setVisibility(View.GONE);
                     holder.llAction.setVisibility(View.VISIBLE);
+                    holder.rlBottom.setVisibility(View.GONE);
                     holder.ivAccept.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -197,6 +208,7 @@ public class ActivityBooking extends ActivityBase {
                     action = getString(R.string.txt_cancel);
                     detail = String.format(getString(R.string.txt_confirm_detail), booking.display_name, booking.date_of_booking);
                     holder.tvAction.setVisibility(View.VISIBLE);
+                    holder.rlBottom.setVisibility(View.GONE);
                     holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
                     holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_red_bordered_rounded_5));
                     holder.tvAction.setOnClickListener(new View.OnClickListener() {
@@ -206,11 +218,12 @@ public class ActivityBooking extends ActivityBase {
                             // cancleBooking(booking.book_id);
                         }
                     });
-                } else {
+                } else if (booking.is_done == 3 && booking.is_review_added == 0) {
                     title = getString(R.string.txt_rate);
                     action = getString(R.string.txt_review);
                     detail = String.format(getString(R.string.txt_rate_detail), booking.display_name);
                     holder.tvAction.setVisibility(View.VISIBLE);
+                    holder.rlBottom.setVisibility(View.GONE);
                     holder.tvAction.setTextColor(getResources().getColor(R.color.colorAccent));
                     holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_blue_bordered_rounded_5));
                     holder.tvAction.setOnClickListener(new View.OnClickListener() {
@@ -222,17 +235,54 @@ public class ActivityBooking extends ActivityBase {
                             overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
                         }
                     });
+                } else if (booking.is_done == 3) {
+                    title = getString(R.string.txt_completed);
+                    detail = String.format(getString(R.string.txt_rate_detail), booking.display_name);
+                    holder.tvAction.setVisibility(View.GONE);
+                    holder.rlBottom.setVisibility(View.VISIBLE);
+                    holder.txtSaloonName.setText(booking.display_name);
+                    Date date = null;
+                    try {
+                        date = dateFormat.parse(booking.date_of_booking);
+                        DateFormat dfDate = new SimpleDateFormat("dd/MM/yyyy");
+                        DateFormat dfTime = new SimpleDateFormat("HH:mm");
+                        holder.txtDate.setText(dfDate.format(date));
+                        holder.txtTime.setText(dfTime.format(date));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    holder.txtCall.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                    holder.txtMap.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                    holder.txtSMS.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
                 }
             } else if (booking.is_service_accepted == 2) {
                 title = getString(R.string.txt_rejected);
                 //action = getString(R.string.txt_cancel);
                 holder.tvAction.setVisibility(View.GONE);
+                holder.rlBottom.setVisibility(View.GONE);
                 detail = String.format(getString(R.string.txt_reject_detail), booking.display_name);
             } else if (booking.is_service_accepted == 3) {
                 title = getString(R.string.txt_rate);
                 action = getString(R.string.txt_review);
                 detail = String.format(getString(R.string.txt_rate_detail), booking.display_name);
                 holder.tvAction.setVisibility(View.VISIBLE);
+                holder.rlBottom.setVisibility(View.GONE);
                 holder.tvAction.setTextColor(getResources().getColor(R.color.color_google_red));
                 holder.tvAction.setBackground(getResources().getDrawable(R.drawable.bg_blue_bordered_rounded_5));
                 holder.tvAction.setOnClickListener(new View.OnClickListener() {
@@ -248,6 +298,7 @@ public class ActivityBooking extends ActivityBase {
                 title = getString(R.string.txt_cancelled);
                 action = getString(R.string.txt_cancel);
                 holder.tvAction.setVisibility(View.GONE);
+                holder.rlBottom.setVisibility(View.GONE);
                 detail = String.format(getString(R.string.txt_cancel_detail), booking.display_name);
             }
             holder.tvTitle.setText(title);

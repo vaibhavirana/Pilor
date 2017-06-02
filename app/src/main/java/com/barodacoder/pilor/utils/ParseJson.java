@@ -763,7 +763,7 @@ public class ParseJson {
             listBooking.is_done = (jsonBooking.getInt("is_done"));
 
         if (jsonBooking.has("is_review_added"))
-            listBooking.is_review_added = (jsonBooking.getString("is_review_added"));
+            listBooking.is_review_added = (jsonBooking.getInt("is_review_added"));
 
         if (jsonBooking.has("hide_by_business"))
             listBooking.hide_by_business = (jsonBooking.getString("hide_by_business"));

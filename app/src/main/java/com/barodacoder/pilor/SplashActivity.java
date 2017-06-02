@@ -63,12 +63,13 @@ public class SplashActivity extends ActivityBase {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (libFile.isFbLogin())
-                            facebookLogin();
-                        else if (!libFile.getEmailId().equals("") && !libFile.getPassword().equals(""))
-                            userLogin();
-                        else
-                            goToLandingScreen();
+                            if (libFile.isFbLogin())
+                                facebookLogin();
+                            else if (!libFile.getEmailId().equals("") && !libFile.getPassword().equals(""))
+                                userLogin();
+                            else
+                                goToLandingScreen();
+
                     }
                 });
             }
@@ -164,6 +165,7 @@ public class SplashActivity extends ActivityBase {
         params.put("device_token", libFile.getDeviceToken());
         params.put("device_id", libFile.getDeviceId());
 
+        Log.v(AppConstants.DEBUG_TAG, "LOGIN REQ : " +libFile.getDeviceToken());
         client.post(AppConstants.URL_LOGIN, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {

@@ -29,10 +29,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // Handle data payload of FCM messages.
         Log.e(TAG, "FCM Message Id: " + remoteMessage.getMessageId());
-        Log.e(TAG, "FCM Notification Message: " +
-                remoteMessage.getData().get("message"));
+     /*   Log.e(TAG, "FCM Notification Message: " +
+                remoteMessage.getData().get("alert"));*/
         Log.e(TAG, "FCM Data Message: " + remoteMessage.getData().toString());
-
+        sendNotification(remoteMessage.getData().get("alert"));
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             sendNotification(remoteMessage.getNotification().getBody());

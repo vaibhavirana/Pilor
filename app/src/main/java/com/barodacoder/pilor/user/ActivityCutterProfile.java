@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -36,7 +37,10 @@ import com.barodacoder.pilor.rating.ProperRatingBar;
 import com.barodacoder.pilor.utils.AppData;
 import com.barodacoder.pilor.utils.ParseJson;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -54,7 +58,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
     private Toolbar toolbar;
 
     private CircularImageView ivImage;
-    private ImageView opacityFilter;
+    private ImageView opacityFilter,opacityFilter1;
     private Button btnOrderCut;
     private RecyclerView rvService, rvPhoto, rvRate;
     private UserCutter userCutter;
@@ -146,6 +150,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
         ratingBar.setRating(userCutter.getAvarage_rating());
         ivImage = (CircularImageView) findViewById(R.id.ivImage);
         opacityFilter = (ImageView) findViewById(R.id.opacityFilter);
+        opacityFilter1 = (ImageView) findViewById(R.id.opacityFilter1);
         btnOrderCut = (Button) findViewById(R.id.btnOrderCut);
         btnOrderCut.setOnClickListener(this);
         rvPhoto = (RecyclerView) findViewById(R.id.rvPhoto);
@@ -159,12 +164,28 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
 
         setPriceLayout();
 
-        Glide.with(getApplicationContext()).load(userCutter.getProfile())
+        Glide.with(getApplicationContext()).load(R.drawable.default_image)
+                //.placeholder(R.drawable.default_image)
                 .bitmapTransform(new BlurTransformation(this, 30))
-                //.placeholder(R.drawable.user)
+                .into(opacityFilter1);
+        Glide.with(this)
+                .load(userCutter.getProfile())
+               // .placeholder(R.drawable.default_image)
+                .bitmapTransform(new BlurTransformation(this, 30))
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        opacityFilter1.setVisibility(View.GONE);
+                         return false;
+                    }
+                })
                 .into(opacityFilter);
-
-
         Glide.with(getApplicationContext()).load(userCutter.getProfile()).asBitmap().centerCrop()
                 .placeholder(R.drawable.user)
                 .into(new BitmapImageViewTarget(ivImage) {
@@ -389,6 +410,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
     public class AdapterService extends RecyclerView.Adapter<AdapterService.MyViewHolder> {
         public class MyViewHolder extends RecyclerView.ViewHolder {
             private ImageView imgSelect;
+            private RelativeLayout rlMyProfile;
             private TextView tvPrice, tvServiceTitle;
 
             public MyViewHolder(View view) {
@@ -396,6 +418,7 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                 imgSelect = (ImageView) view.findViewById(R.id.imgSelect);
                 tvPrice = (TextView) view.findViewById(R.id.tvPrice);
                 tvServiceTitle = (TextView) view.findViewById(R.id.tvServiceTitle);
+                rlMyProfile = (RelativeLayout) view.findViewById(R.id.rlMyProfile);
 
                 tvPrice.setTypeface(AppData.getInstance(ActivityCutterProfile.this).getFontRegular());
                 tvServiceTitle.setTypeface(AppData.getInstance(ActivityCutterProfile.this).getFontRegular());
@@ -415,12 +438,11 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
 
         @Override
         public void onBindViewHolder(final AdapterService.MyViewHolder holder, final int position) {
-
             final boolean[] isSelect = {false};
             holder.tvServiceTitle.setText(URLDecoder.decode(services.get(position).getService_name()));
             holder.tvPrice.setText(URLDecoder.decode(services.get(position).getRate()) + " DKK");
 
-            holder.imgSelect.setOnClickListener(new View.OnClickListener() {
+        /*    holder.imgSelect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -430,8 +452,8 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                         // Log.e("deselected",selectedIds.toString() +" || "+selectedIds.contains(services.get(position).getService_id()));
 
                         holder.imgSelect.setImageDrawable(getResources().getDrawable(R.drawable.checkmark_unselected));
-                       /* selectedIds.remove(services.get(position).getService_id());
-                        totalPrice = totalPrice - Double.parseDouble(services.get(position).getRate());*/
+                        selectedIds.remove(services.get(position).getService_id());
+                        totalPrice = totalPrice - Double.parseDouble(services.get(position).getRate());
                         if (selectedIds.contains(services.get(position).getService_id())) {
 
                             selectedIds.remove(services.get(position).getService_id());
@@ -446,10 +468,6 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                     } else {
                         isSelect[0] = true;
                         holder.imgSelect.setImageDrawable(getResources().getDrawable(R.drawable.checkmark_selected));
-                       /* selectedService=services.get(position).getService_id();
-                        totalPrice= Double.parseDouble(services.get(position).getRate());
-                        selectedIds.add(services.get(position).getService_id());
-                        totalPrice = totalPrice + Double.parseDouble(services.get(position).getRate());*/
                         if (selectedIds.contains(services.get(position).getService_id())) {
 
                             selectedIds.remove(services.get(position).getService_id());
@@ -463,9 +481,9 @@ public class ActivityCutterProfile extends ActivityBase implements View.OnClickL
                     }
 
                 }
-            });
+            });*/
 
-            holder.tvServiceTitle.setOnClickListener(new View.OnClickListener() {
+            holder.rlMyProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (isSelect[0]) {
