@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.barodacoder.pilor">
+    package="com.moonsted.pilors">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -27,7 +27,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_app_id" />
+            android:value="@string/google_maps_key" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -39,7 +39,7 @@
             android:resource="@color/colorAccent" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name="com.moonsted.pilors.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan">
@@ -49,108 +49,108 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LandingActivity"
+            android:name="com.moonsted.pilors.LandingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.moonsted.pilors.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".SignupActivity"
+            android:name="com.moonsted.pilors.SignupActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.MainActivity"
+            android:name="com.moonsted.pilors.user.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.ActivitySetting"
+            android:name="com.moonsted.pilors.user.ActivitySetting"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.ActivityYourProfile"
+            android:name="com.moonsted.pilors.user.ActivityYourProfile"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.ActivityBooking"
+            android:name="com.moonsted.pilors.user.ActivityBooking"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan">
 
         </activity>
         <activity
-            android:name=".user.ActivityEnterPin"
+            android:name="com.moonsted.pilors.user.ActivityEnterPin"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.ActivityCutterProfile"
+            android:name="com.moonsted.pilors.user.ActivityCutterProfile"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.ActivityCreatePayment"
+            android:name="com.moonsted.pilors.user.ActivityCreatePayment"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.ActivityAddCard"
+            android:name="com.moonsted.pilors.user.ActivityAddCard"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".user.ActivitySendReview"
+            android:name="com.moonsted.pilors.user.ActivitySendReview"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan">
 
         </activity>
         <activity
-            android:name=".user.ActivityChangePasscode"
+            android:name="com.moonsted.pilors.user.ActivityChangePasscode"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- //business activity//-->
         <activity
-            android:name=".business.ActivityBusinessMain"
+            android:name="com.moonsted.pilors.business.ActivityBusinessMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".business.ActivityBusinessSetting"
+            android:name="com.moonsted.pilors.business.ActivityBusinessSetting"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".business.ActivityBusinessPaymentHistory"
+            android:name="com.moonsted.pilors.business.ActivityBusinessPaymentHistory"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".business.ActivityBusinessOpeningHours"
+            android:name="com.moonsted.pilors.business.ActivityBusinessOpeningHours"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".business.ActivityBusinessService"
+            android:name="com.moonsted.pilors.business.ActivityBusinessService"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".business.ActivityBusinessProfile"
+            android:name="com.moonsted.pilors.business.ActivityBusinessProfile"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".business.ActivityBusinessChangePassword"
+            android:name="com.moonsted.pilors.business.ActivityBusinessChangePassword"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
@@ -167,12 +167,12 @@
             android:theme="@style/Base.Theme.AppCompat"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <service android:name=".utils.MyFirebaseInstanceIdService">
+        <service android:name="com.moonsted.pilors.utils.MyFirebaseInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".utils.MyFirebaseMessagingService">
+        <service android:name="com.moonsted.pilors.utils.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

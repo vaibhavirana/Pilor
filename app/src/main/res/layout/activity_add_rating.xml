@@ -50,7 +50,7 @@
                 android:text="@string/txt_add_rating" />
 
 
-            <com.barodacoder.pilor.rating.ProperRatingBar
+            <com.moonsted.pilors.rating.ProperRatingBar
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

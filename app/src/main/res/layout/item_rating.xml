@@ -61,7 +61,7 @@
             android:singleLine="false"
             android:text="ckmsdkvjkm \n skdjjkfdsjfjds\n jdkjksjajj" />
 
-        <com.barodacoder.pilor.rating.ProperRatingBar
+        <com.moonsted.pilors.rating.ProperRatingBar
             android:id="@+id/rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

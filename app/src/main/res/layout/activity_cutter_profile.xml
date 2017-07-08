@@ -76,15 +76,13 @@
                     android:id="@+id/opacityFilter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    />
+                    android:scaleType="fitXY" />
 
                 <ImageView
                     android:id="@+id/opacityFilter1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    />
+                    android:scaleType="fitXY" />
 
 
                 <com.github.siyamed.shapeimageview.CircularImageView
@@ -97,7 +95,7 @@
                     app:siBorderColor="@color/colorPrimary"
                     app:siBorderWidth="0dp" />
 
-                <com.barodacoder.pilor.rating.ProperRatingBar
+                <com.moonsted.pilors.rating.ProperRatingBar
                     android:id="@+id/rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -209,7 +207,6 @@
                 android:layout_marginRight="@dimen/setting_layout_view_padding_bottom"
                 android:layout_marginTop="@dimen/dimen_8dp"
                 android:nestedScrollingEnabled="false"
-
                 android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
@@ -220,6 +217,14 @@
                 android:layout_marginRight="@dimen/dimen_36dp"
                 android:layout_marginTop="@dimen/dimen_8dp"
                 android:nestedScrollingEnabled="false"
+                android:visibility="gone" />
+
+            <com.moonsted.pilors.custom.EmptyLayout
+                android:id="@+id/emptyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
                 android:visibility="gone" />
 
         </LinearLayout>

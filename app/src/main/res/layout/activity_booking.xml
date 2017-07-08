@@ -32,7 +32,7 @@
             android:text="@string/txt_booking" />
 
     </RelativeLayout>
-it
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@ it
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <com.barodacoder.pilor.custom.EmptyLayout
+    <com.moonsted.pilors.custom.EmptyLayout
         android:id="@+id/emptyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,116 +58,5 @@ it
         android:gravity="center"
         android:visibility="gone" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:scrollbars="none"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:orientation="vertical">
-
-            <View style="@style/separator_horizontal_gray" />
-
-
-            <LinearLayout
-                android:id="@+id/llOrder"
-                style="@style/rl_setting_view"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/login_et_login_padding">
-
-                <TextView
-                    android:id="@+id/tvOrderTitle"
-                    style="@style/tv_setting"
-                    android:text="@string/txt_order"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvOrderDetail"
-                    style="@style/tv_setting"
-                    android:layout_below="@+id/tvOrderTitle"
-                    android:singleLine="false"
-                    android:text="@string/txt_order_detail"
-                    android:textSize="@dimen/login_tv_forgot_font" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/viewChangePass"
-                style="@style/separator_horizontal_gray" />
-
-
-            <LinearLayout
-                android:id="@+id/llReminder"
-                style="@style/rl_setting_view"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/login_et_login_padding">
-
-                <TextView
-                    android:id="@+id/tvReminderTitle"
-                    style="@style/tv_setting"
-                    android:text="@string/txt_reminder"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvReminderDetail"
-                    style="@style/tv_setting"
-                    android:layout_below="@+id/tvOrderTitle"
-                    android:singleLine="false"
-                    android:text="@string/txt_reminder_detail"
-                    android:textSize="@dimen/login_tv_forgot_font" />
-
-            </LinearLayout>
-
-            <View style="@style/separator_horizontal_gray" />
-
-            <LinearLayout
-                android:id="@+id/llRate"
-                style="@style/rl_setting_view"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/login_et_login_padding">
-
-                <TextView
-                    android:id="@+id/tvRateTitle"
-                    style="@style/tv_setting"
-                    android:text="@string/txt_rate"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/tvRateDetail"
-                        style="@style/tv_setting"
-                        android:layout_width="0dp"
-                        android:layout_weight="2.5"
-                        android:singleLine="false"
-                        android:text="@string/txt_rate_detail"
-                        android:textSize="@dimen/login_tv_forgot_font" />
-
-                    <TextView
-                        android:id="@+id/tvReview"
-                        style="@style/tv_setting"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:gravity="end"
-                        android:text="@string/txt_review"
-                        android:textColor="@color/colorAccent" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <View style="@style/separator_horizontal_gray" />
-        </LinearLayout>
-
-    </ScrollView>
 
 </RelativeLayout>

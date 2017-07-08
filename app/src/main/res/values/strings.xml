@@ -2,10 +2,10 @@
     <string name="app_name">Pilors</string>
 
     <!--<string name="fb_id">1239345152846915</string>-->
-    <string name="facebook_app_id">1435222096552444</string>
-    <string name="fb_login_protocol_scheme">fb1435222096552444</string>
+   <!-- <string name="facebook_app_id">1435222096552444</string>-->
+    <string name="facebook_app_id">1717641338460835</string>
+    <string name="fb_login_protocol_scheme">fb1717641338460835</string>
     <!-- 172350663252974-->
-    <string name="google_app_id">AIzaSyDfpDniqcIzTwICSkwGHwALzQ_4wehgabg</string>
     <string name="prb_default_symbolic_string">$</string>
 
     <string name="txt_loading">Loading...</string>
@@ -18,8 +18,6 @@
     <string name="txt_yes_cancel">Yes - Cancel</string>
     <string name="txt_continue">Continue</string>
     <string name="txt_yes">Yes</string>
-
-    <string name="txt_landing_msg">You have a task or idea that you\nneed to get fixed. Get it SnapFixed.</string>
 
     <string name="txt_signup_email">Signup with email instead?</string>
     <string name="txt_signup_fb">SIGNUP WITH FACEBOOK</string>
@@ -74,8 +72,6 @@
 
     <string name="txt_are_you_sure">Are you sure?</string>
 
-    <string name="txt_my_tasks">My tasks</string>
-
     <string name="txt_open">OPEN</string>
     <string name="txt_closed">CLOSED</string>
 
@@ -101,31 +97,7 @@
     <string name="txt_job_request">Job Request</string>
     <string name="txt_job_calender">Calender(Accepted Job)</string>
 
-    <string name="txt_company_name">Company name</string>
-    <string name="txt_address">Address</string>
-    <string name="txt_company_desc">Company description (120 characters)</string>
-
     <string name="txt_invalid_email">Invalid email/password</string>
-
-    <string name="txt_create_job">Create a job</string>
-
-    <string name="txt_add_photo_video">Add photos or videos to your job.</string>
-
-    <string name="txt_headline">Headline (Max 50 characters)</string>
-
-    <string name="txt_desc_200">Description (200 characters)</string>
-
-    <string name="txt_not_allowed_contact">Its not allowed to add your contact information.</string>
-
-    <string name="txt_special_requirement">Any special requirements? (200 characters)</string>
-
-    <string name="txt_distance_msg">How long away could your freelancer be from you?</string>
-
-    <string name="txt_budget">Budget</string>
-    <string name="txt_expiry_date">Expiry date</string>
-
-    <string name="txt_create_job_capital">CREATE JOB</string>
-    <string name="txt_create_job_msg">You will be notified when you have some bids.</string>
 
     <string name="permission_gps_rationale">Location permission is needed to proceed further.</string>
     <string name="permission_gps_denied">Location permission was denied. Please consider granting it in order to access the Location!</string>
@@ -141,12 +113,6 @@
     <string name="txt_cancelled">Cancelled</string>
     <string name="txt_rejected">Rejected</string>
 
-    <string name="txt_err_headline">Please enter headline</string>
-    <string name="txt_err_description">Please enter work description</string>
-    <string name="txt_err_budget">Please enter budget</string>
-    <string name="txt_Err_budget_amt">Budget should be greater than 0</string>
-    <string name="txt_err_expiry_date">Please select expiry date</string>
-
     <string name="txt_review_successfully">Review send successfully.</string>
     <string name="txt_review_failed">There is some problem in sending review. Please try again.</string>
 
@@ -158,8 +124,6 @@
     <string name="txt_success_change_pass">Password changes successfully</string>
     <string name="txt_failed_change_pass">Failed to change password. Please try again.</string>
 
-    <string name="txt_bid_on_job">BID ON JOB</string>
-
     <string name="txt_description">Description</string>
     <string name="txt_additional_requirement">Additional Requirement</string>
 
@@ -167,37 +131,10 @@
     <string name="txt_timenline">Timeline</string>
     <string name="txt_time">Time</string>
 
-    <string name="txt_create_bid">Create Bid</string>
-
-    <string name="txt_bid_dkk">Bid in DKK</string>
-    <string name="txt_any_comment_200">Any comments? (200 characters)</string>
-    <string name="txt_deadline">Deadline</string>
-
-    <string name="txt_err_bid">Please enter bid amount</string>
-    <string name="txt_err_bid_amt">Bid amount should be greater than 0</string>
-    <string name="txt_err_deadline">Please select deadline</string>
-
     <string name="txt_delete">Delete</string>
-
-    <string name="txt_headline_txt">Headline</string>
-
-    <string name="txt_create_reference">CREATE REFERENCE</string>
-
-    <string name="txt_company_detail">Company details</string>
-
-    <string name="txt_select_winner">SELECT AS WINNER</string>
 
     <string name="txt_service_book_success">Service book successfully</string>
     <string name="txt_service_book_failed">Failed to book service. Please try again.</string>
-
-    <string name="txt_bid">Bid</string>
-
-    <string name="txt_references_add_success">Reference added successfully</string>
-    <string name="txt_references_add_failed">Failed to add reference. Please try again.</string>
-
-    <string name="txt_references_delete_failed">Failed to delete reference. Please try again.</string>
-
-    <string name="txt_delete_reference">Delete Reference</string>
 
     <string name="txt_forgot_pass_sent">We have sent you an email to recover your password</string>
 
@@ -215,13 +152,12 @@
 
     <string name="txt_any">ANY</string>
 
-    <string name="txt_bid_added_by_you">You have already added bid on this task</string>
-
     <string name="txt_something_went_wrong">Something went wrong. Please tray again later.</string>
 
     <string name="txt_no_barber_found">Sorry - no barber found near by.</string>
-    <string name="txt_no_task_found">No task found</string>
-    <string name="txt_no_bid_found">No bids found</string>
+    <string name="txt_no_booking_found">No Booking found</string>
+    <string name="txt_no_rating_found">No Ratings found</string>
+    <string name="txt_no_history_found">No Payment History found</string>
 
     <string name="txt_selected">SELECTED</string>
 
@@ -263,6 +199,7 @@
 
     <string name="txt_services">Services</string>
     <string name="txt_search">Search</string>
+    <string name="txt_address">Address</string>
 
 
 </resources>

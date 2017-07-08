@@ -79,7 +79,7 @@
                 android:text="A-one Saloon"
                 android:singleLine="false" />
 
-            <com.barodacoder.pilor.rating.ProperRatingBar
+            <com.moonsted.pilors.rating.ProperRatingBar
                 android:id="@+id/rating"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"

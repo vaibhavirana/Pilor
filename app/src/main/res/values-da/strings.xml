@@ -2,10 +2,10 @@
     <string name="app_name">Pilors</string>
 
     <!--<string name="fb_id">1239345152846915</string>-->
-    <string name="facebook_app_id">1435222096552444</string>
-    <string name="fb_login_protocol_scheme">fb1435222096552444</string>
+   <!-- <string name="facebook_app_id">1435222096552444</string>-->
+    <string name="facebook_app_id">1717641338460835</string>
+    <string name="fb_login_protocol_scheme">fb1717641338460835</string>
     <!-- 172350663252974-->
-    <string name="google_app_id">AIzaSyDfpDniqcIzTwICSkwGHwALzQ_4wehgabg</string>
     <string name="prb_default_symbolic_string">$</string>
 
     <string name="txt_loading">Indlæser...</string>
@@ -157,6 +157,9 @@
     <string name="txt_something_went_wrong">Noget gik galt!  Prøv igen senere.</string>
 
     <string name="txt_no_barber_found">Beklager - ingen barbermand fundet i nærheden.</string>
+    <string name="txt_no_booking_found">No Booking found</string>
+    <string name="txt_no_rating_found">No Ratings found</string>
+    <string name="txt_no_history_found">No Payment History found</string>
 
     <string name="txt_selected">VALGTE</string>
 
@@ -198,6 +201,7 @@
 
     <string name="txt_services">Ydelser</string>
     <string name="txt_search">Søg</string>
+    <string name="txt_address">Address</string>
 
 
 </resources>
