@@ -17,8 +17,8 @@ public class AppConstants {
 
     public static final int DEVICE_TYPE = 2;
 
-    //public static final String MERCHANT_ID = "8027756";//"1027756";
-    public static final String MERCHANT_ID = "1027756";//"1027756";
+    public static final String MERCHANT_ID = "8027756";//"1027756";
+    //public static final String MERCHANT_ID = "1027756";//"1027756";
 
     public static final String AES128_KEY = "5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB"; //"5kJLG3ZgEMYJJhPjEanNDBwg7H7EfNqB";
 
@@ -32,8 +32,8 @@ public class AppConstants {
 
     public static final String URL_BECOME_CUTTER = "http://pilors.dk/signup";
 
-    //public static final String URL_BASE = "http://inmomenthosting.info/pilors_test/api_pilors/";
-    public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
+    public static final String URL_BASE = "http://inmomenthosting.info/pilors_test/api_pilors/";
+    //public static final String URL_BASE = "http://inmomenthosting.info/pilors/api_pilors/";
 
     public static final String URL_LOGIN = URL_BASE + "login";
     /*
@@ -79,6 +79,19 @@ public class AppConstants {
     longitude
     gender
      */
+
+    //CUTTER SIGN UP
+    public static final String URL_ADD_CUTTER = URL_BASE + "add_cutter";
+    /*email(*)
+    password(*)
+    device_token
+    device_id (only for android)
+    device_type( 1 for ios and 2 for android and 3 for windows)
+    latitude
+    longitude
+    profile_pic
+    display_name
+    address*/
 
     public static final String URL_LIST_CATEGORY = URL_BASE + "list_category";
     /*

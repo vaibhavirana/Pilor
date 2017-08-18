@@ -109,8 +109,10 @@ public class ActivityBase extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
     }*/
 
-    protected void goToSignupScreen() {
+    protected void goToSignupScreen(boolean isBusinessSignup) {
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+
+        intent.putExtra("IS_BUSINESS_SIGNUP", isBusinessSignup);
 
         startActivity(intent);
 

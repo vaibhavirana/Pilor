@@ -91,7 +91,7 @@ public class LoginActivity extends ActivityBase {
         tvDontHaveAcct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSignupScreen();
+                goToSignupScreen(false);
             }
         });
 

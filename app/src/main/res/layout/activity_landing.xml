@@ -9,34 +9,34 @@
         style="@style/iv_bg_image" />
 
     <ImageView
-        android:layout_marginTop="@dimen/landing_iv_logo_size_height"
-        android:layout_centerHorizontal="true"
         android:id="@+id/ivAdminLogin"
         android:layout_width="@dimen/login_iv_logo_size_width"
         android:layout_height="@dimen/login_iv_logo_size_width"
-        android:src="@drawable/login_logo"
-        android:layout_marginBottom="@dimen/login_et_login_padding" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/login_et_login_padding"
+        android:layout_marginTop="@dimen/landing_iv_logo_size_height"
+        android:src="@drawable/login_logo" />
 
     <LinearLayout
-        android:layout_centerInParent="true"
-        android:layout_below="@id/ivAdminLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_below="@id/ivAdminLogin"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/login_iv_logo_size_height"
         android:layout_marginRight="@dimen/login_iv_logo_size_height"
-        android:paddingTop="@dimen/setting_ic_arrow_size_height"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/setting_ic_arrow_size_height">
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_white_rounded_corners_5"
-            android:textSize="@dimen/login_et_login_font"
             android:layout_marginBottom="@dimen/setting_ic_arrow_size_width"
-            android:text="@string/txt_login" />
+            android:background="@drawable/bg_white_rounded_corners_5"
+            android:text="@string/txt_login"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/login_et_login_font" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button"
@@ -48,10 +48,10 @@
             android:id="@+id/btnSignupFb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
             android:background="@drawable/bg_selector_primary"
-            android:textSize="@dimen/login_et_login_font"
-            android:text="@string/txt_signup_fb" />
+            android:text="@string/txt_signup_fb"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/login_et_login_font" />
 
         <TextView
             android:id="@+id/tvLoginEmail"
@@ -61,14 +61,20 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvCutterSignUp"
+        style="@style/tv_forgot_pass"
+        android:layout_above="@id/btnLoginBusiness"
+        android:textColor="@color/colorAccent" />
+
     <Button
         android:id="@+id/btnLoginBusiness"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:background="@drawable/bg_selector_transparent_black"
-        android:textSize="@dimen/login_et_login_font"
         android:layout_alignParentBottom="true"
-        android:text="@string/txt_cutter_login" />
+        android:background="@drawable/bg_selector_transparent_black"
+        android:text="@string/txt_cutter_login"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/login_et_login_font" />
 
 </RelativeLayout>

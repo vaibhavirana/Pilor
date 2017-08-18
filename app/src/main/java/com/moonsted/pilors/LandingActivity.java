@@ -37,7 +37,7 @@ import cz.msebera.android.httpclient.Header;
 public class LandingActivity extends ActivityBase {
     private Button btnSignupFb, btnLoginBusiness, btnLogin;
 
-    private TextView tvLoginEmail;
+    private TextView tvLoginEmail,tvCutterSignUp;
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
@@ -206,7 +206,17 @@ public class LandingActivity extends ActivityBase {
         tvLoginEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSignupScreen();
+                goToSignupScreen(false);
+            }
+        });
+
+        tvCutterSignUp = (TextView) findViewById(R.id.tvCutterSignUp);
+        tvCutterSignUp.setTypeface(appData.getFontRegular());
+
+        tvCutterSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSignupScreen(true);
             }
         });
     }

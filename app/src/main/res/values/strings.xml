@@ -23,6 +23,7 @@
     <string name="txt_signup_fb">SIGNUP WITH FACEBOOK</string>
     <string name="txt_already_acct">Already have an account? Login with email</string>
     <string name="txt_cutter_login">LOGIN AS CUTTER</string>
+    <string name="txt_cutter_signup">ARE YOU CUTTER? SIGN UP</string>
 
     <string name="txt_fullname">Your name</string>
     <string name="txt_bio">Bio (Max 120 characters)</string>
@@ -31,7 +32,7 @@
     <string name="txt_password">Password</string>
     <string name="txt_repassword">Retype password</string>
     <string name="txt_forgot_pass">Forgot your password?</string>
-    <string name="txt_dont_have_acct">Don\'t have account?</string>
+    <string name="txt_dont_have_acct">Don\'t have account? Signup</string>
 
     <string name="txt_current_pass">Current password</string>
     <string name="txt_new_pass">New password</string>

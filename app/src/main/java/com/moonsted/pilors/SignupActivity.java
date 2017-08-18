@@ -24,6 +24,7 @@ public class SignupActivity extends ActivityBase {
     private EditText etFullName, etEmail, etPhone, etPassword, etRePassword;
 
     private Button btnSignup;
+    private boolean isBusinessSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class SignupActivity extends ActivityBase {
 
     protected void initData() {
         super.initData();
+
+        isBusinessSignup = getIntent().getBooleanExtra("IS_BUSINESS_SIGNUP", false);
     }
 
     private void initUi() {
@@ -158,7 +161,13 @@ public class SignupActivity extends ActivityBase {
         params.put("device_token", libFile.getDeviceToken());
         params.put("device_id", libFile.getDeviceId());
 
-        client.post(AppConstants.URL_SIGNUP, params, new AsyncHttpResponseHandler() {
+        String URL;
+        if(isBusinessSignup)
+            URL=AppConstants.URL_ADD_CUTTER;
+        else
+            URL=AppConstants.URL_SIGNUP;
+
+        client.post(URL, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -191,10 +200,9 @@ public class SignupActivity extends ActivityBase {
 
                         if (appData.getUserData().getRole().equals("1"))
                             goToHomeScreen();//goToMainAdminScreen();
-                       /* else if (appData.getUserData().getRole().equals("2"))
-                            goToBusinessMainScreen();*/
-                        else
-                            goToHomeScreen();
+                        else if (appData.getUserData().getRole().equals("2"))
+                            goToBusinessMainScreen();
+
                     } else {
                         showMsgDialog(getString(R.string.txt_invalid_email));
                     }
