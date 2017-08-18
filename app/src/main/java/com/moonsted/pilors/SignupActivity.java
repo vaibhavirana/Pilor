@@ -204,7 +204,7 @@ public class SignupActivity extends ActivityBase {
                             goToBusinessMainScreen();
 
                     } else {
-                        showMsgDialog(getString(R.string.txt_invalid_email));
+                        showMsgDialog(userData.getMsg().toString());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -223,7 +223,7 @@ public class SignupActivity extends ActivityBase {
                     if (AppConstants.DEBUG)
                         Log.v(AppConstants.DEBUG_TAG, "SIGNUP RESPONSE : FAILED : " + response);
 
-                    showMsgDialog(getString(R.string.txt_invalid_email));
+                    showMsgDialog(response);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -23,6 +23,7 @@
     <string name="txt_signup_fb">Opret dig med FACEBOOK</string>
     <string name="txt_already_acct">har du allerede en bruger? Log ind med email</string>
     <string name="txt_cutter_login">LOG IND SOM FRISØR</string>
+    <string name="txt_cutter_signup">Er du frisør? Opret bruger her!</string>
 
     <string name="txt_fullname">Dit navn</string>
     <string name="txt_bio">Bio (maks. 120 tegn)</string>

@@ -34,13 +34,6 @@ import android.widget.Toast;
 import com.akhgupta.easylocation.EasyLocationAppCompatActivity;
 import com.akhgupta.easylocation.EasyLocationRequest;
 import com.akhgupta.easylocation.EasyLocationRequestBuilder;
-import com.moonsted.pilors.AppConstants;
-import com.moonsted.pilors.R;
-import com.moonsted.pilors.custom.EmptyLayout;
-import com.moonsted.pilors.model.UserCutter;
-import com.moonsted.pilors.rating.ProperRatingBar;
-import com.moonsted.pilors.utils.ParseJson;
-import com.moonsted.pilors.utils.RecyclerItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.github.siyamed.shapeimageview.CircularImageView;
@@ -56,6 +49,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.moonsted.pilors.AppConstants;
+import com.moonsted.pilors.R;
+import com.moonsted.pilors.custom.EmptyLayout;
+import com.moonsted.pilors.custom.MaterialSpinner;
+import com.moonsted.pilors.model.Category;
+import com.moonsted.pilors.model.UserCutter;
+import com.moonsted.pilors.rating.ProperRatingBar;
+import com.moonsted.pilors.utils.ParseJson;
+import com.moonsted.pilors.utils.RecyclerItemClickListener;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -75,17 +77,20 @@ public class MainActivity extends EasyLocationAppCompatActivity {
 
     private SwipeRefreshLayout swipeRefresh;
 
-    private RecyclerView rvCategory;
+    private RecyclerView rvCutter;
 
     private ArrayList<UserCutter> cutterArrayList;
+    private ArrayList<Category> categoryArrayList ;
 
-    private AdapterCategories adpCategory;
+    private AdapterCategories adpCutter;
     private EditText searchView;
     private EmptyLayout emptyLayout;
     private RadioGroup radioGroupExplore;
     private RelativeLayout rlExplore;
+    private MaterialSpinner spCat;
 
     MapView mapView;
+    private int service_id=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +101,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
         setContentView(R.layout.activity_main);
         mapView = (MapView) findViewById(map);
         rlExplore = (RelativeLayout) findViewById(R.id.rlExplore);
+
         mapView.onCreate(savedInstanceState);
         initData();
 
@@ -117,6 +123,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
     public void onResume() {
         mapView.onResume();
         super.onResume();
+        getAllCategoryList();
     }
 
     @Override
@@ -166,6 +173,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
     protected void initData() {
         //super.initData();
         cutterArrayList = new ArrayList<>();
+        categoryArrayList = new ArrayList<>();
     }
 
     private void initUi() {
@@ -186,6 +194,17 @@ public class MainActivity extends EasyLocationAppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);
             }
         });
+
+        spCat = (MaterialSpinner) findViewById(R.id.spCat);
+        spCat.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                // Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+              //service_id=;
+            }
+        });
+
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         searchView = (EditText) findViewById(search);
 
@@ -238,14 +257,14 @@ public class MainActivity extends EasyLocationAppCompatActivity {
             }
         });
 
-        rvCategory = (RecyclerView) findViewById(R.id.rvCategory);
+        rvCutter = (RecyclerView) findViewById(R.id.rvCutter);
         emptyLayout = (EmptyLayout) findViewById(R.id.emptyLayout);
 
 
         //rvCategory.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        rvCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvCutter.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        rvCategory.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvCategory, new RecyclerItemClickListener.OnItemClickListener() {
+        rvCutter.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvCutter, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), ActivityCutterProfile.class);
@@ -261,8 +280,8 @@ public class MainActivity extends EasyLocationAppCompatActivity {
             }
         }));
 
-        adpCategory = new AdapterCategories();
-        rvCategory.setAdapter(adpCategory);
+        adpCutter = new AdapterCategories();
+        rvCutter.setAdapter(adpCutter);
     }
 
     private void showMap() {
@@ -318,7 +337,6 @@ public class MainActivity extends EasyLocationAppCompatActivity {
                         // TODO: Consider calling
                         return;
                     }
-
 
                     googleMap.setMyLocationEnabled(true);
                     googleMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -453,138 +471,6 @@ public class MainActivity extends EasyLocationAppCompatActivity {
         }
     }
 
-
-   /* public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.MyViewHolder> {
-
-        public class MyViewHolder extends RecyclerView.ViewHolder {
-            private ImageView ivImage;
-            private CircularImageView ivImage1;
-            private TextView tvCatName, tvDistance, tvDistance1;
-            private ProperRatingBar ratingBar;
-            private MapViewListItemView mMapViewListItemView;
-            private MapView mapView;
-
-            public MyViewHolder(MapViewListItemView mapViewListItemView) {
-                super(mapViewListItemView);
-                mMapViewListItemView = mapViewListItemView;
-                ivImage = (ImageView) mMapViewListItemView.findViewById(R.id.ivImage);
-                ivImage1 = (CircularImageView) mMapViewListItemView.findViewById(R.id.ivImage1);
-                ratingBar = (ProperRatingBar) mMapViewListItemView.findViewById(R.id.rating);
-                mapView = (MapView) mMapViewListItemView.findViewById(map);
-                tvDistance = (TextView) mMapViewListItemView.findViewById(R.id.tvDistance);
-                tvDistance1 = (TextView) mMapViewListItemView.findViewById(R.id.tvDistance1);
-                tvCatName = (TextView) mMapViewListItemView.findViewById(R.id.tvCatName);
-                tvCatName.setTypeface(appData.getFontBold());
-                tvDistance.setTypeface(appData.getFontBold());
-                tvDistance1.setTypeface(appData.getFontRegular());
-
-            }
-
-            public void mapViewListItemViewOnCreate(Bundle savedInstanceState) {
-                if (mMapViewListItemView != null) {
-                    mMapViewListItemView.mapViewOnCreate(savedInstanceState);
-                }
-            }
-
-            public void mapViewListItemViewOnResume() {
-                if (mMapViewListItemView != null) {
-                    mMapViewListItemView.mapViewOnResume();
-                }
-            }
-
-            public void mapViewListItemViewOnPause() {
-                if (mMapViewListItemView != null) {
-                    mMapViewListItemView.mapViewOnPause();
-                }
-            }
-
-            public void mapViewListItemViewOnDestroy() {
-                if (mMapViewListItemView != null) {
-                    mMapViewListItemView.mapViewOnDestroy();
-                }
-            }
-
-            public void mapViewListItemViewOnLowMemory() {
-                if (mMapViewListItemView != null) {
-                    mMapViewListItemView.mapViewOnLowMemory();
-                }
-            }
-
-            public void mapViewListItemViewOnSaveInstanceState(Bundle outState) {
-                if (mMapViewListItemView != null) {
-                    mMapViewListItemView.mapViewOnSaveInstanceState(outState);
-                }
-            }
-
-            public MyViewHolder(View view) {
-                super(view);
-            }
-        }
-
-        public AdapterCategories() {
-            //this.moviesList = moviesList;
-        }
-
-        @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            MapViewListItemView mapViewListItemView = new MapViewListItemView(MainActivity.this);
-            mapViewListItemView.mapViewOnCreate(null);
-            return new MyViewHolder(mapViewListItemView);
-        }
-
-        @Override
-        public void onBindViewHolder(final MyViewHolder holder, int position) {
-
-            holder.mapViewListItemViewOnResume();
-
-            final UserCutter userCutter = cutterArrayList.get(position);
-            holder.mapView.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap googleMap) {
-                    //holder.googleMap=googleMap;
-                    LatLng myLocation = new LatLng(userCutter.getLatitude(), userCutter.getLongitude());
-                    googleMap.addMarker(new MarkerOptions().position(myLocation)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pin))
-                            .title(userCutter.getDisplayName()));
-                    googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-                    googleMap.getUiSettings().setZoomControlsEnabled(false);
-                    // googleMap.getUiSettings().setZoomGesturesEnabled(false);
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15));
-                    //googleMap.stopAnimation();
-
-                }
-            });
-
-            if (!userCutter.getProfile().equals(""))
-                Glide.with(getApplicationContext()).load(userCutter.getProfile()).asBitmap().centerCrop()
-                        .placeholder(R.drawable.icon_no_image)
-                        .into(new BitmapImageViewTarget(holder.ivImage1) {
-                            @Override
-                            protected void setResource(Bitmap resource) {
-                                RoundedBitmapDrawable circularBitmapDrawable =
-                                        RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
-                                circularBitmapDrawable.setCircular(true);
-                                holder.ivImage1.setImageDrawable(circularBitmapDrawable);
-                            }
-                        });
-
-            holder.tvCatName.setText(userCutter.getDisplayName());
-            holder.tvDistance.setText("From " + userCutter.getMin_rate() + " DKK");
-            DecimalFormat df = new DecimalFormat("#.##");
-            holder.tvDistance1.setText(df.format(distance(userCutter.getLatitude(), userCutter.getLongitude())) + " km");
-            Log.e("rating", cutterArrayList.get(position).getAvarage_rating() + "");
-            holder.ratingBar.setRating(userCutter.getAvarage_rating());
-            //   holder.ratingBar.setRating(2);
-        }
-
-        @Override
-        public int getItemCount() {
-
-            //return 5;
-            return cutterArrayList.size();
-        }
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -622,6 +508,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
         params.put("latitude", libFile.getLatitude());
         params.put("longitude", libFile.getLongitude());
         params.put("radius", libFile.getRedius());
+        params.put("service_id", service_id);
 
         Log.v(AppConstants.DEBUG_TAG, "CUTTER_LIST REQUESR : " + params.toString());
 
@@ -660,7 +547,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
                     } else {
                         emptyLayout.setVisibility(View.GONE);
                     }
-                    adpCategory.notifyDataSetChanged();
+                    adpCutter.notifyDataSetChanged();
                     showMap();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -683,10 +570,73 @@ public class MainActivity extends EasyLocationAppCompatActivity {
         });
     }
 
+    public void getAllCategoryList() {
+        final AsyncHttpClient client = new AsyncHttpClient();
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait..");
+        progressDialog.show();
+
+        RequestParams params = new RequestParams();
+
+        params.put("user_id", libFile.getUserId());
+        params.put("user_token", libFile.getUserToken());
+
+        Log.v(AppConstants.DEBUG_TAG, "CATEGORY_LIST REQUEST : " + params.toString());
+
+        client.post(AppConstants.URL_LIST_CATEGORY, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                super.onStart();
+
+                //showProgressDialog();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                progressDialog.dismiss();
+                try {
+                    String response = new String(responseBody, "UTF-8");
+
+                    if (AppConstants.DEBUG)
+                        Log.v(AppConstants.DEBUG_TAG, "CUTTER_LIST RESPONSE : " + response);
+
+                    Category categoryAll=new Category();
+                    categoryAll.setCategoryId("0");
+                    categoryAll.setCategoryName("All");
+                    categoryArrayList.clear();
+                    categoryArrayList.add(categoryAll);
+                    for (Category categoryResponse : ParseJson.parseCategoryList(response)) {
+                        categoryArrayList.add(categoryResponse);
+                    }
+                    spCat.setItems(categoryArrayList);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                progressDialog.dismiss();
+                try {
+                    String response = new String(responseBody, "UTF-8");
+
+                    if (AppConstants.DEBUG)
+                        Log.v(AppConstants.DEBUG_TAG, "CUTTER LIST RESPONSE : FAILED : " + response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public void searchCutterList(String search) {
 
         cutterArrayList.clear();
-        adpCategory.notifyDataSetChanged();
+        adpCutter.notifyDataSetChanged();
         swipeRefresh.setRefreshing(true);
         final AsyncHttpClient client = new AsyncHttpClient();
 
@@ -733,7 +683,7 @@ public class MainActivity extends EasyLocationAppCompatActivity {
                     } else {
                         emptyLayout.setVisibility(View.GONE);
                     }
-                    adpCategory.notifyDataSetChanged();
+                    adpCutter.notifyDataSetChanged();
                     showMap();
                 } catch (Exception e) {
                     e.printStackTrace();

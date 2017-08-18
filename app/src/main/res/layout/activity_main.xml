@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorbg"
-    android:focusableInTouchMode="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,33 +16,63 @@
 
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvTitle1"
             style="@style/tv_header_title"
             android:text="" />
 
     </android.support.v7.widget.Toolbar>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/rlCategory"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/dimen_64dp">
 
-        <ImageView
+        <com.moonsted.pilors.custom.MaterialSpinner
+            android:id="@+id/spCat"
+            android:visibility="invisible"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dimen_8dp"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tv_header_title_font" />
+
+        <ImageView
+            android:layout_width="@dimen/setting_tv_about_margin_top"
+            android:layout_height="@dimen/setting_tv_about_margin_top"
+            android:layout_below="@+id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/dimen_4dp"
+            android:padding="0dp"
+            android:src="@drawable/ic_action_categories_down" />
+
+        <ImageView
             android:layout_width="@dimen/setting_ll_separator_fb_margin_left"
             android:layout_height="@dimen/setting_ll_separator_fb_margin_left"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_8dp"
             android:padding="0dp"
-            android:src="@drawable/ic_app_logo_white" />
+            android:src="@drawable/ic_app_logo_white"
+            android:visibility="gone" />
     </RelativeLayout>
 
     //explore view
+
     <RelativeLayout
         android:id="@+id/rlExplore"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rlBottom"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/llSearch"
@@ -53,25 +83,23 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginBottom="@dimen/dimen_8dp"
                 android:layout_marginLeft="@dimen/dimen_8dp"
                 android:layout_marginRight="@dimen/dimen_8dp"
                 android:background="@drawable/bg_white_rounded_corners_5_solid"
-                >
+                android:gravity="center">
 
                 <EditText
                     android:id="@+id/search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txt_search"
                     android:background="@null"
-                    android:padding="@dimen/dimen_4dp"
-                    android:gravity="center"
-                    android:textSize="@dimen/login_et_login_font"
-                    android:drawablePadding="@dimen/dimen_4dp"
                     android:drawableLeft="@drawable/ic_action_search"
-                    />
+                    android:drawablePadding="@dimen/dimen_4dp"
+                    android:gravity="center"
+                    android:hint="@string/txt_search"
+                    android:padding="@dimen/dimen_4dp"
+                    android:textSize="@dimen/login_et_login_font" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -85,12 +113,6 @@
             android:paddingTop="0dp"
             android:visibility="visible">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvCategory"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none" />
-
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <com.moonsted.pilors.custom.EmptyLayout
@@ -101,16 +123,25 @@
             android:gravity="center"
             android:visibility="gone" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCutter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/emptyLayout" />
+
     </RelativeLayout>
 
     //map view
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
-        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/rlBottom"
         android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/rlBottom"
@@ -118,8 +149,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
-        android:padding="@dimen/dimen_8dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="@dimen/dimen_8dp">
 
         <RadioGroup
             android:id="@+id/radioGroupExplore"
@@ -136,9 +167,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:background="@drawable/customswitchselector"
                 android:checked="true"
+                android:gravity="center"
                 android:text="@string/txt_list" />
 
             <RadioButton
@@ -147,8 +178,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:background="@drawable/customswitchselector"
+                android:gravity="center"
                 android:text="@string/txt_map" />
 
         </RadioGroup>
